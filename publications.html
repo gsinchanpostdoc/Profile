@@ -8,6 +8,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
 <nav class="nav" id="main-nav">
@@ -54,6 +56,13 @@
         <div class="pub-citation">Ghosh, S., Banerjee, A., Mukhopadhyay, S., Bhattacharya, S., &amp; Ray, S. (2022). Predicting the probability of avian reproductive success and its components at a nesting site. <em>Ecological Informatics</em>, <em>72</em>, 101841.</div>
         <a href="https://doi.org/10.1016/j.ecoinf.2022.101841" class="pub-doi" target="_blank" rel="noopener">DOI: 10.1016/j.ecoinf.2022.101841</a>
         <a href="https://authors.elsevier.com/c/1fxgV5c6cK~i7a" class="pub-link" target="_blank" rel="noopener">Full text <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        <div class="pub-visual">
+          <div class="pub-tabs"><button class="pub-tab pub-tab--active" data-tab="map-1">Study Area</button><button class="pub-tab" data-tab="spp-1">Species</button></div>
+          <div class="pub-panel pub-panel--active" id="map-1"><div class="pub-map" data-lat="22.1" data-lng="88.8" data-zoom="8" data-label="Gangetic Delta, India"></div></div>
+          <div class="pub-panel" id="spp-1"><div class="pub-species">
+            <figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Blue_tailed_bee_eater_%28Merops_philippinus%29._%E0%B4%B5%E0%B4%B2%E0%B4%BF%E0%B4%AF_%E0%B4%B5%E0%B5%87%E0%B4%B2%E0%B4%BF%E0%B4%A4%E0%B5%8D%E0%B4%A4%E0%B4%A4%E0%B5%8D%E0%B4%A4._%2832006186433%29.jpg/300px-Blue_tailed_bee_eater_%28Merops_philippinus%29._%E0%B4%B5%E0%B4%B2%E0%B4%BF%E0%B4%AF_%E0%B4%B5%E0%B5%87%E0%B4%B2%E0%B4%BF%E0%B4%A4%E0%B5%8D%E0%B4%A4%E0%B4%A4%E0%B5%8D%E0%B4%A4._%2832006186433%29.jpg" alt="Blue-tailed Bee-eater" loading="lazy"><figcaption><span class="species-name">Merops philippinus</span>Rison Thumboor, CC BY 2.0</figcaption></figure>
+          </div></div>
+        </div>
       </div>
 
       <div class="pub-item pub-item--first">
@@ -66,6 +75,13 @@
         <div class="pub-title">Variation in prey community determines nesting rates of <em>Merops philippinus</em></div>
         <div class="pub-authors"><strong>Ghosh, S.</strong></div>
         <div class="pub-citation">Ghosh, S. (2022). Variation in prey community determines nesting rates of <em>Merops philippinus</em>. <em>NDC E-BIOS</em>, <em>2</em>, 63--70.</div>
+        <div class="pub-visual">
+          <div class="pub-tabs"><button class="pub-tab pub-tab--active" data-tab="map-2">Study Area</button><button class="pub-tab" data-tab="spp-2">Species</button></div>
+          <div class="pub-panel pub-panel--active" id="map-2"><div class="pub-map" data-lat="22.1" data-lng="88.8" data-zoom="8" data-label="Gangetic Delta, India"></div></div>
+          <div class="pub-panel" id="spp-2"><div class="pub-species">
+            <figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Blue_tailed_bee_eater_%28Merops_philippinus%29._%E0%B4%B5%E0%B4%B2%E0%B4%BF%E0%B4%AF_%E0%B4%B5%E0%B5%87%E0%B4%B2%E0%B4%BF%E0%B4%A4%E0%B5%8D%E0%B4%A4%E0%B4%A4%E0%B5%8D%E0%B4%A4._%2832006186433%29.jpg/300px-Blue_tailed_bee_eater_%28Merops_philippinus%29._%E0%B4%B5%E0%B4%B2%E0%B4%BF%E0%B4%AF_%E0%B4%B5%E0%B5%87%E0%B4%B2%E0%B4%BF%E0%B4%A4%E0%B5%8D%E0%B4%A4%E0%B4%A4%E0%B5%8D%E0%B4%A4._%2832006186433%29.jpg" alt="Blue-tailed Bee-eater" loading="lazy"><figcaption><span class="species-name">Merops philippinus</span>Rison Thumboor, CC BY 2.0</figcaption></figure>
+          </div></div>
+        </div>
       </div>
 
       <div class="pub-item pub-item--first">
@@ -80,6 +96,13 @@
         <div class="pub-citation">Ghosh, S., Al Basir, F., Chowdhury, G., Bhattacharya, S., &amp; Ray, S. (2021). Is the primary helper always a key group for the dynamics of cooperative birds? A mathematical study on cooperative breeding birds. <em>Ecological Modelling</em>, <em>459</em>, 109710.</div>
         <a href="https://doi.org/10.1016/j.ecolmodel.2021.109710" class="pub-doi" target="_blank" rel="noopener">DOI: 10.1016/j.ecolmodel.2021.109710</a>
         <a href="https://www.sciencedirect.com/science/article/pii/S0304380021002805" class="pub-link" target="_blank" rel="noopener">Full text <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        <div class="pub-visual">
+          <div class="pub-tabs"><button class="pub-tab pub-tab--active" data-tab="map-3">Study Area</button><button class="pub-tab" data-tab="spp-3">Species</button></div>
+          <div class="pub-panel pub-panel--active" id="map-3"><div class="pub-map" data-lat="22.1" data-lng="88.8" data-zoom="8" data-label="Gangetic Delta, India"></div></div>
+          <div class="pub-panel" id="spp-3"><div class="pub-species">
+            <figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Blue_tailed_bee_eater_%28Merops_philippinus%29._%E0%B4%B5%E0%B4%B2%E0%B4%BF%E0%B4%AF_%E0%B4%B5%E0%B5%87%E0%B4%B2%E0%B4%BF%E0%B4%A4%E0%B5%8D%E0%B4%A4%E0%B4%A4%E0%B5%8D%E0%B4%A4._%2832006186433%29.jpg/300px-Blue_tailed_bee_eater_%28Merops_philippinus%29._%E0%B4%B5%E0%B4%B2%E0%B4%BF%E0%B4%AF_%E0%B4%B5%E0%B5%87%E0%B4%B2%E0%B4%BF%E0%B4%A4%E0%B5%8D%E0%B4%A4%E0%B4%A4%E0%B5%8D%E0%B4%A4._%2832006186433%29.jpg" alt="Blue-tailed Bee-eater" loading="lazy"><figcaption><span class="species-name">Merops philippinus</span>Rison Thumboor, CC BY 2.0</figcaption></figure>
+          </div></div>
+        </div>
       </div>
 
     </div>
@@ -98,6 +121,14 @@
         <div class="pub-authors">Mandal, S., Mondal, C., <strong>Ghosh, S.</strong>, Saha, S., Ray, M. S., &amp; Lyndem, L. M.</div>
         <div class="pub-citation">Mandal, S., Mondal, C., Ghosh, S., Saha, S., Ray, M. S., &amp; Lyndem, L. M. (2024). Efficacy of <em>Lactobacillus taiwanensis</em> S29 and <em>Lactiplantibacillus plantarum</em> S27 against tapeworm infection in Swiss Albino rats. <em>Experimental Parasitology</em>, <em>259</em>, 108715.</div>
         <a href="https://doi.org/10.1016/j.exppara.2024.108715" class="pub-doi" target="_blank" rel="noopener">DOI: 10.1016/j.exppara.2024.108715</a>
+        <div class="pub-visual">
+          <div class="pub-tabs"><button class="pub-tab pub-tab--active" data-tab="map-4">Study Area</button><button class="pub-tab" data-tab="spp-4">Species</button></div>
+          <div class="pub-panel pub-panel--active" id="map-4"><div class="pub-map" data-lat="22.57" data-lng="88.36" data-zoom="11" data-label="Kolkata, India (Laboratory study)"></div></div>
+          <div class="pub-panel" id="spp-4"><div class="pub-species">
+            <figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Albino_Rat.jpg/300px-Albino_Rat.jpg" alt="Swiss Albino rat" loading="lazy"><figcaption><span class="species-name">Rattus norvegicus</span>NIH, Public Domain</figcaption></figure>
+            <figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Lactobacillus_%28Gram%2B%29.jpg/300px-Lactobacillus_%28Gram%2B%29.jpg" alt="Lactobacillus" loading="lazy"><figcaption><span class="species-name">Lactobacillus</span>Yelen, CC BY 4.0</figcaption></figure>
+          </div></div>
+        </div>
       </div>
 
       <div class="pub-item">
@@ -111,6 +142,13 @@
         <div class="pub-citation">Rana, S., Basu, A., Ghosh, S., &amp; Bhattacharya, S. (2023). Moths exhibit strong memory among cooperative species of other taxonomic groups: An empirical study. <em>Ecological Modelling</em>, <em>476</em>, 110235.</div>
         <a href="https://doi.org/10.1016/j.ecolmodel.2022.110235" class="pub-doi" target="_blank" rel="noopener">DOI: 10.1016/j.ecolmodel.2022.110235</a>
         <a href="https://authors.elsevier.com/c/1gDtv15DJ-5fQ9" class="pub-link" target="_blank" rel="noopener">Full text <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        <div class="pub-visual">
+          <div class="pub-tabs"><button class="pub-tab pub-tab--active" data-tab="map-5">Study Area</button><button class="pub-tab" data-tab="spp-5">Species</button></div>
+          <div class="pub-panel pub-panel--active" id="map-5"><div class="pub-map" data-lat="22.57" data-lng="88.36" data-zoom="11" data-label="ISI Kolkata, India"></div></div>
+          <div class="pub-panel" id="spp-5"><div class="pub-species">
+            <figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Chrysiridia_rhipheus_MHNT.jpg/300px-Chrysiridia_rhipheus_MHNT.jpg" alt="Moth (Lepidoptera)" loading="lazy"><figcaption><span class="species-name">Lepidoptera</span>Didier Descouens, CC BY-SA 4.0</figcaption></figure>
+          </div></div>
+        </div>
       </div>
 
       <div class="pub-item">
@@ -124,6 +162,13 @@
         <div class="pub-citation">Mandal, S., Mondal, C., Mukherjee, T., Saha, S., Kundu, A., Ghosh, S., &amp; Lyndem, L. M. (2022). <em>Hymenolepis diminuta</em> reduce lactic acid bacterial load and induce dysbiosis in the early infection of the probiotic colonization of Swiss Albino rat. <em>Microorganisms</em>, <em>10</em>(12), 2328.</div>
         <a href="https://doi.org/10.3390/microorganisms10122328" class="pub-doi" target="_blank" rel="noopener">DOI: 10.3390/microorganisms10122328</a>
         <a href="https://www.mdpi.com/2076-2607/10/12/2328" class="pub-link" target="_blank" rel="noopener">Full text <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        <div class="pub-visual">
+          <div class="pub-tabs"><button class="pub-tab pub-tab--active" data-tab="map-6">Study Area</button><button class="pub-tab" data-tab="spp-6">Species</button></div>
+          <div class="pub-panel pub-panel--active" id="map-6"><div class="pub-map" data-lat="22.57" data-lng="88.36" data-zoom="11" data-label="Kolkata, India (Laboratory study)"></div></div>
+          <div class="pub-panel" id="spp-6"><div class="pub-species">
+            <figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Albino_Rat.jpg/300px-Albino_Rat.jpg" alt="Swiss Albino rat" loading="lazy"><figcaption><span class="species-name">Rattus norvegicus</span>NIH, Public Domain</figcaption></figure>
+          </div></div>
+        </div>
       </div>
 
       <div class="pub-item">
@@ -137,6 +182,13 @@
         <div class="pub-citation">Banerjee, A., Rakshit, N., Chakrabarty, M., Sinha, S., Ghosh, S., &amp; Ray, S. (2022). Zooplankton community of Bakreswar reservoir: Assessment and visualization of distribution pattern using self-organizing maps. <em>Ecological Informatics</em>, <em>72</em>, 101837.</div>
         <a href="https://doi.org/10.1016/j.ecoinf.2022.101837" class="pub-doi" target="_blank" rel="noopener">DOI: 10.1016/j.ecoinf.2022.101837</a>
         <a href="https://authors.elsevier.com/c/1ftK~5c6cK~i6w" class="pub-link" target="_blank" rel="noopener">Full text <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        <div class="pub-visual">
+          <div class="pub-tabs"><button class="pub-tab pub-tab--active" data-tab="map-7">Study Area</button><button class="pub-tab" data-tab="spp-7">Species</button></div>
+          <div class="pub-panel pub-panel--active" id="map-7"><div class="pub-map" data-lat="23.88" data-lng="87.38" data-zoom="10" data-label="Bakreswar Reservoir, India"></div></div>
+          <div class="pub-panel" id="spp-7"><div class="pub-species">
+            <figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Live_Copepods_under_Microscope_%E2%80%93_Black_Background_%28Macro_Photography%29.jpg/300px-Live_Copepods_under_Microscope_%E2%80%93_Black_Background_%28Macro_Photography%29.jpg" alt="Zooplankton (Copepods)" loading="lazy"><figcaption><span class="species-name">Copepoda (Zooplankton)</span>Lion Pods, CC BY 4.0</figcaption></figure>
+          </div></div>
+        </div>
       </div>
 
       <div class="pub-item">
@@ -150,6 +202,10 @@
         <div class="pub-citation">Roy, T., Ghosh, S., Saha, B., &amp; Bhattacharya, S. (2022). A noble extended stochastic logistic model for cell proliferation with density-dependent parameters. <em>Scientific Reports</em>, <em>12</em>, 8998.</div>
         <a href="https://doi.org/10.1038/s41598-022-12719-y" class="pub-doi" target="_blank" rel="noopener">DOI: 10.1038/s41598-022-12719-y</a>
         <a href="https://rdcu.be/cOYuK" class="pub-link" target="_blank" rel="noopener">Full text <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        <div class="pub-visual">
+          <div class="pub-tabs"><button class="pub-tab pub-tab--active" data-tab="map-8">Institution</button></div>
+          <div class="pub-panel pub-panel--active" id="map-8"><div class="pub-map" data-lat="22.57" data-lng="88.36" data-zoom="11" data-label="ISI Kolkata, India (Mathematical model)"></div></div>
+        </div>
       </div>
 
       <div class="pub-item">
@@ -163,6 +219,13 @@
         <div class="pub-citation">Reja, S., Ghosh, S., Ghosh, I., Paul, A., &amp; Bhattacharya, S. (2022). Investigation and control strategy for canine distemper disease on endangered wild dog species: A model-based approach. <em>SN Applied Sciences</em>, <em>4</em>, 176.</div>
         <a href="https://doi.org/10.1007/s42452-022-05053-5" class="pub-doi" target="_blank" rel="noopener">DOI: 10.1007/s42452-022-05053-5</a>
         <a href="https://rdcu.be/cNNxg" class="pub-link" target="_blank" rel="noopener">Full text <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        <div class="pub-visual">
+          <div class="pub-tabs"><button class="pub-tab pub-tab--active" data-tab="map-9">Study Area</button><button class="pub-tab" data-tab="spp-9">Species</button></div>
+          <div class="pub-panel pub-panel--active" id="map-9"><div class="pub-map" data-lat="-2.0" data-lng="28.0" data-zoom="4" data-label="Sub-Saharan Africa"></div></div>
+          <div class="pub-panel" id="spp-9"><div class="pub-species">
+            <figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/African_Painted_Dog_at_the_Endangered_Wolf_Center.jpg/300px-African_Painted_Dog_at_the_Endangered_Wolf_Center.jpg" alt="African wild dog" loading="lazy"><figcaption><span class="species-name">Lycaon pictus</span>EWCSTL, CC BY-SA 4.0</figcaption></figure>
+          </div></div>
+        </div>
       </div>
 
       <div class="pub-item">
@@ -176,6 +239,10 @@
         <div class="pub-citation">Roy, T., Ghosh, S., &amp; Bhattacharya, S. (2022). A new growth curve model portraying the stress response regulation of fish: Illustration through particle motion and real data. <em>Ecological Modelling</em>, <em>470</em>, 109999.</div>
         <a href="https://doi.org/10.1016/j.ecolmodel.2022.109999" class="pub-doi" target="_blank" rel="noopener">DOI: 10.1016/j.ecolmodel.2022.109999</a>
         <a href="https://www.sciencedirect.com/science/article/pii/S0304380022001120" class="pub-link" target="_blank" rel="noopener">Full text <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        <div class="pub-visual">
+          <div class="pub-tabs"><button class="pub-tab pub-tab--active" data-tab="map-10">Institution</button></div>
+          <div class="pub-panel pub-panel--active" id="map-10"><div class="pub-map" data-lat="22.57" data-lng="88.36" data-zoom="11" data-label="ISI Kolkata, India (Mathematical model)"></div></div>
+        </div>
       </div>
 
       <div class="pub-item">
@@ -188,6 +255,10 @@
         <div class="pub-authors">Roy, T., <strong>Ghosh, S.</strong>, Kundu, S., &amp; Bhattacharya, S.</div>
         <div class="pub-citation">Roy, T., Ghosh, S., Kundu, S., &amp; Bhattacharya, S. (2021). On developing a mathematical model for self-inducing proliferation and its regulation: Illustrations through scratch assay and stem cell data. <em>Bulletin of the Calcutta Mathematical Society</em>, <em>113</em>(4), 271--308.</div>
         <a href="https://www.researchgate.net/profile/Sinchan-Ghosh/publication/354089439" class="pub-link" target="_blank" rel="noopener">Full text <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        <div class="pub-visual">
+          <div class="pub-tabs"><button class="pub-tab pub-tab--active" data-tab="map-11">Institution</button></div>
+          <div class="pub-panel pub-panel--active" id="map-11"><div class="pub-map" data-lat="22.57" data-lng="88.36" data-zoom="11" data-label="ISI Kolkata, India (Mathematical model)"></div></div>
+        </div>
       </div>
 
     </div>
@@ -215,6 +286,39 @@
   </div>
 </footer>
 <script src="nav.js"></script>
+<script>
+(function(){
+  /* Tab switching */
+  document.querySelectorAll('.pub-tabs').forEach(function(tabs){
+    tabs.querySelectorAll('.pub-tab').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var panel = this.closest('.pub-visual');
+        panel.querySelectorAll('.pub-tab').forEach(function(b){ b.classList.remove('pub-tab--active'); });
+        panel.querySelectorAll('.pub-panel').forEach(function(p){ p.classList.remove('pub-panel--active'); });
+        this.classList.add('pub-tab--active');
+        var target = document.getElementById(this.getAttribute('data-tab'));
+        if(target) target.classList.add('pub-panel--active');
+        /* Invalidate Leaflet map size when switching to map tab */
+        var mapEl = target && target.querySelector('.pub-map');
+        if(mapEl && mapEl._leaflet) mapEl._leaflet.invalidateSize();
+      });
+    });
+  });
+  /* Initialize Leaflet maps */
+  document.querySelectorAll('.pub-map').forEach(function(el){
+    var lat = parseFloat(el.getAttribute('data-lat'));
+    var lng = parseFloat(el.getAttribute('data-lng'));
+    var zoom = parseInt(el.getAttribute('data-zoom')) || 8;
+    var label = el.getAttribute('data-label') || '';
+    var map = L.map(el, {scrollWheelZoom: false, attributionControl: false}).setView([lat, lng], zoom);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap'
+    }).addTo(map);
+    L.marker([lat, lng]).addTo(map).bindPopup('<strong>'+label+'</strong>');
+    el._leaflet = map;
+  });
+})();
+</script>
 <script data-pplx-inline-edit>
 (function(){
   if(window===window.top)return;
