@@ -1,5 +1,9 @@
 // Shared nav/theme/mobile-menu logic
 (function () {
+  // Embed mode: activate when loaded in an iframe or via ?embed=true
+  if (window !== window.top || new URLSearchParams(location.search).has('embed')) {
+    document.body.classList.add('embed-mode');
+  }
   // Theme
   const root = document.documentElement;
   const toggle = document.querySelector('[data-theme-toggle]');

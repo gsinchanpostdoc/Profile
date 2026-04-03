@@ -569,3 +569,12 @@ table { border-collapse: collapse; width: 100%; }
   font-style: italic; line-height: 1.7;
   margin: var(--space-6) 0;
 }
+
+/* ── EMBED MODE (Google Sites iframe) ───────────────────── */
+body.embed-mode .nav,
+body.embed-mode .mobile-menu,
+body.embed-mode .footer {
+  display: none !important;
+}
+body.embed-mode .hero { padding-top: var(--space-6); }
+body.embed-mode { overflow-x: hidden; }
