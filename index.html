@@ -1,549 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dr. Sinchan Ghosh — Quantitative Ecologist & Environmental Data Scientist</title>
-  <meta name="description" content="Quantitative Ecologist and Post-doctoral Researcher at IIASA specializing in ecological modelling, machine learning SDMs, ODE systems, and conservation decision-support tools.">
-  <meta property="og:title" content="Dr. Sinchan Ghosh — Quantitative Ecologist">
-  <meta property="og:description" content="Ecological modeller at IIASA. Expert in ODEs, machine-learning SDMs, and interactive decision-support tools for conservation management.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Sinchan Ghosh | Ecological Modelling Portfolio</title>
+  <meta name="description" content="Professional one-page portfolio integrating research profile, apps, repositories, and contact in an interactive minimalist GitHub Pages-ready site." />
+  <style>
+    :root {
+      --bg: #f7f8f7;
+      --surface: #ffffff;
+      --surface-2: #f2f4f2;
+      --text: #1c241f;
+      --muted: #5f6f65;
+      --line: #dce3de;
+      --primary: #295b3c;
+      --primary-soft: #eaf3ed;
+      --radius: 14px;
+      --shadow: 0 10px 24px rgba(31, 50, 39, 0.08);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f1411;
+      --surface: #17201b;
+      --surface-2: #1f2b24;
+      --text: #e7efe9;
+      --muted: #afc0b6;
+      --line: #2d3c33;
+      --primary: #8cc7a1;
+      --primary-soft: #1e3127;
+      --shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container { width: min(1080px, 92vw); margin: 0 auto; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      background: color-mix(in oklab, var(--bg) 82%, transparent);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav__inner { display: flex; align-items: center; justify-content: space-between; padding: 0.8rem 0; gap: 1rem; }
+    .brand { font-weight: 700; letter-spacing: 0.01em; font-size: 0.96rem; }
+    .nav__links { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .nav__links a, .btn {
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: 999px;
+      padding: 0.46rem 0.85rem;
+      font-size: 0.82rem;
+      transition: 0.22s;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .nav__links a:hover, .btn:hover { border-color: var(--primary); color: var(--primary); }
+
+    .hero { padding: clamp(2.5rem, 8vw, 6rem) 0 2.4rem; }
+    .eyebrow { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); font-weight: 700; }
+    h1 { margin: 0.45rem 0 0.8rem; font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.1; }
+    .lead { max-width: 74ch; color: var(--muted); margin: 0; }
+
+    section { padding: 1.45rem 0; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .stats { display: grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap: 0.75rem; margin-top: 1.2rem; }
+    .stat { padding: 0.9rem; }
+    .stat .v { font-size: 1.25rem; font-weight: 700; }
+    .stat .k { color: var(--muted); font-size: 0.8rem; }
+
+    .hub { display: grid; gap: 0.8rem; margin-top: 0.9rem; }
+    details {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      overflow: hidden;
+    }
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 0.95rem 1rem;
+      font-weight: 650;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    summary::-webkit-details-marker { display: none; }
+    details[open] summary { border-bottom: 1px solid var(--line); background: var(--surface-2); }
+    .panel { padding: 0.95rem 1rem 1rem; display: grid; gap: 0.65rem; }
+
+    .quick-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 0.55rem; }
+    .quick-link {
+      text-decoration: none;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface);
+      color: var(--muted);
+      padding: 0.72rem 0.78rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.8rem;
+      font-size: 0.86rem;
+    }
+    .quick-link:hover { border-color: var(--primary); color: var(--primary); }
+
+    .embed {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--surface);
+      margin-top: 0.45rem;
+    }
+    .embed header {
+      padding: 0.72rem 0.9rem;
+      border-bottom: 1px solid var(--line);
+      background: var(--surface-2);
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+    iframe { width: 100%; min-height: 500px; border: 0; display: block; }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0.78rem; border-top: 1px solid var(--line); background: var(--surface-2); }
+
+    footer { padding: 2rem 0 3rem; color: var(--muted); font-size: 0.82rem; }
+
+    @media (max-width: 760px) {
+      iframe { min-height: 420px; }
+      .nav__inner { flex-direction: column; align-items: stretch; }
+      .nav__links { justify-content: center; }
+    }
+  </style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
-  <div class="nav__inner">
-    <a href="index.html" class="nav__brand">
-      <svg class="nav__logo" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-        <circle cx="18" cy="18" r="17" stroke="var(--color-primary)" stroke-width="1.5" opacity="0.35"/>
-        <path d="M9 27 Q13 18 18 16 Q23 14 27 9" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" fill="none"/>
-        <circle cx="13" cy="22" r="2.5" fill="var(--color-primary)" opacity="0.8"/>
-        <circle cx="20" cy="15" r="2" fill="var(--color-accent)" opacity="0.8"/>
-        <circle cx="26" cy="10" r="1.5" fill="var(--color-gold)" opacity="0.8"/>
-      </svg>
-      <div>
-        <div class="nav__name">Dr. Sinchan Ghosh</div>
-        <div class="nav__title">Quantitative Ecologist · IIASA</div>
-      </div>
-    </a>
-    <nav class="nav__links" aria-label="Site pages">
-      <a href="index.html" class="nav__link nav__link--active">Home</a>
-      <a href="academic.html" class="nav__link">Academic Journey</a>
-      <a href="publications.html" class="nav__link">Publications</a>
-      <a href="apps.html" class="nav__link">Research Tools</a>
-      <a href="outreach.html" class="nav__link">Outreach</a>
-    </nav>
-    <div class="nav__actions">
-      <button class="nav__toggle nav__hamburger" data-hamburger aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-      <button class="nav__toggle" data-theme-toggle aria-label="Switch theme"></button>
-    </div>
-  </div>
-</nav>
-<div class="mobile-menu" id="mobile-menu" role="menu">
-  <a href="index.html" class="active">Home</a>
-  <a href="academic.html">Academic Journey</a>
-  <a href="publications.html">Publications</a>
-  <a href="apps.html">Research Tools</a>
-  <a href="outreach.html">Outreach & Service</a>
-</div>
-
-<!-- HERO -->
-<header class="hero">
-  <div class="container">
-    <div class="hero__grid">
-      <div>
-        <div class="hero__kicker">
-          <span class="badge badge--primary">Guest Researcher · IIASA · Jan 2026–present</span>
-        </div>
-        <h1 class="hero__name">Dr. Sinchan Ghosh</h1>
-        <p class="hero__role">Quantitative Ecologist &amp; Environmental Data Scientist</p>
-        <p class="hero__bio">
-          Post-doctoral Researcher at the International Institute for Applied Systems Analysis (IIASA),
-          specialising in the translation of complex biological dynamics into actionable conservation
-          and management strategies. Expert in Ordinary Differential Equations, Machine Learning,
-          and Probability Theory to forecast ecosystem responses, model wildlife epidemiology,
-          and guide evidence-based policy.
-        </p>
-        <div class="hero__actions">
-          <a href="publications.html" class="btn btn--primary">
-            View Publications
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="apps.html" class="btn btn--outline">Research Tools</a>
-        </div>
-        <div class="hero__links">
-          <a href="https://orcid.org/0000-0001-6407-383X" class="hero__link-btn" target="_blank" rel="noopener">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm-1.25 17.5H8.5V9.5h2.25v8zm-1.125-9.11a1.308 1.308 0 110-2.616 1.308 1.308 0 010 2.616zM17.5 17.5h-2.25v-4.13c0-.986-.017-2.253-1.372-2.253-1.375 0-1.585 1.073-1.585 2.18V17.5h-2.25V9.5h2.16v1.097h.03c.3-.57 1.035-1.17 2.13-1.17 2.28 0 2.7 1.5 2.7 3.45V17.5z"/></svg>
-            ORCID
-          </a>
-          <a href="https://scholar.google.com/citations?user=5dhoW-cAAAAJ&hl=en" class="hero__link-btn" target="_blank" rel="noopener">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 110-14 7 7 0 010 14zm0-24L0 9.5l4.838 3.94A8 8 0 0112 11a8 8 0 017.162 2.44L24 9.5 12 0z"/></svg>
-            Google Scholar
-          </a>
-          <a href="https://www.linkedin.com/in/sinchan-ghosh-b652941b7" class="hero__link-btn" target="_blank" rel="noopener">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            LinkedIn
-          </a>
-          <a href="https://github.com/gsinchanpostdoc" class="hero__link-btn" target="_blank" rel="noopener">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-            GitHub
-          </a>
-          <a href="mailto:gsinchanpostdoc@gmail.com" class="hero__link-btn">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            Contact
-          </a>
-        </div>
-      </div>
-      <div>
-        <div class="hero__photo-wrap">
-          <div class="hero__photo-placeholder" aria-label="Dr. Sinchan Ghosh">🔬</div>
-        </div>
+  <nav class="nav">
+    <div class="container nav__inner">
+      <div class="brand">Dr. Sinchan Ghosh · Quantitative Ecologist</div>
+      <div class="nav__links">
+        <a href="#home">Home</a>
+        <a href="#hub">Interactive Hub</a>
+        <a href="#apps">Applications</a>
+        <a href="#profiles">Profiles</a>
+        <button class="btn" id="themeBtn" aria-label="Toggle theme">Theme</button>
       </div>
     </div>
-  </div>
-</header>
+  </nav>
 
-<!-- CURRENT POSITION -->
-<section class="section" style="padding-top: clamp(2rem,4vw,3.5rem); padding-bottom: clamp(2rem,4vw,3.5rem);">
-  <div class="container">
-    <div class="stat-strip">
-      <div class="stat-item">
-        <div class="stat-value">11</div>
-        <div class="stat-label">Peer-reviewed publications</div>
+  <main id="home" class="container">
+    <header class="hero">
+      <div class="eyebrow">One-file GitHub Pages portfolio</div>
+      <h1>Professional, interactive, and fully integrated in a single website file.</h1>
+      <p class="lead">This page unifies your research identity, synchronized sites/profiles, live app embeds, and redirect actions in one minimalist structure suitable for GitHub hosting with no multi-page navigation overhead.</p>
+      <div class="stats">
+        <div class="card stat"><div class="v">2</div><div class="k">Live research apps</div></div>
+        <div class="card stat"><div class="v">4+</div><div class="k">Professional profile links</div></div>
+        <div class="card stat"><div class="v">1</div><div class="k">Integrated website file</div></div>
+        <div class="card stat"><div class="v">2026</div><div class="k">Current affiliation: IIASA</div></div>
       </div>
-      <div class="stat-item">
-        <div class="stat-value">6</div>
-        <div class="stat-label">Ecological systems modelled</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">2</div>
-        <div class="stat-label">Interactive stakeholder tools</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">IIASA</div>
-        <div class="stat-label">Current institution · Laxenburg, Austria</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">2022</div>
-        <div class="stat-label">PhD, Visva-Bharati University</div>
-      </div>
-    </div>
-  </div>
-</section>
+    </header>
 
-<!-- CORE COMPETENCIES -->
-<section class="section section--alt">
-  <div class="container">
-    <div class="eyebrow">Core Competencies</div>
-    <h2 class="section-title mb-2">Technical expertise &amp; analytical domains</h2>
-    <p class="section-lead mb-8">ATS-aligned skill profile spanning computational modelling, ecological domains, and applied decision-support deployment.</p>
-    <div class="comp-grid">
-      <div class="comp-card">
-        <div class="comp-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-        <div class="comp-title">Computational Modelling</div>
-        <div class="comp-items">
-          <div class="comp-item">Ordinary Differential Equations (ODE)</div>
-          <div class="comp-item">Machine Learning (hierarchical SDMs)</div>
-          <div class="comp-item">Probability Theory &amp; Bayesian methods</div>
-          <div class="comp-item">Process-Based Modelling</div>
-          <div class="comp-item">Integrated Population Modelling</div>
-          <div class="comp-item">Capture–Recapture Analyses</div>
-        </div>
-      </div>
-      <div class="comp-card">
-        <div class="comp-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 000 20A14.5 14.5 0 0012 2z"/><path d="M2 12h20"/></svg>
-        </div>
-        <div class="comp-title">Ecological Domains</div>
-        <div class="comp-items">
-          <div class="comp-item">Agro-Ecology</div>
-          <div class="comp-item">Wildlife Population Dynamics</div>
-          <div class="comp-item">Eco-epidemiology</div>
-          <div class="comp-item">Conservation Policy &amp; Management</div>
-          <div class="comp-item">Predator–prey &amp; food-web dynamics</div>
-          <div class="comp-item">Boreal &amp; farmland habitat systems</div>
-        </div>
-      </div>
-      <div class="comp-card">
-        <div class="comp-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-        </div>
-        <div class="comp-title">Analytical Methodologies</div>
-        <div class="comp-items">
-          <div class="comp-item">Habitat Suitability &amp; Corridor Modelling</div>
-          <div class="comp-item">Species Distribution Models (MaxEnt, GBM)</div>
-          <div class="comp-item">Reproductive Success Forecasting</div>
-          <div class="comp-item">Regime &amp; Stability Analyses</div>
-          <div class="comp-item">Spatiotemporal Analyses (QGIS/ArcGIS)</div>
-          <div class="comp-item">Growth Metric &amp; Bias Correction</div>
-        </div>
-      </div>
-      <div class="comp-card">
-        <div class="comp-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        </div>
-        <div class="comp-title">Technical Deployment</div>
-        <div class="comp-items">
-          <div class="comp-item">Python · R · MATLAB · Stella</div>
-          <div class="comp-item">Interactive Web Dashboards (JavaScript)</div>
-          <div class="comp-item">QGIS · ArcGIS · Geospatial analysis</div>
-          <div class="comp-item">CMIP6 · ERA5 · GBIF · TRY databases</div>
-          <div class="comp-item">Conda-managed reproducible environments</div>
-          <div class="comp-item">LaTeX · Scientific communication</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    <section id="hub">
+      <div class="eyebrow">Interactive navigation</div>
+      <h2>Expandable hub with redirect actions</h2>
+      <div class="hub">
+        <details open>
+          <summary>Research applications <span>＋</span></summary>
+          <div class="panel">
+            <div class="quick-grid">
+              <a class="quick-link" href="#apps">Embedded app previews <span>Open</span></a>
+              <a class="quick-link" href="https://roedeerdist.webtechsystems.de/" target="_blank" rel="noopener">Species model app <span>Launch</span></a>
+              <a class="quick-link" href="https://gsinchanpostdoc.github.io/Forage-energy-content-meta-database/" target="_blank" rel="noopener">Forage database app <span>Launch</span></a>
+            </div>
+          </div>
+        </details>
 
-<!-- CASE STUDIES -->
-<section class="section">
-  <div class="container">
-    <div class="eyebrow">Applied Research Portfolio</div>
-    <h2 class="section-title mb-2">Translational case studies</h2>
-    <p class="section-lead mb-8">Academic research reframed as applied environmental solutions — demonstrating computational methodology, stakeholder impact, and policy relevance.</p>
-    <div class="case-studies">
+        <details>
+          <summary>GitHub repositories <span>＋</span></summary>
+          <div class="panel quick-grid">
+            <a class="quick-link" href="https://github.com/gsinchanpostdoc" target="_blank" rel="noopener">Main GitHub profile <span>Visit</span></a>
+            <a class="quick-link" href="https://github.com/gsinchanpostdoc/Wolf-model" target="_blank" rel="noopener">Wolf-model <span>Repo</span></a>
+            <a class="quick-link" href="https://github.com/gsinchanpostdoc/Forage-energy-content-meta-database" target="_blank" rel="noopener">Forage-energy-content-meta-database <span>Repo</span></a>
+            <a class="quick-link" href="https://github.com/gsinchanpostdoc/Merops-project" target="_blank" rel="noopener">Merops-project <span>Repo</span></a>
+          </div>
+        </details>
 
-      <!-- Case Study 1 -->
-      <div class="case-card">
-        <div class="case-header">
-          <div class="case-title-group">
-            <div class="case-tag"><span class="badge badge--primary">Infrastructure Planning · Environmental Impact Assessment</span></div>
-            <h3 class="case-title">Habitat Risk Assessment for Agricultural Infrastructure</h3>
-            <div class="case-subtitle">Based on PhD thesis research — <em>Merops philippinus</em>, Gangetic Delta, India (2022)</div>
+        <details id="profiles">
+          <summary>Profiles and contact <span>＋</span></summary>
+          <div class="panel quick-grid">
+            <a class="quick-link" href="https://orcid.org/0000-0001-6407-383X" target="_blank" rel="noopener">ORCID <span>Open</span></a>
+            <a class="quick-link" href="https://scholar.google.com/citations?user=5dhoW-cAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar <span>Open</span></a>
+            <a class="quick-link" href="https://www.linkedin.com/in/sinchan-ghosh-b652941b7" target="_blank" rel="noopener">LinkedIn <span>Open</span></a>
+            <a class="quick-link" href="mailto:gsinchanpostdoc@gmail.com">Email <span>Contact</span></a>
           </div>
-          <div class="case-num">01</div>
-        </div>
-        <div class="case-body">
-          <div>
-            <div class="case-col-title">The Challenge</div>
-            <p class="case-col-text">Agricultural land loss in the Gangetic Delta has driven demand for river-cliff concretisation. This infrastructure development directly destroys the nesting habitats of <em>Merops philippinus</em> — a bird crucial for <strong>natural pest control</strong> in local croplands — threatening the ecosystem services that smallholder farmers depend upon.</p>
-          </div>
-          <div>
-            <div class="case-col-title">Computational Methodology</div>
-            <p class="case-col-text">Engineered a <strong>hybrid analytical pipeline</strong> combining process-based and machine-learning models. Integrated climate, soil, entomological, and aquatic predictors with birds' nesting rates, breeding success, and demographic variables as latent and response variables to identify optimal habitat patch locations.</p>
-          </div>
-          <div>
-            <div class="case-col-title">Applied Impact</div>
-            <p class="case-col-text">Delivered a <strong>data-driven spatial plan</strong> identifying exactly where habitat corridors must be preserved during concretisation. The model provides a blueprint for <strong>Environmental Impact Assessments (EIAs)</strong>, balancing critical agricultural infrastructure with the conservation of ecosystem services — applicable to policy and land-use planning authorities.</p>
-          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="apps">
+      <div class="eyebrow">Integrated app HTML embeds</div>
+      <h2>Live application previews</h2>
+
+      <div class="embed card">
+        <header>Scandinavian Species Distribution Models · Moose · Roe Deer · Grey Wolf</header>
+        <iframe src="https://roedeerdist.webtechsystems.de/" title="Species distribution app" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <div class="actions">
+          <a class="btn" href="https://roedeerdist.webtechsystems.de/" target="_blank" rel="noopener">Open full app</a>
+          <a class="btn" href="https://github.com/gsinchanpostdoc/Wolf-model" target="_blank" rel="noopener">Open repository</a>
         </div>
       </div>
 
-      <!-- Case Study 2 -->
-      <div class="case-card">
-        <div class="case-header">
-          <div class="case-title-group">
-            <div class="case-tag"><span class="badge badge--slate">Wildlife Management · Decision-Support Tool</span></div>
-            <h3 class="case-title">Interactive Decision-Support for Ungulate Management</h3>
-            <div class="case-subtitle">Based on the Forage Energy Database — IIASA postdoctoral research</div>
-          </div>
-          <div class="case-num">02</div>
-        </div>
-        <div class="case-body">
-          <div>
-            <div class="case-col-title">The Challenge</div>
-            <p class="case-col-text">Wildlife managers and conservationists require accessible, quantitative tools to calculate the <strong>carrying capacity</strong> and dietary energy requirements of boreal ungulate populations — information that is otherwise scattered across hundreds of primary literature sources in non-actionable formats.</p>
-          </div>
-          <div>
-            <div class="case-col-title">Computational Methodology</div>
-            <p class="case-col-text">Architected and deployed the <strong>Forage Energy Database</strong> — a dynamic web application synthesising Menke energy coefficients with Jacobs' D preference indices to compute preference-weighted metabolizable energy (<em>e<sub>p</sub></em>) for plant species consumed by moose, roe deer, and red deer across all seasons.</p>
-          </div>
-          <div>
-            <div class="case-col-title">Applied Impact</div>
-            <p class="case-col-text">Transformed 72 static nutritional records into an <strong>interactive dashboard</strong> allowing stakeholders to filter by species and season, providing immediate, actionable metrics for <strong>habitat management</strong>, supplementary feeding strategies, and population energy-budget parameterisation.</p>
-          </div>
+      <div class="embed card">
+        <header>Forage Energy Meta-Database · 72 records · 3 species · calculator + contribution</header>
+        <iframe src="https://gsinchanpostdoc.github.io/Forage-energy-content-meta-database/" title="Forage energy database app" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+        <div class="actions">
+          <a class="btn" href="https://gsinchanpostdoc.github.io/Forage-energy-content-meta-database/" target="_blank" rel="noopener">Open full app</a>
+          <a class="btn" href="https://github.com/gsinchanpostdoc/Forage-energy-content-meta-database" target="_blank" rel="noopener">Open repository</a>
         </div>
       </div>
+    </section>
 
-      <!-- Case Study 3 -->
-      <div class="case-card">
-        <div class="case-header">
-          <div class="case-title-group">
-            <div class="case-tag"><span class="badge badge--gold">Eco-Epidemiology · Endangered Species Conservation</span></div>
-            <h3 class="case-title">Eco-Epidemiological Modelling for Endangered Wild Dogs</h3>
-            <div class="case-subtitle">Based on: Reja et al. (2022) — <em>SN Applied Sciences</em></div>
-          </div>
-          <div class="case-num">03</div>
-        </div>
-        <div class="case-body">
-          <div>
-            <div class="case-col-title">The Challenge</div>
-            <p class="case-col-text">Canine Distemper Virus outbreaks pose <strong>catastrophic extinction risks</strong> to fragmented populations of endangered wild dog species. Without quantitative transmission models, conservation authorities lack a rigorous basis for deploying targeted interventions in time-critical disease events.</p>
-          </div>
-          <div>
-            <div class="case-col-title">Computational Methodology</div>
-            <p class="case-col-text">Developed advanced <strong>ODE-based mathematical models</strong> to investigate disease transmission dynamics within vulnerable wildlife populations, incorporating demographic structure, disease progression stages, and population connectivity parameters calibrated to empirical field data.</p>
-          </div>
-          <div>
-            <div class="case-col-title">Applied Impact</div>
-            <p class="case-col-text">Formulated <strong>quantitative control strategies</strong> from model outputs, providing conservation authorities with a rigorous mathematical framework to deploy <strong>targeted vaccination and quarantine interventions</strong> and quantify their impact on extinction probability — directly informing IUCN threat assessment methodology.</p>
-          </div>
-        </div>
-      </div>
+    <footer>
+      © 2026 Dr. Sinchan Ghosh · International Institute for Applied Systems Analysis (IIASA) · ORCID: 0000-0001-6407-383X
+    </footer>
+  </main>
 
-      <!-- Case Study 4 -->
-      <div class="case-card">
-        <div class="case-header">
-          <div class="case-title-group">
-            <div class="case-tag"><span class="badge badge--primary">Climate Change · Biodiversity Forecasting</span></div>
-            <h3 class="case-title">Climate-Driven Species Distribution Forecasting for Scandinavia</h3>
-            <div class="case-subtitle">Based on IIASA postdoctoral research — Taiga-Climate App (in communication)</div>
-          </div>
-          <div class="case-num">04</div>
-        </div>
-        <div class="case-body">
-          <div>
-            <div class="case-col-title">The Challenge</div>
-            <p class="case-col-text">Scandinavian game managers and conservation planners need accessible, scenario-based forecasts of how <strong>CMIP6 climate pathways</strong> will reshape habitat suitability for moose, roe deer, and grey wolf — the three keystone species of the boreal zone — across projection years 2025–2100.</p>
-          </div>
-          <div>
-            <div class="case-col-title">Computational Methodology</div>
-            <p class="case-col-text">Built hierarchical and stacked <strong>machine-learning Species Distribution Models</strong> integrating climate, vegetation, and land-cover predictors with CMIP6 SSP scenarios (SSP1–5). Integrated wolf–ungulate <strong>predator–prey ODE systems</strong> for trophic interaction layers within the distributional forecasts.</p>
-          </div>
-          <div>
-            <div class="case-col-title">Applied Impact</div>
-            <p class="case-col-text">Delivered the <strong>interactive Taiga-Climate web application</strong> — heatmaps of species density under each climate scenario, accessible to non-specialist game hunters, conservation planners, and policymakers via a public web interface without requiring technical expertise.</p>
-          </div>
-        </div>
-      </div>
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const themeBtn = document.getElementById('themeBtn');
+      const saved = localStorage.getItem('theme');
+      const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const initial = saved || preferred;
+      root.setAttribute('data-theme', initial);
 
-    </div>
-  </div>
-</section>
+      themeBtn?.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
 
-<!-- RESEARCH TOOLS PREVIEW -->
-<section class="section section--alt">
-  <div class="container">
-    <div class="eyebrow">Stakeholder Tools</div>
-    <h2 class="section-title mb-2">Interactive research applications</h2>
-    <p class="section-lead mb-8">Decision-support tools built from postdoctoral research, freely accessible to conservation managers and ecological researchers.</p>
-    <div class="app-grid">
-      <a href="https://roedeerdist.webtechsystems.de/" class="app-card" target="_blank" rel="noopener">
-        <div class="app-card__visual" style="background: linear-gradient(135deg, #0d1a10, #1a2e1c);">
-          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" style="opacity:0.6;">
-            <circle cx="40" cy="40" r="38" stroke="#5aaf7a" stroke-width="1.5"/>
-            <circle cx="28" cy="32" r="5" fill="#a0b4c8" opacity="0.9"/>
-            <circle cx="50" cy="25" r="4" fill="#c9a84c" opacity="0.9"/>
-            <circle cx="42" cy="48" r="6" fill="#5aaf7a" opacity="0.9"/>
-            <circle cx="22" cy="52" r="3" fill="#a0b4c8" opacity="0.7"/>
-            <circle cx="60" cy="40" r="3.5" fill="#c9a84c" opacity="0.7"/>
-          </svg>
-        </div>
-        <div class="app-card__body">
-          <div class="tags mb-2">
-            <span class="tag tag--primary">3 Species</span>
-            <span class="tag">CMIP6 scenarios</span>
-            <span class="tag">Scandinavia</span>
-          </div>
-          <div class="app-card__name">Scandinavian Species Distribution Models</div>
-          <p class="app-card__desc">Interactive habitat density heatmaps for moose, roe deer, and grey wolf under SSP climate scenarios across Scandinavia (2025–2100). Built for game managers and conservation planners.</p>
-        </div>
-        <div class="app-card__footer">
-          <span class="app-card__cta">
-            Open Application
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </span>
-          <span class="text-xs text-faint">roedeerdist.webtechsystems.de</span>
-        </div>
-      </a>
-      <a href="apps.html#forage" class="app-card">
-        <div class="app-card__visual" style="background: linear-gradient(135deg, #0f100c, #1b1e14);">
-          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" style="opacity:0.6;">
-            <rect x="15" y="25" width="50" height="35" rx="4" stroke="#a8c45a" stroke-width="1.5"/>
-            <line x1="15" y1="35" x2="65" y2="35" stroke="#a8c45a" stroke-width="1"/>
-            <rect x="22" y="40" width="20" height="4" rx="2" fill="#a8c45a" opacity="0.8"/>
-            <rect x="22" y="48" width="30" height="4" rx="2" fill="#a8c45a" opacity="0.5"/>
-            <rect x="22" y="56" width="14" height="4" rx="2" fill="#a8c45a" opacity="0.35"/>
-          </svg>
-        </div>
-        <div class="app-card__body">
-          <div class="tags mb-2">
-            <span class="tag tag--primary">72 records</span>
-            <span class="tag">3 species</span>
-            <span class="tag">4 seasons</span>
-          </div>
-          <div class="app-card__name">Forage Energy Meta-Database</div>
-          <p class="app-card__desc">Metabolizable energy content, digestibility, and Jacobs' D preference index for boreal ungulates (moose, roe deer, red deer). Includes calculator and contribute functionality.</p>
-        </div>
-        <div class="app-card__footer">
-          <span class="app-card__cta">
-            Explore Database
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </span>
-          <span class="text-xs text-faint">Interactive · Open access</span>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- CURRENT POSITION / AFFILIATION -->
-<section class="section">
-  <div class="container">
-    <div class="two-col">
-      <div>
-        <div class="eyebrow">Current Position</div>
-        <h2 class="section-title mb-6">Institutional affiliation</h2>
-        <div class="card mb-4" style="border-left: 3px solid var(--color-primary);">
-          <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: 0.4rem;">Jan 2026 – present</div>
-          <div style="font-weight: 700; font-size: var(--text-base); margin-bottom: 0.2rem;">Guest Researcher</div>
-          <div style="font-size: var(--text-sm); color: var(--color-text-muted);">International Institute for Applied Systems Analysis (IIASA)</div>
-          <div style="font-size: var(--text-xs); color: var(--color-text-faint); margin-top: 0.3rem;">Biodiversity and Natural Resources Programme · Laxenburg, Austria</div>
-        </div>
-        <div class="card" style="border-left: 3px solid var(--color-border);">
-          <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: 0.4rem;">Aug 2023 – Dec 2025</div>
-          <div style="font-weight: 700; font-size: var(--text-base); margin-bottom: 0.2rem;">Researcher (Post-doctoral)</div>
-          <div style="font-size: var(--text-sm); color: var(--color-text-muted);">IIASA, Agriculture, Forestry and Ecosystems Services Group</div>
-          <div style="font-size: var(--text-xs); color: var(--color-text-faint); margin-top: 0.3rem;">Biodiversity and Natural Resources Programme · Laxenburg, Austria</div>
-        </div>
-      </div>
-      <div>
-        <div class="eyebrow">Expertise Breadth</div>
-        <h2 class="section-title mb-6">Habitat systems</h2>
-        <div class="tags" style="margin-bottom: var(--space-6);">
-          <span class="tag tag--primary">Farmland</span>
-          <span class="tag tag--primary">Riparian</span>
-          <span class="tag tag--primary">Estuarine</span>
-          <span class="tag tag--primary">Grassland</span>
-          <span class="tag tag--primary">Boreal Forest</span>
-        </div>
-        <div class="eyebrow" style="margin-top: var(--space-6);">Public databases</div>
-        <div class="tags" style="margin-top: var(--space-3);">
-          <span class="tag">GBIF</span><span class="tag">eBird</span><span class="tag">iNaturalist</span>
-          <span class="tag">TRY</span><span class="tag">CMIP6</span><span class="tag">CRU</span>
-          <span class="tag">ERA5</span><span class="tag">EUR-11</span><span class="tag">LUCAS</span>
-          <span class="tag">India-WRIS</span><span class="tag">Bhuvan</span><span class="tag">InsectBase</span>
-        </div>
-        <div class="eyebrow" style="margin-top: var(--space-6);">Peer review &amp; service</div>
-        <div style="font-size: var(--text-sm); color: var(--color-text-muted); margin-top: var(--space-3); line-height: 1.7;">
-          Reviewer: <em>Ecological Modelling · Ecological Indicators · Scientific Reports</em><br>
-          Editorial: <em>NDC E-BIOS</em> (2023–present) · <em>Bull. Calcutta Math. Soc.</em> (2022–23)<br>
-          Member: European Geoscience Union · ISBE · Calcutta Mathematical Society
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer__grid">
-      <div>
-        <div class="footer__brand-name">Dr. Sinchan Ghosh</div>
-        <div class="footer__brand-role">Quantitative Ecologist · IIASA</div>
-        <div class="footer__contact">
-          <a href="mailto:gsinchanpostdoc@gmail.com">gsinchanpostdoc@gmail.com</a>
-          <a href="https://iiasa.ac.at/" target="_blank" rel="noopener">IIASA, Laxenburg, Austria</a>
-          <a href="https://orcid.org/0000-0001-6407-383X" target="_blank" rel="noopener">ORCID: 0000-0001-6407-383X</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer__col-title">Portfolio</div>
-        <div class="footer__links">
-          <a href="index.html">Home</a>
-          <a href="academic.html">Academic Journey</a>
-          <a href="publications.html">Publications</a>
-          <a href="apps.html">Research Tools</a>
-          <a href="outreach.html">Outreach</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer__col-title">Research Profiles</div>
-        <div class="footer__links">
-          <a href="https://scholar.google.com/citations?user=5dhoW-cAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-          <a href="https://orcid.org/0000-0001-6407-383X" target="_blank" rel="noopener">ORCID</a>
-          <a href="https://www.researchgate.net/profile/Sinchan-Ghosh" target="_blank" rel="noopener">ResearchGate</a>
-          <a href="https://github.com/gsinchanpostdoc" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://www.linkedin.com/in/sinchan-ghosh-b652941b7" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer__col-title">Tools</div>
-        <div class="footer__links">
-          <a href="https://roedeerdist.webtechsystems.de/" target="_blank" rel="noopener">Species Distribution App</a>
-          <a href="apps.html#forage">Forage Energy Database</a>
-          <a href="https://github.com/gsinchanpostdoc" target="_blank" rel="noopener">Code Repositories</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <div class="footer__copy">© 2026 Dr. Sinchan Ghosh · All rights reserved</div>
-      <div class="footer__orcid">ORCID: <a href="https://orcid.org/0000-0001-6407-383X" target="_blank" rel="noopener">0000-0001-6407-383X</a></div>
-    </div>
-  </div>
-</footer>
-
-<script src="nav.js"></script>
-<script data-pplx-inline-edit>
-(function(){
-  if(window===window.top)return;
-  function inlineAll(orig,clone){
-    if(orig.nodeType!==1)return;
-    try{
-      var cs=getComputedStyle(orig);
-      var t='';
-      for(var i=0;i<cs.length;i++){t+=cs[i]+':'+cs.getPropertyValue(cs[i])+';';}
-      clone.style.cssText=t;
-    }catch(e){}
-    var oc=orig.children,cc=clone.children;
-    for(var j=0;j<oc.length&&j<cc.length;j++){inlineAll(oc[j],cc[j]);}
-  }
-  function stripExternal(clone){
-    var imgs=clone.querySelectorAll('img');
-    for(var i=0;i<imgs.length;i++){
-      var s=imgs[i].getAttribute('src');
-      if(s&&!s.startsWith('data:'))imgs[i].removeAttribute('src');
-    }
-    var all=clone.querySelectorAll('*');
-    for(var i=0;i<all.length;i++){
-      var st=all[i].style.cssText;
-      if(st&&st.indexOf('url(')>=0){
-        all[i].style.cssText=st.replace(/url\(["']?(?!data:)[^)"']*["']?\)/gi,'none');
+      if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+          if (target.tagName.toLowerCase() === 'details') target.open = true;
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       }
-    }
-  }
-  window.addEventListener('message',function(e){
-    if(!e.data||e.data.type!=='INLINE_EDIT_CAPTURE_REQUEST')return;
-    var scrollX=window.scrollX||window.pageXOffset||0;
-    var scrollY=window.scrollY||window.pageYOffset||0;
-    var w=window.innerWidth,h=window.innerHeight;
-    try{
-      var clone=document.documentElement.cloneNode(true);
-      var rm=clone.querySelectorAll('script,link[rel="stylesheet"],style');
-      for(var i=0;i<rm.length;i++){rm[i].remove();}
-      inlineAll(document.documentElement,clone);
-      stripExternal(clone);
-      var html=new XMLSerializer().serializeToString(clone);
-      var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'
-        +'<foreignObject width="100%" height="100%">'
-        +'<div xmlns="http://www.w3.org/1999/xhtml" style="width:'+w+'px;height:'+h+'px;overflow:hidden">'
-        +'<div style="transform:translate(-'+scrollX+'px,-'+scrollY+'px);transform-origin:top left">'
-        +html+'</div></div></foreignObject></svg>';
-      var svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
-      var img=new Image();
-      img.onload=function(){
-        var c=document.createElement('canvas');c.width=w;c.height=h;
-        c.getContext('2d').drawImage(img,0,0);
-        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:c.toDataURL('image/png'),scrollX:scrollX,scrollY:scrollY},'*');
-      };
-      img.onerror=function(){
-        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
-      };
-      img.src=svgUrl;
-    }catch(err){
-      window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
-    }
-  });
-})();
-</script></body>
+    })();
+  </script>
+</body>
 </html>
