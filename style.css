@@ -367,6 +367,8 @@ table { border-collapse: collapse; width: 100%; }
 .pub-panel { display: none; }
 .pub-panel--active { display: block; }
 .pub-map { height: 180px; }
+.pub-map-static { width: 100%; border-radius: var(--r-md); border: 3px solid var(--color-border); }
+.pub-map-static img { width: 100%; display: block; border-radius: calc(var(--r-md) - 3px); }
 .pub-species {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: var(--space-3); padding: var(--space-4);
