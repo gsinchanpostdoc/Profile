@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Research Tools — Dr. Sinchan Ghosh</title>
-  <meta name="description" content="Interactive research tools by Dr. Sinchan Ghosh — Scandinavian Species Distribution Models and Forage Energy Meta-Database for ungulate ecology.">
+  <meta name="description" content="Interactive research tools by Dr. Sinchan Ghosh — Scandinavian Species Distribution Models, Forage Energy Meta-Database, and AlderGuard ecoepidemic decision-support.">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&display=swap" rel="stylesheet">
@@ -193,12 +193,88 @@
   </div>
 </div>
 
+<!-- TOOL 3: ALDERGUARD -->
+<div class="tool-section" id="alderguard">
+  <div class="container">
+    <div class="tool-intro">
+      <div>
+        <span class="badge badge--primary mb-4" style="display:inline-flex;">Frontiers in Ecology &amp; Evolution (in review)</span>
+        <h2 class="section-title mb-2">AlderGuard — Alnus Ecoepidemic Decision-Support</h2>
+        <p style="font-size:var(--text-lg); color:var(--color-text-muted); line-height:1.65; margin-bottom:var(--space-5);">An in-browser decision-support tool for the black alder (<em>Alnus glutinosa</em>) — alder leaf beetle (<em>Agelastica alni</em>) — tachinid parasitoid (<em>Meigenia mutabilis</em>) — insectivorous-bird ecoepidemic system. Pick any of 41 Natura 2000 alluvial-forest sites across Europe on the interactive map and the 23 model parameters auto-calibrate from a continuously-updated literature metadatabase.</p>
+        <div class="tags mb-6">
+          <span class="tag tag--primary">41 EU sites</span>
+          <span class="tag">23 parameters</span>
+          <span class="tag">Natura 2000 habitat 91E0</span>
+          <span class="tag">Literature-pooled 95% CI</span>
+          <span class="tag">LLM literature agent</span>
+          <span class="tag">Hybrid ODE + annual map</span>
+          <span class="tag">Python + R packages</span>
+        </div>
+        <p class="text-sm text-muted" style="line-height:1.7; margin-bottom: var(--space-5);">AlderGuard couples a within-season 4-state ODE system (susceptible larvae, parasitised larvae, adult parasitoids, defoliation) with an annual Beverton-Holt discrete map for beetle reproduction, parasitoid overwinter survival, and canopy feedback. A scheduled GitHub-Actions literature agent continuously grows the parameter metadatabase from OpenAlex, Europe PMC, Semantic Scholar, and Crossref, feeding reviewed values and 95&thinsp;% confidence intervals onto every slider. Companion Python (<code>pip install git+...#subdirectory=alderguard-py</code>) and R (<code>remotes::install_github</code>) packages reproduce every analysis programmatically.</p>
+        <a href="https://gsinchanpostdoc.github.io/alderguard/" class="btn btn--primary" target="_blank" rel="noopener">
+          Open Application <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+        <a href="https://github.com/gsinchanpostdoc/alderguard" class="btn btn--outline" target="_blank" rel="noopener" style="margin-left:8px;">
+          Source code &amp; packages <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+      <div>
+        <div class="tool-meta-block">
+          <div class="tool-meta-row"><span class="tool-meta-label">Target system</span><span class="tool-meta-val">Alnus glutinosa · Agelastica alni · Meigenia mutabilis · passerines</span></div>
+          <div class="tool-meta-row"><span class="tool-meta-label">Sites</span><span class="tool-meta-val">41 Natura 2000 alluvial forests (19 countries)</span></div>
+          <div class="tool-meta-row"><span class="tool-meta-label">Model</span><span class="tool-meta-val">Hybrid within-season ODE + annual map</span></div>
+          <div class="tool-meta-row"><span class="tool-meta-label">Parameters</span><span class="tool-meta-val">23 (attack rate, mortalities, carrying capacity, control efforts, thresholds)</span></div>
+          <div class="tool-meta-row"><span class="tool-meta-label">Core features</span><span class="tool-meta-val">Simulation · Equilibrium · Bifurcation · Fitting · Early warnings · Control</span></div>
+          <div class="tool-meta-row"><span class="tool-meta-label">Literature agent</span><span class="tool-meta-val">OpenAlex + Europe PMC + Semantic Scholar + Crossref · daily cron</span></div>
+          <div class="tool-meta-row"><span class="tool-meta-label">Runtime</span><span class="tool-meta-val">In-browser (Plotly.js + Leaflet); no install</span></div>
+          <div class="tool-meta-row"><span class="tool-meta-label">Companion packages</span><span class="tool-meta-val">Python 3 + R (same model, same calibration JSON)</span></div>
+          <div class="tool-meta-row"><span class="tool-meta-label">GitHub repository</span><span class="tool-meta-val"><a href="https://github.com/gsinchanpostdoc/alderguard" target="_blank" rel="noopener" style="color:var(--color-slate);">alderguard</a></span></div>
+        </div>
+      </div>
+    </div>
+    <!-- Species & Study Area -->
+    <div class="pub-visual" style="margin-bottom: var(--space-6);">
+      <div class="pub-tabs"><button class="pub-tab pub-tab--active" data-tab="app-map-3">Study Area</button><button class="pub-tab" data-tab="app-spp-3">Species</button></div>
+      <div class="pub-panel pub-panel--active" id="app-map-3"><div class="pub-map" data-bounds="35,-10,65,30" data-label="European Alnus glutinosa range" style="height:220px;"></div></div>
+      <div class="pub-panel" id="app-spp-3"><div class="pub-species">
+        <figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Alnus_glutinosa_002.jpg?width=300" alt="Alnus glutinosa" loading="lazy"><figcaption><span class="species-name">Alnus glutinosa</span>Nikanos, Wikimedia Commons, CC BY-SA 2.5</figcaption></figure>
+        <figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Agelastica_alni_(aka).jpg?width=300" alt="Agelastica alni" loading="lazy"><figcaption><span class="species-name">Agelastica alni</span>André Karwath, Wikimedia Commons, CC BY-SA 2.5</figcaption></figure>
+        <figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Focus_stacking_Tachinid_fly.jpg?width=300" alt="Tachinid fly" loading="lazy"><figcaption><span class="species-name">Meigenia mutabilis (Tachinidae)</span>Muhammad Mahdi Karim, Wikimedia Commons, CC BY-SA 3.0</figcaption></figure>
+      </div></div>
+    </div>
+    <!-- Inline iframe embed — same-origin GitHub Pages build -->
+    <div class="embed-wrapper">
+      <div class="embed-header">
+        <div>
+          <div class="embed-header-title">AlderGuard — Ecoepidemic Decision-Support</div>
+          <div class="embed-header-sub">41 European Alnus sites · 23 parameters · Literature-pooled CIs · Daily LLM metadatabase update</div>
+        </div>
+        <span class="badge badge--primary" style="margin-left:auto;">Live · In-browser</span>
+      </div>
+      <div class="embed-frame" style="height:860px;">
+        <iframe
+          src="https://gsinchanpostdoc.github.io/alderguard/"
+          title="AlderGuard — Interactive Decision-Support Application by Dr. Sinchan Ghosh"
+          loading="lazy"
+          referrerpolicy="no-referrer"
+          allow="clipboard-read; clipboard-write"
+        ></iframe>
+      </div>
+      <a href="https://gsinchanpostdoc.github.io/alderguard/" class="ext-btn" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Open in full screen for the best experience
+      </a>
+    </div>
+    <p class="text-sm text-muted" style="line-height:1.7; margin-top: var(--space-5);"><strong>Cite:</strong> Ghosh, S. <em>et al.</em> (2026). AlderGuard: Hybrid seasonal-annual modelling and early warning signals for the <em>Alnus</em>-beetle-parasitoid-bird ecoepidemic system. <em>Frontiers in Ecology and Evolution</em> (manuscript submitted).</p>
+  </div>
+</div>
+
 <footer class="footer">
   <div class="container">
     <div class="footer__grid">
       <div><div class="footer__brand-name">Dr. Sinchan Ghosh</div><div class="footer__brand-role">Ecological Modeller · IIASA</div><div class="footer__contact"><a href="mailto:gsinchanpostdoc@gmail.com">gsinchanpostdoc@gmail.com</a><a href="https://orcid.org/0000-0001-6407-383X" target="_blank">ORCID: 0000-0001-6407-383X</a></div></div>
       <div><div class="footer__col-title">Portfolio</div><div class="footer__links"><a href="index.html">Home</a><a href="academic.html">Academic Journey</a><a href="publications.html">Publications</a><a href="apps.html">Research Tools</a><a href="outreach.html">Outreach</a></div></div>
-      <div><div class="footer__col-title">Applications</div><div class="footer__links"><a href="#wildlife">Species Distribution Models</a><a href="#forage">Forage Energy Database</a><a href="https://github.com/gsinchanpostdoc" target="_blank">All Repositories</a></div></div>
+      <div><div class="footer__col-title">Applications</div><div class="footer__links"><a href="#wildlife">Species Distribution Models</a><a href="#forage">Forage Energy Database</a><a href="#alderguard">AlderGuard (Alnus)</a><a href="https://github.com/gsinchanpostdoc" target="_blank">All Repositories</a></div></div>
       <div><div class="footer__col-title">Profiles</div><div class="footer__links"><a href="https://scholar.google.com/citations?user=5dhoW-cAAAAJ&hl=en" target="_blank">Google Scholar</a><a href="https://orcid.org/0000-0001-6407-383X" target="_blank">ORCID</a><a href="https://github.com/gsinchanpostdoc" target="_blank">GitHub</a></div></div>
     </div>
     <div class="footer__bottom"><div class="footer__copy">© 2026 Dr. Sinchan Ghosh</div><div class="footer__orcid">ORCID: <a href="https://orcid.org/0000-0001-6407-383X" target="_blank">0000-0001-6407-383X</a></div></div>
@@ -244,151 +320,5 @@
   });
 })();
 </script>
-<script data-pplx-inline-edit>
-(function(){
-  if(window===window.top)return;
-  function inlineAll(orig,clone){
-    if(orig.nodeType!==1)return;
-    try{
-      var cs=getComputedStyle(orig);
-      var t='';
-      for(var i=0;i<cs.length;i++){t+=cs[i]+':'+cs.getPropertyValue(cs[i])+';';}
-      clone.style.cssText=t;
-    }catch(e){}
-    var oc=orig.children,cc=clone.children;
-    for(var j=0;j<oc.length&&j<cc.length;j++){inlineAll(oc[j],cc[j]);}
-  }
-  function stripExternal(clone){
-    var imgs=clone.querySelectorAll('img');
-    for(var i=0;i<imgs.length;i++){
-      var s=imgs[i].getAttribute('src');
-      if(s&&!s.startsWith('data:'))imgs[i].removeAttribute('src');
-    }
-    var all=clone.querySelectorAll('*');
-    for(var i=0;i<all.length;i++){
-      var st=all[i].style.cssText;
-      if(st&&st.indexOf('url(')>=0){
-        all[i].style.cssText=st.replace(/url\(["']?(?!data:)[^)"']*["']?\)/gi,'none');
-      }
-    }
-  }
-  window.addEventListener('message',function(e){
-    if(!e.data||e.data.type!=='INLINE_EDIT_CAPTURE_REQUEST')return;
-    var scrollX=window.scrollX||window.pageXOffset||0;
-    var scrollY=window.scrollY||window.pageYOffset||0;
-    var w=window.innerWidth,h=window.innerHeight;
-    try{
-      var clone=document.documentElement.cloneNode(true);
-      var rm=clone.querySelectorAll('script,link[rel="stylesheet"],style');
-      for(var i=0;i<rm.length;i++){rm[i].remove();}
-      inlineAll(document.documentElement,clone);
-      stripExternal(clone);
-      var html=new XMLSerializer().serializeToString(clone);
-      var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'
-        +'<foreignObject width="100%" height="100%">'
-        +'<div xmlns="http://www.w3.org/1999/xhtml" style="width:'+w+'px;height:'+h+'px;overflow:hidden">'
-        +'<div style="transform:translate(-'+scrollX+'px,-'+scrollY+'px);transform-origin:top left">'
-        +html+'</div></div></foreignObject></svg>';
-      var svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
-      var img=new Image();
-      img.onload=function(){
-        var c=document.createElement('canvas');c.width=w;c.height=h;
-        c.getContext('2d').drawImage(img,0,0);
-        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:c.toDataURL('image/png'),scrollX:scrollX,scrollY:scrollY},'*');
-      };
-      img.onerror=function(){
-        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
-      };
-      img.src=svgUrl;
-    }catch(err){
-      window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
-    }
-  });
-})();
-<!--
-===============================================================================
-  AlderGuard entry for Research Tools — Dr. Sinchan Ghosh
-  Target file: Profile/apps.html  (https://gsinchanpostdoc.github.io/Profile/apps.html)
-  Paste this whole block where you want the AlderGuard entry to appear
-  (below the existing Scandinavian SDM and Forage Energy sections is the
-  natural place). The card uses your site's existing classes (.tool-section,
-  .container, .tool-intro, .badge.badge--primary, .section-title, .btn.btn--primary),
-  so it inherits the same typography and colours automatically.
-===============================================================================
--->
-
-<!-- ══════════════ AlderGuard Research Tool ══════════════ -->
-<div class="tool-section" id="alderguard">
-  <div class="container">
-
-    <!-- Card header: badge + title + description + launch buttons -->
-    <div class="tool-intro">
-      <div>
-        <span class="badge badge--primary mb-4" style="display:inline-flex;">
-          Frontiers in Ecology & Evolution (in review)
-        </span>
-        <h2 class="section-title mb-2">
-          AlderGuard &mdash; Alnus Ecoepidemic Decision-Support
-        </h2>
-        <p style="font-size:var(--text-lg); color:var(--color-text-muted); line-height:1.65; margin-bottom:var(--space-5);">
-          An in-browser decision-support tool for the black alder
-          (<em>Alnus glutinosa</em>) &ndash; alder leaf beetle
-          (<em>Agelastica alni</em>) &ndash; tachinid parasitoid
-          (<em>Meigenia mutabilis</em>) &ndash; insectivorous-bird ecoepidemic
-          system. Pick any of 41 Natura 2000 alluvial-forest sites across
-          Europe on the interactive map, calibrate 23 model parameters from
-          a continuously-updated literature metadatabase, run multi-year
-          simulations, detect early-warning signals of regime shifts, fit to
-          your own field observations, and compare integrated pest-management
-          strategies. Every parameter slider carries a literature-pooled
-          95&thinsp;% confidence interval and citation trail. Companion
-          Python package and R package share the same model and outputs.
-        </p>
-        <a href="https://gsinchanpostdoc.github.io/alderguard/"
-           class="btn btn--primary" target="_blank" rel="noopener">
-          Open Application
-        </a>
-        <a href="https://github.com/gsinchanpostdoc/alderguard"
-           class="btn" target="_blank" rel="noopener"
-           style="margin-left:8px;">
-          Source code &amp; packages
-        </a>
-      </div>
-    </div>
-
-    <!-- Inline iframe so visitors can use the app without leaving the page.
-         Height sized for typical research-tool use; a link above opens it
-         in a full tab for users who prefer more screen real estate. -->
-    <div style="margin-top:28px; border:1px solid var(--color-border, #e5e7eb);
-                border-radius:12px; overflow:hidden;
-                box-shadow:0 6px 18px rgba(0,0,0,0.06);">
-      <iframe src="https://gsinchanpostdoc.github.io/alderguard/"
-              title="AlderGuard interactive decision-support app"
-              loading="lazy"
-              referrerpolicy="no-referrer"
-              allow="clipboard-read; clipboard-write"
-              style="width:100%; height:860px; border:0; display:block;">
-      </iframe>
-    </div>
-
-    <!-- Citation + install hints -->
-    <div style="margin-top:18px; font-size:13px;
-                color:var(--color-text-muted, #555); line-height:1.6;">
-      <strong>Cite:</strong> Ghosh, S. <em>et al.</em> (2026). AlderGuard:
-      Hybrid seasonal-annual modelling and early warning signals for the
-      <em>Alnus</em>-beetle-parasitoid-bird ecoepidemic system.
-      <em>Frontiers in Ecology and Evolution</em> (manuscript submitted).
-      <br>
-      <strong>Install in Python:</strong>
-      <code>pip install "git+https://github.com/gsinchanpostdoc/alderguard.git#subdirectory=alderguard-py"</code>
-      <br>
-      <strong>Install in R:</strong>
-      <code>remotes::install_github("gsinchanpostdoc/alderguard", subdir = "alderguard-r")</code>
-    </div>
-
-  </div>
-</div>
-<!-- ══════════════ /AlderGuard Research Tool ══════════════ --> })();
-</script></body>
+</body>
 </html>
-                                                                                  
