@@ -119,10 +119,12 @@
   }
 
   /* ------------------------------------------------------------ the living margin
-     One fixed canvas behind the page carries every system this site is about, drawn in two Bengali idioms:
-     Jamini Roy's flat colours with lamp-black contours, almond eyes and painted dots (the deer, the painted dogs,
-     the fish, the bees and beetles), and the bold black brush line of the Sahaj Path primer (the wolves, the moose,
-     the rat, the pond with its lotus pads and reeds, the butterflies and dragonflies).
+     One fixed canvas behind the page carries every system this site is about, drawn with the alpona hand —
+     fingertip strokes that swell and taper, winding creepers (lata) with betel leaves and tendrils, lotuses,
+     dotted bands, soft round forms — in two Bengali idioms: Jamini Roy's flat earth colours with lamp-black
+     contours, ringed almond eyes and painted dots (the deer, the painted dogs, the fish, the bees and beetles,
+     the alder), and the bold black-and-white brush of Nandalal Bose's Sahaj Path linocuts (the wolves, the moose,
+     the rat, the water, the boreal tree, the butterflies and dragonflies).
        · plants grow from the ground line — a flowering shrub, paddy, the black alder (farmland, forage, forest)
        · a pond with fish that grow on a logistic curve and drifting plankton (Bakreswar, growth models)
        · bees, butterflies, dragonflies; alder leaf beetles that build up and are thinned by the parasitoid (AlderIPM)
@@ -139,7 +141,7 @@
     var ctx = canvas.getContext('2d');
     if (!ctx) return;
     var W = 0, H = 0, dpr = 1, base = 24, k = 1, ground = 0, seeded = false, P = {}, T = 0;
-    var birds = [], insects = [], plants = [], tufts = [], fishes = [], plankton = [], deer = null, rat = null, cross = null, pond = null, col = {};
+    var birds = [], insects = [], plants = [], vines = [], fishes = [], plankton = [], deer = null, rat = null, cross = null, pond = null, col = {};
     var calm = reduced, margin = 0, colL = 0, colR = 0, R = Math.random, TAU = Math.PI * 2, nomask = /nomask/.test(location.search);
     function rnd(a, b) { return a + R() * (b - a); }
     function pick(arr) { return arr[Math.floor(R() * arr.length)]; }
@@ -175,7 +177,7 @@
     if (window.MutationObserver) new MutationObserver(getColors).observe(html, { attributes: true, attributeFilter: ['data-theme'] });
     if (window.matchMedia && mq('(prefers-color-scheme: dark)').addEventListener) mq('(prefers-color-scheme: dark)').addEventListener('change', getColors);
 
-    /* ================================================================ drawing helpers */
+    /* ================================================================ drawing helpers: fingertip strokes, curls, dots — the alpona hand */
     function spline(pts, closed) {                           /* a smooth curve through points; a third element 1 marks a corner */
       var n = pts.length, segs = closed ? n : n - 1, t = 0.5;
       ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]);
@@ -189,20 +191,63 @@
       if (closed) ctx.closePath();
     }
     function blob(pts, fill, line) { spline(pts, true); if (fill) { ctx.fillStyle = fill; ctx.fill(); } if (line) { ctx.strokeStyle = line; ctx.stroke(); } }
-    function limb(px, py, len, wTop, wBot, ang, fill, line) {   /* a tapered leg hanging from a pivot, swung by ang */
+    function limb(px, py, len, wTop, wBot, ang, fill, line) {   /* a tapered leg from a pivot, swung by ang, with a round foot */
       ctx.save(); ctx.translate(px, py); ctx.rotate(ang);
-      ctx.beginPath(); ctx.moveTo(-wTop / 2, 0); ctx.quadraticCurveTo(-wBot / 2 - 1, len * 0.5, -wBot / 2, len); ctx.lineTo(wBot / 2, len); ctx.quadraticCurveTo(wBot / 2 + 1, len * 0.5, wTop / 2, 0); ctx.closePath();
+      ctx.beginPath(); ctx.moveTo(-wTop / 2, 0); ctx.quadraticCurveTo(-wBot / 2 - 1.2, len * 0.5, -wBot / 2, len - wBot * 0.4); ctx.arc(0, len - wBot * 0.45, wBot * 0.5, Math.PI, 0, true); ctx.quadraticCurveTo(wBot / 2 + 1.2, len * 0.5, wTop / 2, 0); ctx.closePath();
       ctx.fillStyle = fill; ctx.fill(); if (line) { ctx.strokeStyle = line; ctx.stroke(); }
       ctx.restore();
     }
-    function brush(x0, y0, x1, y1, w0, w1, fill) {               /* a tapered brush stroke */
+    function brush(x0, y0, x1, y1, w0, w1, fill) {               /* a tapered fingertip stroke */
       var dx = x1 - x0, dy = y1 - y0, d = Math.sqrt(dx * dx + dy * dy) || 1, nx = -dy / d, ny = dx / d, bx = (x0 + x1) / 2 + nx * (w0 + w1) * 0.3, by = (y0 + y1) / 2 + ny * (w0 + w1) * 0.3;
       ctx.beginPath(); ctx.moveTo(x0 + nx * w0 / 2, y0 + ny * w0 / 2); ctx.quadraticCurveTo(bx, by, x1 + nx * w1 / 2, y1 + ny * w1 / 2); ctx.lineTo(x1 - nx * w1 / 2, y1 - ny * w1 / 2);
       ctx.quadraticCurveTo((x0 + x1) / 2 - nx * (w0 + w1) * 0.1, (y0 + y1) / 2 - ny * (w0 + w1) * 0.1, x0 - nx * w0 / 2, y0 - ny * w0 / 2); ctx.closePath(); ctx.fillStyle = fill; ctx.fill();
     }
-    function almond(x, y, rx, ry, rot, fill, pupil) { ctx.fillStyle = fill; ctx.beginPath(); ctx.ellipse(x, y, rx, ry, rot, 0, TAU); ctx.fill(); ctx.stroke(); ctx.fillStyle = pupil; ctx.beginPath(); ctx.arc(x + rx * 0.2, y, ry * 0.5, 0, TAU); ctx.fill(); }
+    function curl(ex, ey, r, a0, turns, dir, w, color) {        /* a tendril: a spiral curling inward from the point (ex, ey) */
+      var cx = ex - r * Math.cos(a0), cy = ey - r * Math.sin(a0), n = Math.max(8, Math.round(turns * 14));
+      ctx.save(); ctx.strokeStyle = color; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      for (var i = 0; i < n; i++) { var t0 = i / n, t1 = (i + 1) / n, r0 = r * (1 - 0.82 * t0), r1 = r * (1 - 0.82 * t1), b0 = a0 + dir * t0 * turns * TAU, b1 = a0 + dir * t1 * turns * TAU;
+        ctx.lineWidth = w * (1 - 0.7 * t0); ctx.beginPath(); ctx.moveTo(cx + r0 * Math.cos(b0), cy + r0 * Math.sin(b0)); ctx.lineTo(cx + r1 * Math.cos(b1), cy + r1 * Math.sin(b1)); ctx.stroke(); }
+      ctx.restore();
+    }
+    function dotsAlong(pts, n, r, color) {                      /* a dotted band along a polyline */
+      var seg = [], total = 0, i;
+      for (i = 0; i < pts.length - 1; i++) { var d = Math.hypot(pts[i + 1][0] - pts[i][0], pts[i + 1][1] - pts[i][1]); seg.push(d); total += d; }
+      ctx.fillStyle = color;
+      for (var j = 0; j < n; j++) { var s = total * (j + 0.5) / n, acc = 0;
+        for (i = 0; i < seg.length; i++) { if (s <= acc + seg[i] || i === seg.length - 1) { var u = seg[i] ? (s - acc) / seg[i] : 0; ctx.beginPath(); ctx.arc(pts[i][0] + (pts[i + 1][0] - pts[i][0]) * u, pts[i][1] + (pts[i + 1][1] - pts[i][1]) * u, r, 0, TAU); ctx.fill(); break; } acc += seg[i]; } }
+    }
+    function scallops(x0, y0, x1, y1, n, amp) {                 /* a chain of little arcs between two points (path only) */
+      var dx = (x1 - x0) / n, dy = (y1 - y0) / n, nx = -dy, ny = dx, len = Math.hypot(dx, dy) || 1; nx = nx / len * amp; ny = ny / len * amp;
+      ctx.beginPath(); ctx.moveTo(x0, y0);
+      for (var i = 0; i < n; i++) ctx.quadraticCurveTo(x0 + dx * (i + 0.5) + nx, y0 + dy * (i + 0.5) + ny, x0 + dx * (i + 1), y0 + dy * (i + 1));
+    }
+    function paan(len, w) {                                     /* the betel leaf: round lobes at the stalk, a soft point at the tip */
+      ctx.beginPath(); ctx.moveTo(0, 0); ctx.bezierCurveTo(-w * 0.45, -w * 1.15, len * 0.4, -w * 1.5, len * 0.62, -w * 0.8); ctx.bezierCurveTo(len * 0.8, -w * 0.5, len * 0.95, -w * 0.18, len, 0);
+      ctx.bezierCurveTo(len * 0.95, w * 0.18, len * 0.8, w * 0.5, len * 0.62, w * 0.8); ctx.bezierCurveTo(len * 0.4, w * 1.5, -w * 0.45, w * 1.15, 0, 0); ctx.closePath();
+    }
+    function lotus(x, y, r, petal, centre, line) {              /* a lotus of round petals in two rings */
+      ctx.save(); ctx.translate(x, y); ctx.strokeStyle = line;
+      for (var ring = 0; ring < 2; ring++) { var m = ring ? 4 : 7, rr = ring ? r * 0.62 : r; ctx.fillStyle = ring ? mix(rgbhex(petal), col.paper, 0.75) : petal;
+        for (var i = 0; i < m; i++) { var a = -Math.PI / 2 + (i - (m - 1) / 2) * (ring ? 0.5 : 0.36); ctx.beginPath(); ctx.ellipse(Math.cos(a) * rr * 0.72, Math.sin(a) * rr * 0.72, rr * 0.5, rr * 0.26, a, 0, TAU); ctx.fill(); ctx.stroke(); } }
+      ctx.fillStyle = centre; ctx.beginPath(); ctx.arc(0, -r * 0.1, r * 0.22, 0, TAU); ctx.fill(); ctx.stroke();
+      ctx.restore();
+    }
+    function almond(x, y, rx, ry, rot, fill, pupil) {           /* the Jamini eye: an almond with its ring */
+      ctx.fillStyle = fill; ctx.beginPath(); ctx.ellipse(x, y, rx, ry, rot, 0, TAU); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = pupil; ctx.beginPath(); ctx.arc(x + rx * 0.15, y, ry * 0.55, 0, TAU); ctx.fill();
+      ctx.save(); ctx.lineWidth *= 0.6; ctx.beginPath(); ctx.ellipse(x, y, rx * 1.4, ry * 1.6, rot, 0, TAU); ctx.stroke(); ctx.restore();
+    }
     function figure(x, dir, h, fn) {                             /* draw fn in a 100-unit box: feet on y = 100, facing +x */
       var s = h / 100; ctx.save(); ctx.translate(x, ground); ctx.scale(s * dir, s); ctx.translate(0, -100); ctx.lineJoin = 'round'; ctx.lineCap = 'round'; ctx.lineWidth = cw() / s; fn(s); ctx.restore();
+    }
+    function vineRun(x0, y0, len, dir, amp, lift, scale, stemColor, leafFill, leafLine) {   /* a creeper: a winding stem, betel leaves and tendrils */
+      var n = Math.max(3, Math.round(len / (22 * scale))), pts = [], i;
+      for (i = 0; i <= n * 4; i++) { var u = i / (n * 4); pts.push([x0 + dir * len * u, y0 - lift * u + Math.sin(u * n * Math.PI) * amp]); }
+      for (i = 0; i < pts.length - 1; i++) brush(pts[i][0], pts[i][1], pts[i + 1][0], pts[i + 1][1], 1.6 * scale, 1.6 * scale, stemColor);
+      for (i = 1; i <= n; i++) { var u2 = (i - 0.5) / n, px = x0 + dir * len * u2, py = y0 - lift * u2 + Math.sin(u2 * n * Math.PI) * amp, up = i % 2 ? -1 : 1;
+        if (i % 3 === 0) { curl(px, py, 5 * scale, up < 0 ? -Math.PI / 2 : Math.PI / 2, 1.1, dir * up, 1.3 * scale, stemColor); continue; }
+        ctx.save(); ctx.translate(px, py); ctx.rotate(up < 0 ? -1.1 * dir : 1.1 * dir); if (dir < 0) ctx.scale(-1, 1); paan(8 * scale, 2.6 * scale); ctx.fillStyle = leafFill; ctx.fill(); ctx.lineWidth = Math.max(0.8, 0.8 * k); ctx.strokeStyle = leafLine; ctx.stroke(); ctx.restore(); }
+      curl(pts[pts.length - 1][0], pts[pts.length - 1][1], 6 * scale, dir > 0 ? Math.PI : 0, 1.3, -dir, 1.5 * scale, stemColor);
     }
 
     /* ================================================================ the text mask: the page's blocks are measured and cut out of the canvas */
@@ -232,109 +277,133 @@
     window.addEventListener('scroll', function () { maskDirty = true; }, { passive: true });
     document.addEventListener('click', function () { maskDirty = true; });
 
-    /* ================================================================ plants: calligraphic leaves, Sahaj Path grass at the foot */
+
+    /* ================================================================ plants: a flowering creeper and paddy, drawn with the alpona hand */
     function makePlant(fx, kind) {
-      var h = rnd(0.11, 0.17) * Math.min(H, 900) * (kind === 2 ? 1.2 : 1), n = 5 + Math.floor(R() * 3), leaves = [];
-      for (var i = 0; i < n; i++) leaves.push({ t: 0.2 + 0.68 * i / (n - 1) + rnd(-0.03, 0.03), side: i % 2 ? 1 : -1, len: rnd(0.26, 0.4) * h * (kind === 1 ? 1.25 : 1), ang: rnd(0.5, 0.9), ph: R() * TAU });
-      return { fx: fx, x: fx * W, h: h, g: 0, rate: 1 / rnd(16, 32), lean: rnd(-0.14, 0.14), ph: R() * TAU, leaves: leaves, kind: kind, spawnAt: T + rnd(3, 9) };
+      var h = rnd(0.11, 0.17) * Math.min(H, 900), n = 5 + Math.floor(R() * 3), leaves = [];
+      for (var i = 0; i < n; i++) leaves.push({ t: 0.2 + 0.68 * i / (n - 1) + rnd(-0.03, 0.03), side: i % 2 ? 1 : -1, len: rnd(0.24, 0.36) * h * (kind === 1 ? 1.3 : 1), ang: rnd(0.55, 0.95), ph: R() * TAU });
+      return { fx: fx, x: fx * W, h: h, g: 0, rate: 1 / rnd(16, 32), lean: rnd(-0.1, 0.1), wig: kind === 1 ? 0.02 : 0.06, ph: R() * TAU, leaves: leaves, kind: kind, spawnAt: T + rnd(3, 9) };
     }
     function plantRot(p) { return p.lean * p.g + Math.sin(T * 0.7 + p.ph) * 0.03 * p.g; }
+    function stemX(p, t) { return p.wig * p.h * Math.sin(t * 4.4 + 0.3); }          /* the stem winds */
     function leafDir(l) { return [l.side * Math.sin(l.ang), -Math.cos(l.ang)]; }
     function leafPoint(p, l, u) {
-      var r = plantRot(p), y0 = p.h * l.t, d = leafDir(l), grown = Math.min(1, Math.max(0, (p.g - l.t) / 0.12)), len = l.len * grown * u;
-      var ax = y0 * Math.sin(r), ay = -y0 * Math.cos(r), dx = d[0] * Math.cos(r) - d[1] * Math.sin(r), dy = d[0] * Math.sin(r) + d[1] * Math.cos(r);
+      if (p.tree) return [p.x + l.dx * p.h * p.g + Math.sin(T * 0.5 + l.ph) * 2 * k, ground + (l.dy - l.r * 0.8) * p.h * p.g];
+      var r = plantRot(p), y0 = p.h * l.t, sx = stemX(p, l.t) * p.g, d = leafDir(l), grown = Math.min(1, Math.max(0, (p.g - l.t) / 0.12)), len = l.len * grown * u;
+      var ax = sx * Math.cos(r) + y0 * Math.sin(r), ay = sx * Math.sin(r) - y0 * Math.cos(r), dx = d[0] * Math.cos(r) - d[1] * Math.sin(r), dy = d[0] * Math.sin(r) + d[1] * Math.cos(r);
       return [p.x + ax + dx * len, ground + ay + dy * len];
     }
     function leafTip(p, l) { return leafPoint(p, l, 1); }
-    function leafPath(len, w) { ctx.beginPath(); ctx.moveTo(0, 0); ctx.bezierCurveTo(len * 0.3, -w * 1.5, len * 0.78, -w * 0.9, len, 0); ctx.bezierCurveTo(len * 0.7, w * 0.55, len * 0.3, w * 0.75, 0, 0); ctx.closePath(); }
     function drawPlant(p) {
       if (p.g <= 0.02) return;
-      var hh = p.h * p.g, lw = Math.max(1, 0.9 * k);
+      if (p.tree) { drawTree(p); return; }
+      var hh = p.h * p.g, lw = Math.max(0.9, 0.9 * k), i;
       ctx.save(); ctx.translate(p.x, ground); ctx.rotate(plantRot(p)); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-      brush(0, 0, -p.lean * 20 * p.g, -hh, Math.max(2.2, 3.2 * k), Math.max(1, 1.2 * k), col.stem);
-      for (var i = 0; i < p.leaves.length; i++) {
+      var steps = 14, prev = [0, 0];                                                     /* the winding stem, thick at the root, thin at the tip */
+      for (i = 1; i <= steps; i++) { var t = i / steps * p.g, pt = [stemX(p, t) * p.g, -p.h * t]; brush(prev[0], prev[1], pt[0], pt[1], Math.max(2, 3.2 * k) * (1 - 0.6 * t), Math.max(1, 1.2 * k), col.stem); prev = pt; }
+      for (i = 0; i < p.leaves.length; i++) {
         var l = p.leaves[i]; if (l.t >= p.g) continue;
         var u = Math.min(1, (p.g - l.t) / 0.12), len = l.len * u, d = leafDir(l), fl = Math.sin(T * 1.4 + l.ph) * 0.05;
-        ctx.save(); ctx.translate(0, -p.h * l.t); ctx.rotate(Math.atan2(d[1], d[0]) + fl * l.side); if (l.side < 0) ctx.scale(1, -1);
-        leafPath(len, len * (p.kind === 1 ? 0.1 : p.kind === 2 ? 0.26 : 0.2));
-        ctx.fillStyle = col.leaf; ctx.fill(); ctx.lineWidth = lw; ctx.strokeStyle = col.line; ctx.stroke();
-        if (p.kind !== 1) brush(len * 0.08, 0, len * 0.72, -len * 0.04, lw * 1.2, lw * 0.3, col.stem);
+        ctx.save(); ctx.translate(stemX(p, l.t) * p.g, -p.h * l.t); ctx.rotate(Math.atan2(d[1], d[0]) + fl * l.side); if (l.side < 0) ctx.scale(1, -1);
+        if (p.kind === 1) { brush(0, 0, len, -len * 0.08, Math.max(2, 2.6 * k), 0.6, col.leaf); brush(0, 0, len * 0.96, -len * 0.08, Math.max(0.8, 0.9 * k), 0.4, col.line); }   /* a rice blade */
+        else { paan(len, len * 0.22); ctx.fillStyle = col.leaf; ctx.fill(); ctx.lineWidth = lw; ctx.strokeStyle = col.line; ctx.stroke(); brush(len * 0.1, 0, len * 0.7, 0, lw * 1.4, 0.3, col.stem);
+          if (i % 2) curl(len * 0.15, -len * 0.05, len * 0.2, -Math.PI / 2, 1.1, 1, lw * 1.1, col.stem); }
         ctx.restore();
       }
       if (p.g > 0.86) {
-        var s = Math.min(1, (p.g - 0.86) / 0.14), r = 4.2 * k * s;
-        ctx.save(); ctx.translate(0, -hh); ctx.lineWidth = lw; ctx.strokeStyle = col.line;
-        if (p.kind === 0) {
-          ctx.fillStyle = col.terra;
-          for (var j = 0; j < 5; j++) { var a = j / 5 * TAU - Math.PI / 2; ctx.beginPath(); ctx.ellipse(Math.cos(a) * r * 1.3, Math.sin(a) * r * 1.3, r * 0.9, r * 0.55, a, 0, TAU); ctx.fill(); ctx.stroke(); }
-          ctx.fillStyle = col.haldi; ctx.beginPath(); ctx.arc(0, 0, r * 0.7, 0, TAU); ctx.fill(); ctx.stroke();
-        } else if (p.kind === 1) {
-          ctx.fillStyle = col.haldi;
-          for (var m = 0; m < 7; m++) { var yy = -m * r * 0.9, xx = (m % 2 ? 1 : -1) * r * 0.55; ctx.beginPath(); ctx.ellipse(xx, yy, r * 0.5, r * 0.32, -0.6 * (m % 2 ? 1 : -1), 0, TAU); ctx.fill(); ctx.stroke(); }
-        } else {
-          ctx.fillStyle = col.terra; ctx.beginPath(); ctx.ellipse(r * 0.4, r * 0.6, r * 0.5, r * 1.3, 0.35, 0, TAU); ctx.fill(); ctx.stroke();
-          ctx.fillStyle = col.leaf; ctx.beginPath(); ctx.ellipse(-r * 0.6, -r * 0.2, r * 1.1, r * 0.75, -0.5, 0, TAU); ctx.fill(); ctx.stroke();
-        }
+        var s = Math.min(1, (p.g - 0.86) / 0.14), tipX = stemX(p, p.g) * p.g;
+        ctx.save(); ctx.translate(tipX, -hh); ctx.lineWidth = lw;
+        if (p.kind === 0) lotus(0, -2 * k * s, 8 * k * s, col.terra, col.haldi, col.line);
+        else { ctx.fillStyle = col.haldi; ctx.strokeStyle = col.line; for (var m = 0; m < 8; m++) { var yy = -m * 3.4 * k * s, xx = (m % 2 ? 1 : -1) * 2.6 * k * s; ctx.beginPath(); ctx.ellipse(xx, yy, 2.4 * k * s, 1.6 * k * s, -0.5 * (m % 2 ? 1 : -1), 0, TAU); ctx.fill(); ctx.stroke(); } }
         ctx.restore();
       }
       ctx.restore();
     }
-    function drawTuft(t) {                                       /* three brush strokes of grass */
-      ctx.save(); ctx.translate(t.x, ground);
-      for (var i = 0; i < 3; i++) { var a = (i - 1) * 0.5 + t.lean, h = t.h * (i === 1 ? 1 : 0.7); brush(0, 0, Math.sin(a) * h, -Math.cos(a) * h, Math.max(1.6, 2 * k), 0.6, col.ink2); }
+    function drawVine(v) { vineRun(v.x, ground - 2 * k, v.len, v.dir, 5 * k, 6 * k, k, col.ink2, col.leaf, col.line); }
+
+    /* ================================================================ trees: the alder in Jamini green with an alpona creeper on its trunk; a boreal tree of rounded tiers */
+    function makeTree(fx, kind) {
+      var h = (kind === 'spruce' ? rnd(0.26, 0.32) : rnd(0.22, 0.28)) * Math.min(H, 900), leaves = [];
+      if (kind === 'alder') {
+        var crown = [[0, -0.84, 0.2], [-0.19, -0.72, 0.17], [0.2, -0.74, 0.17], [-0.31, -0.6, 0.13], [0.31, -0.62, 0.13], [-0.1, -0.57, 0.15], [0.12, -0.55, 0.14]];
+        for (var i = 0; i < crown.length; i++) leaves.push({ t: 0.5 + i * 0.05, dx: crown[i][0], dy: crown[i][1], r: crown[i][2], side: i % 2 ? 1 : -1, len: 0, ang: 0, ph: R() * TAU });
+      }
+      return { fx: fx, x: fx * W, h: h, g: 0, rate: 1 / rnd(30, 48), lean: 0, ph: R() * TAU, leaves: leaves, kind: kind, tree: true, spawnAt: T + rnd(8, 14) };
+    }
+    function drawTree(p) {
+      var h = p.h * p.g, sway = Math.sin(T * 0.45 + p.ph) * 0.012, i;
+      ctx.save(); ctx.translate(p.x, ground); ctx.rotate(sway); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+      if (p.kind === 'spruce') {                                 /* rounded tiers of black brush, white dots along their hems */
+        brush(0, 0, 0, -h * 0.97, Math.max(2.5, 4 * k) * p.g, 1, col.ink);
+        for (var t = 0; t < 6; t++) { var u = t / 5, y = -h * (0.2 + 0.74 * u), w = h * (0.3 - 0.23 * u) * (0.9 + 0.1 * Math.sin(t * 2.3)), drop = h * 0.09 * (1 - u * 0.4);
+          ctx.beginPath(); ctx.moveTo(0, y - drop * 0.5); ctx.bezierCurveTo(-w * 0.5, y - drop * 0.4, -w * 1.05, y + drop * 0.3, -w, y + drop); ctx.bezierCurveTo(-w * 0.6, y + drop * 0.75, -w * 0.3, y + drop * 0.55, 0, y + drop * 0.6);
+          ctx.bezierCurveTo(w * 0.3, y + drop * 0.55, w * 0.6, y + drop * 0.75, w, y + drop); ctx.bezierCurveTo(w * 1.05, y + drop * 0.3, w * 0.5, y - drop * 0.4, 0, y - drop * 0.5); ctx.closePath(); ctx.fillStyle = col.ink; ctx.fill();
+          dotsAlong([[-w * 0.85, y + drop * 0.72], [0, y + drop * 0.3], [w * 0.85, y + drop * 0.72]], 7, Math.max(0.8, 0.9 * k), col.paper); }
+      } else {                                                   /* trunk and limbs in ink, a creeper winding up, a crown of soft green rounds with dotted hems, catkins */
+        brush(0, 0, 0, -h * 0.66, Math.max(3, 5.5 * k) * p.g, Math.max(1.4, 2 * k) * p.g, col.ink);
+        brush(0, -h * 0.5, -h * 0.18, -h * 0.72, Math.max(1.6, 2.6 * k) * p.g, 1, col.ink); brush(0, -h * 0.56, h * 0.17, -h * 0.76, Math.max(1.6, 2.6 * k) * p.g, 1, col.ink);
+        if (p.g > 0.3) vineRun(-2 * k, -h * 0.05, h * 0.5 * Math.min(1, (p.g - 0.3) / 0.5), 1, 4 * k, h * 0.46 * Math.min(1, (p.g - 0.3) / 0.5), 0.9 * k, col.stem, col.leaf, col.line);
+        ctx.lineWidth = Math.max(1, 1 * k); ctx.strokeStyle = col.line; ctx.fillStyle = col.leaf;
+        for (i = p.leaves.length - 1; i >= 0; i--) { var l = p.leaves[i]; if (l.t >= p.g) continue; var gr = Math.min(1, (p.g - l.t) / 0.15), r = l.r * h * gr, fl = Math.sin(T * 0.8 + l.ph) * 0.02, cx = l.dx * h + fl * h, cy = l.dy * h;
+          ctx.fillStyle = col.leaf; ctx.strokeStyle = col.line; ctx.beginPath(); ctx.ellipse(cx, cy, r * 1.1, r * 0.95, fl * 3, 0, TAU); ctx.fill(); ctx.stroke();
+          ctx.save(); ctx.lineWidth = Math.max(0.8, 0.8 * k); ctx.strokeStyle = col.stem; scallops(cx - r * 0.75, cy + r * 0.35, cx + r * 0.75, cy + r * 0.35, 5, -r * 0.16); ctx.stroke(); ctx.restore();   /* an inner scalloped hem */
+          var ring = []; for (var q = 0; q <= 6; q++) { var aq = Math.PI * 0.15 + q / 6 * Math.PI * 0.7; ring.push([cx + Math.cos(aq) * r * 0.78, cy + Math.sin(aq) * r * 0.62]); } dotsAlong(ring, 6, Math.max(0.8, 0.9 * k), col.paper); }
+        if (p.g > 0.8) { ctx.fillStyle = col.terra; for (var c = 0; c < 5; c++) { var lc = p.leaves[(c * 2 + 1) % p.leaves.length], kx = lc.dx * h + (c - 2) * 3 * k, ky = (lc.dy + lc.r * 0.9) * h; brush(kx, ky - 4 * k, kx, ky, 0.8, 0.8, col.stem); ctx.beginPath(); ctx.ellipse(kx, ky + 3 * k, 1.7 * k, 3.4 * k, 0.15 * (c - 2), 0, TAU); ctx.fill(); ctx.stroke(); } }
+      }
       ctx.restore();
     }
 
-    /* ================================================================ the pond: Sahaj Path water lines, lotus pads and reeds; Jamini fish */
-    function makePond(x) { var rx = Math.max(70, Math.min(190, W * 0.11)); return { x: x, y: ground - rx * 0.16, rx: rx, ry: rx * 0.28, ph: R() * TAU, reeds: R() < 0.5 ? -1 : 1 }; }
-    function drawPond(q) {
+    /* ================================================================ the pond: rows of scalloped water, a lotus on its stem, a pad, reeds with curled tips; Jamini fish between the rows */
+    function makePond(x) { var rx = Math.max(60, Math.min(150, W * 0.09)); return { x: x, y: ground - rx * 0.3 - 3 * k, rx: rx, ry: rx * 0.3, ph: R() * TAU, reeds: R() < 0.5 ? -1 : 1 }; }
+    function waterRow(q, i) {
+      var u = (i - 2.5) / 3.3, len = q.rx * Math.sqrt(Math.max(0.1, 1 - u * u)), yy = q.y - q.ry + i * (2 * q.ry / 5), x0 = q.x - len + (i % 2 ? 0.05 : -0.05) * q.rx + Math.sin(T * 0.35 + q.ph + i) * q.rx * 0.03;
+      var n = Math.max(3, Math.round(2 * len / (16 * k)));
+      ctx.lineWidth = Math.max(1.2, 1.4 * k); ctx.strokeStyle = col.ink; scallops(x0, yy, x0 + 2 * len, yy, n, -3 * k); ctx.stroke();
+      ctx.fillStyle = col.ink; ctx.beginPath(); ctx.arc(x0, yy, Math.max(1, 1.1 * k), 0, TAU); ctx.fill(); ctx.beginPath(); ctx.arc(x0 + 2 * len, yy, Math.max(1, 1.1 * k), 0, TAU); ctx.fill();
+    }
+    function drawPond(q, layer) {
       ctx.save(); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-      ctx.beginPath(); ctx.ellipse(q.x, q.y, q.rx, q.ry, 0, 0, TAU); ctx.fillStyle = col.water; ctx.fill();      /* the faintest wash */
-      for (var i = 0; i < 4; i++) {                                                                                  /* rhythmic brush lines */
-        var yy = q.y - q.ry * 0.6 + i * q.ry * 0.42, len = q.rx * (0.62 + 0.3 * Math.sin(i * 1.7 + 0.8)), x0 = q.x - len + (i % 2 ? 0.12 : -0.08) * q.rx + Math.sin(T * 0.4 + q.ph + i) * q.rx * 0.06, wl = 34 * k, amp = 1.4 * k, th = Math.max(1, 1.1 * k);
-        ctx.beginPath();
-        for (var x = 0; x <= 2 * len; x += 4) ctx.lineTo(x0 + x, yy + Math.sin(x / wl * TAU + i) * amp);
-        for (var x2 = 2 * len; x2 >= 0; x2 -= 4) { var tw = th * Math.pow(Math.sin(Math.PI * x2 / (2 * len)), 0.6) + 0.3; ctx.lineTo(x0 + x2, yy + Math.sin(x2 / wl * TAU + i) * amp + tw); }
-        ctx.closePath(); ctx.fillStyle = col.ink; ctx.fill();
+      if (layer === 0) { for (var i = 0; i < 3; i++) waterRow(q, i); }
+      else {
+        for (var j = 3; j < 6; j++) waterRow(q, j);
+        var px = q.x - q.rx * 0.42, py = q.y - q.ry * 0.3, pr = 7.5 * k;                                              /* the pad: a scalloped disc with its notch and dotted rim */
+        ctx.beginPath(); ctx.moveTo(px, py); ctx.arc(px, py, pr, 0.95, 0.25 + TAU); ctx.closePath(); ctx.fillStyle = col.ink; ctx.fill();
+        var rim = []; for (var a = 1.2; a < TAU; a += 0.5) rim.push([px + Math.cos(a) * pr * 0.68, py + Math.sin(a) * pr * 0.68]); dotsAlong(rim, 8, Math.max(0.8, 0.8 * k), col.paper);
+        var sx = px + pr * 1.7, sy = py - 16 * k;                                                                        /* the lotus on its curved stem */
+        ctx.strokeStyle = col.ink; ctx.lineWidth = Math.max(1.2, 1.4 * k); ctx.beginPath(); ctx.moveTo(px + pr * 0.6, py + 2 * k); ctx.quadraticCurveTo(sx - 2 * k, py - 6 * k, sx, sy + 4 * k); ctx.stroke();
+        ctx.lineWidth = Math.max(0.9, 0.9 * k); lotus(sx, sy, 7 * k, col.terra, col.haldi, col.line);
+        var rx0 = q.x + q.reeds * q.rx * 0.9;                                                                            /* reeds, curling at the tip */
+        for (var n = 0; n < 3; n++) { var hx = rx0 + (n - 1) * 6 * k, hh = (40 + n * 12) * k, sw = Math.sin(T * 0.9 + n) * 2.5 * k, tx = hx + sw + (n - 1) * 3 * k, ty = q.y - hh;
+          brush(hx, q.y, tx, ty, Math.max(1.4, 1.8 * k), 0.8, col.ink); curl(tx, ty, 4.5 * k, Math.PI / 2, 1.0, q.reeds * (n % 2 ? 1 : -1), Math.max(0.9, 1 * k), col.ink); }
       }
-      for (var j = 0; j < 2; j++) {                                                                                  /* lotus pads: a flat disc with its notch */
-        var px = q.x + (j ? 0.5 : -0.4) * q.rx, py = q.y + (j ? -0.15 : 0.4) * q.ry, pr = (j ? 6.5 : 8.5) * k, pa = j ? -0.9 : 0.6;
-        ctx.beginPath(); ctx.moveTo(px, py); ctx.arc(px, py, pr, pa + 0.32, pa - 0.32 + TAU); ctx.closePath(); ctx.fillStyle = col.ink; ctx.fill();
-        ctx.fillStyle = col.paper; ctx.beginPath(); ctx.arc(px, py, Math.max(1, pr * 0.14), 0, TAU); ctx.fill();
-        if (j === 0) { ctx.fillStyle = col.terra; ctx.beginPath(); ctx.ellipse(px + pr * 0.9, py - pr * 0.8, pr * 0.42, pr * 0.3, -0.5, 0, TAU); ctx.fill(); ctx.strokeStyle = col.line; ctx.lineWidth = Math.max(0.8, 0.8 * k); ctx.stroke(); }   /* and one bud */
-      }
-      var rx0 = q.x + q.reeds * q.rx * 0.88;                                                                         /* reeds at one end */
-      for (var n = 0; n < 4; n++) { var hx = rx0 + (n - 1.5) * 5 * k, hh = (46 + n * 9 + 8 * Math.sin(n * 2.1)) * k, sway = Math.sin(T * 0.9 + n) * 2 * k;
-        brush(hx, q.y, hx + sway + (n - 1.5) * 2 * k, q.y - hh, Math.max(1.4, 1.8 * k), 0.5, col.ink);
-        if (n % 2) brush(hx + sway * 0.5, q.y - hh * 0.55, hx + sway + q.reeds * 9 * k, q.y - hh * 0.75, Math.max(1.4, 1.6 * k), 0.4, col.ink); }
       ctx.restore();
     }
-    function makeFish(q) { return { x: q.x + rnd(-0.5, 0.5) * q.rx, y: q.y + rnd(-0.3, 0.5) * q.ry, dir: R() < 0.5 ? -1 : 1, v: rnd(0.25, 0.45) * k, ph: R() * TAU, s: 0.4, smax: rnd(0.8, 1.05), born: T }; }
+    function makeFish(q) { return { x: q.x + rnd(-0.5, 0.5) * q.rx, y: q.y + rnd(-0.2, 0.3) * q.ry, dir: R() < 0.5 ? -1 : 1, v: rnd(0.25, 0.45) * k, ph: R() * TAU, s: 0.4, smax: rnd(0.8, 1.05), born: T }; }
     function stepFish(f, dt) {
       var q = pond, a = T - f.born;
-      f.s = 0.25 + f.smax / (1 + Math.exp(-(a - 35) / 10));                                  /* logistic growth */
+      f.s = 0.25 + f.smax / (1 + Math.exp(-(a - 35) / 10));
       f.x += f.dir * f.v * P.pace * dt; f.y += Math.sin(T * 0.8 + f.ph) * 0.08 * k * dt;
-      var lim = q.rx * 0.74 - base * f.s * 0.6;
+      var lim = q.rx * 0.7 - base * f.s * 0.6;
       if (f.x > q.x + lim) f.dir = -1; else if (f.x < q.x - lim) f.dir = 1;
-      f.y = Math.max(q.y - q.ry * 0.4, Math.min(q.y + q.ry * 0.6, f.y));
+      f.y = Math.max(q.y - q.ry * 0.3, Math.min(q.y + q.ry * 0.35, f.y));
     }
-    function drawFish(f) {
-      var L = base * 1.15 * f.s, wag = Math.sin(T * 6 * P.pace + f.ph) * 0.12;
+    function drawFish(f) {                                     /* round-bodied, scalloped tail, a dotted band along the flank */
+      var L = base * 1.2 * f.s, wag = Math.sin(T * 6 * P.pace + f.ph) * 0.12;
       ctx.save(); ctx.translate(f.x, f.y); ctx.scale(L * f.dir, L); ctx.lineJoin = 'round'; ctx.lineCap = 'round'; ctx.lineWidth = cw() / L; ctx.strokeStyle = col.line;
-      ctx.fillStyle = col.fin; ctx.beginPath(); ctx.moveTo(-0.32, 0); ctx.lineTo(-0.58, -0.22 + wag); ctx.lineTo(-0.5, 0); ctx.lineTo(-0.58, 0.22 + wag); ctx.closePath(); ctx.fill(); ctx.stroke();
-      ctx.fillStyle = col.fish; ctx.beginPath(); ctx.moveTo(0.5, 0); ctx.quadraticCurveTo(0.05, -0.34, -0.34, 0); ctx.quadraticCurveTo(0.05, 0.34, 0.5, 0); ctx.closePath(); ctx.fill(); ctx.stroke();
-      ctx.fillStyle = col.fin2; ctx.beginPath(); ctx.moveTo(-0.05, -0.21); ctx.quadraticCurveTo(0.08, -0.38, 0.22, -0.23); ctx.lineTo(0.08, -0.18); ctx.closePath(); ctx.fill(); ctx.stroke();
-      ctx.lineWidth = cw() * 0.6 / L; for (var i = 0; i < 4; i++) { ctx.beginPath(); ctx.arc(-0.08 + i * 0.1, 0, 0.1, -1.1, 1.1); ctx.stroke(); }
-      ctx.lineWidth = cw() / L; almond(0.3, -0.03, 0.07, 0.07, 0, col.paper, col.eye);
+      ctx.fillStyle = col.fin; ctx.beginPath(); ctx.moveTo(-0.3, 0); ctx.quadraticCurveTo(-0.5, -0.28 + wag, -0.62, -0.2 + wag); ctx.quadraticCurveTo(-0.5, -0.02, -0.52, 0); ctx.quadraticCurveTo(-0.5, 0.02, -0.62, 0.2 + wag); ctx.quadraticCurveTo(-0.5, 0.28 + wag, -0.3, 0); ctx.closePath(); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = col.fish; ctx.beginPath(); ctx.moveTo(0.48, 0); ctx.bezierCurveTo(0.3, -0.36, -0.15, -0.36, -0.34, 0); ctx.bezierCurveTo(-0.15, 0.36, 0.3, 0.36, 0.48, 0); ctx.closePath(); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = col.fin2; ctx.beginPath(); ctx.moveTo(-0.02, -0.25); ctx.quadraticCurveTo(0.1, -0.42, 0.24, -0.26); ctx.quadraticCurveTo(0.1, -0.22, -0.02, -0.25); ctx.closePath(); ctx.fill(); ctx.stroke();
+      dotsAlong([[-0.24, 0.02], [0.0, 0.1], [0.26, 0.04]], 6, 0.022, col.paper); dotsAlong([[-0.2, -0.1], [0.0, -0.16], [0.22, -0.08]], 5, 0.022, col.paper);
+      ctx.lineWidth = cw() * 0.7 / L; almond(0.3, -0.04, 0.065, 0.065, 0, col.paper, col.eye);
       ctx.restore();
     }
-    function makePlankter(q) { return { x: q.x + rnd(-0.7, 0.7) * q.rx, y: q.y + rnd(-0.45, 0.6) * q.ry, ph: R() * TAU, kind: Math.floor(R() * 3), s: rnd(0.9, 1.4) }; }
+    function makePlankter(q) { return { x: q.x + rnd(-0.6, 0.6) * q.rx, y: q.y + rnd(-0.5, 0.5) * q.ry, ph: R() * TAU, kind: Math.floor(R() * 3), s: rnd(0.9, 1.4) }; }
     function drawPlankter(z) {
       var q = pond, x = z.x + Math.sin(T * 0.6 + z.ph) * 4 * k, y = z.y + Math.cos(T * 0.45 + z.ph) * 2 * k, r = 1.5 * k * z.s;
-      if (Math.abs(x - q.x) > q.rx * 0.85) return;
+      if (Math.abs(x - q.x) > q.rx * 0.75) return;
       ctx.save(); ctx.translate(x, y); ctx.strokeStyle = col.ink; ctx.fillStyle = col.paper; ctx.lineWidth = Math.max(0.8, 0.7 * k);
       if (z.kind === 0) { ctx.beginPath(); ctx.arc(0, 0, r, 0, TAU); ctx.fill(); ctx.stroke(); }
-      else if (z.kind === 1) { ctx.beginPath(); ctx.ellipse(0, 0, r * 1.3, r * 0.8, 0.6, 0, TAU); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.moveTo(r, 0); ctx.lineTo(r * 2.2, r * 0.8); ctx.stroke(); }
+      else if (z.kind === 1) { ctx.beginPath(); ctx.ellipse(0, 0, r * 1.3, r * 0.8, 0.6, 0, TAU); ctx.fill(); ctx.stroke(); curl(r, 0, r * 1.4, Math.PI, 0.8, 1, Math.max(0.7, 0.7 * k), col.ink); }
       else { ctx.beginPath(); ctx.arc(0, 0, r * 0.9, 0, TAU); ctx.stroke(); ctx.beginPath(); ctx.arc(0, 0, r * 0.3, 0, TAU); ctx.fillStyle = col.ink; ctx.fill(); }
       ctx.restore();
     }
@@ -345,7 +414,7 @@
       var t = p ? leafTip(p, l) : [pond.x + rnd(-0.6, 0.6) * pond.rx, pond.y - pond.ry - rnd(8, 30) * k];
       return { kind: kind, x: t[0], y: t[1], plant: p, leaf: l, state: kind === 'beetle' ? 'crawl' : (p ? 'leaf' : 'hover'), u: rnd(0.3, 0.9), ph: R() * TAU, next: T + rnd(5, 14), born: T, life: kind === 'beetle' ? rnd(25, 60) : 1e9, tp: null, tl: null, dead: false };
     }
-    function alders() { return plants.filter(function (p) { return p.kind === 2 && p.g > 0.6; }); }
+    function alders() { return plants.filter(function (p) { return p.kind === 'alder' && p.g > 0.6; }); }
     function stepInsect(n, dt) {
       if (T - n.born > n.life) { n.dead = true; return; }
       if (n.state === 'leaf' || n.state === 'crawl') {
@@ -374,157 +443,171 @@
       }
     }
     function drawInsect(n) {
-      var s = 0.4 * base, flap = Math.sin(T * 40 + n.ph), lw = Math.max(1, 0.9 * k);
-      ctx.save(); ctx.translate(n.x, n.y); ctx.lineJoin = 'round'; ctx.lineCap = 'round'; ctx.lineWidth = lw; ctx.strokeStyle = col.eye;
-      if (n.kind === 'bee') {                                      /* Jamini: flat ochre, ink stripes */
+      var s = 0.42 * base, flap = Math.sin(T * 40 + n.ph), lw = Math.max(0.9, 0.9 * k);
+      ctx.save(); ctx.translate(n.x, n.y); ctx.lineJoin = 'round'; ctx.lineCap = 'round'; ctx.lineWidth = lw; ctx.strokeStyle = col.line;
+      if (n.kind === 'bee') {                                      /* Jamini: a round ochre body, arcs for stripes, petal wings */
         if (n.state === 'fly' && n.tp) { var tt = leafTip(n.tp, n.tl); ctx.rotate(Math.atan2(tt[1] - n.y, tt[0] - n.x) * 0.25); }
         ctx.fillStyle = col.wing;
-        ctx.beginPath(); ctx.ellipse(-s * 0.1, -s * 0.28, s * 0.34, s * (0.16 + 0.1 * Math.abs(flap)), -0.5, 0, TAU); ctx.fill();
-        ctx.beginPath(); ctx.ellipse(s * 0.14, -s * 0.28, s * 0.34, s * (0.16 + 0.1 * Math.abs(flap)), 0.5, 0, TAU); ctx.fill();
-        ctx.fillStyle = col.haldi; ctx.beginPath(); ctx.ellipse(0, 0, s * 0.5, s * 0.26, 0, 0, TAU); ctx.fill(); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(-s * 0.12, -s * 0.24); ctx.lineTo(-s * 0.12, s * 0.24); ctx.moveTo(s * 0.08, -s * 0.25); ctx.lineTo(s * 0.08, s * 0.25); ctx.stroke();
-        ctx.fillStyle = col.eye; ctx.beginPath(); ctx.arc(s * 0.48, 0, s * 0.14, 0, TAU); ctx.fill();
-      } else if (n.kind === 'butterfly') {                        /* Sahaj Path: a black line drawing, paper inside */
+        for (var wv = -1; wv <= 1; wv += 2) { ctx.beginPath(); ctx.ellipse(s * 0.02 + wv * s * 0.16, -s * 0.3, s * 0.3, s * (0.14 + 0.1 * Math.abs(flap)), wv * 0.5, 0, TAU); ctx.fill(); ctx.stroke(); }
+        ctx.fillStyle = col.haldi; ctx.beginPath(); ctx.ellipse(0, 0, s * 0.46, s * 0.3, 0, 0, TAU); ctx.fill(); ctx.stroke();
+        ctx.beginPath(); ctx.arc(-s * 0.1, 0, s * 0.3, -1.2, 1.2); ctx.stroke(); ctx.beginPath(); ctx.arc(s * 0.08, 0, s * 0.3, -1.1, 1.1); ctx.stroke();
+        ctx.fillStyle = col.eye; ctx.beginPath(); ctx.arc(s * 0.46, 0, s * 0.15, 0, TAU); ctx.fill();
+      } else if (n.kind === 'butterfly') {                        /* Sahaj Path line with alpona dots, betel-leaf wings, curled antennae */
         var sp = 0.35 + 0.65 * Math.abs(Math.sin(T * 9 + n.ph)), ws = s * 1.5;
-        ctx.lineWidth = Math.max(1.1, 1.1 * k); ctx.strokeStyle = col.ink;
+        ctx.lineWidth = Math.max(1, 1 * k); ctx.strokeStyle = col.ink;
         for (var sd = -1; sd <= 1; sd += 2) {
-          ctx.save(); ctx.scale(sd * sp, 1); ctx.fillStyle = col.paper;
-          blob([[0, -ws * 0.1], [ws * 0.3, -ws * 0.55], [ws * 0.8, -ws * 0.5], [ws * 0.9, -ws * 0.15], [ws * 0.55, ws * 0.05], [ws * 0.75, ws * 0.4], [ws * 0.45, ws * 0.55], [ws * 0.1, ws * 0.3]], col.paper, col.ink);
-          ctx.beginPath(); ctx.moveTo(ws * 0.15, -ws * 0.1); ctx.quadraticCurveTo(ws * 0.5, -ws * 0.5, ws * 0.8, -ws * 0.35); ctx.moveTo(ws * 0.15, ws * 0.1); ctx.quadraticCurveTo(ws * 0.45, ws * 0.2, ws * 0.65, ws * 0.45); ctx.stroke();
-          ctx.fillStyle = col.ink; ctx.beginPath(); ctx.arc(ws * 0.62, -ws * 0.28, ws * 0.07, 0, TAU); ctx.fill();
+          ctx.save(); ctx.scale(sd * sp, 1);
+          ctx.save(); ctx.rotate(-0.42); paan(ws * 0.92, ws * 0.34); ctx.fillStyle = col.paper; ctx.fill(); ctx.stroke(); ctx.restore();
+          ctx.save(); ctx.rotate(0.62); paan(ws * 0.66, ws * 0.3); ctx.fillStyle = col.paper; ctx.fill(); ctx.stroke(); ctx.restore();
+          dotsAlong([[ws * 0.25, -ws * 0.12], [ws * 0.7, -ws * 0.3]], 3, ws * 0.045, col.ink); ctx.fillStyle = col.terra; ctx.beginPath(); ctx.arc(ws * 0.55, -ws * 0.22, ws * 0.08, 0, TAU); ctx.fill();
           ctx.restore();
         }
-        ctx.fillStyle = col.ink; ctx.beginPath(); ctx.ellipse(0, 0, s * 0.11, s * 0.42, 0, 0, TAU); ctx.fill();
-        ctx.beginPath(); ctx.moveTo(0, -s * 0.4); ctx.quadraticCurveTo(-s * 0.2, -s * 0.7, -s * 0.3, -s * 0.8); ctx.moveTo(0, -s * 0.4); ctx.quadraticCurveTo(s * 0.2, -s * 0.7, s * 0.3, -s * 0.8); ctx.stroke();
-      } else if (n.kind === 'dragonfly') {                        /* Sahaj Path: thin body, four outlined wings */
+        ctx.fillStyle = col.ink; ctx.beginPath(); ctx.ellipse(0, 0, s * 0.11, s * 0.4, 0, 0, TAU); ctx.fill();
+        curl(-s * 0.3, -s * 0.75, s * 0.14, 2.2, 0.9, -1, lw, col.ink); curl(s * 0.3, -s * 0.75, s * 0.14, 0.9, 0.9, 1, lw, col.ink);
+        ctx.beginPath(); ctx.moveTo(0, -s * 0.38); ctx.lineTo(-s * 0.28, -s * 0.72); ctx.moveTo(0, -s * 0.38); ctx.lineTo(s * 0.28, -s * 0.72); ctx.stroke();
+      } else if (n.kind === 'dragonfly') {                        /* a thin dotted body, four soft petal wings */
         var hd = n.state === 'fly' && n.tp ? leafTip(n.tp, n.tl) : [n.x + 1, n.y]; ctx.rotate(Math.atan2(hd[1] - n.y, hd[0] - n.x) * 0.5);
         var wl = s * 1.3, wf = 0.55 + 0.45 * Math.abs(flap);
-        ctx.strokeStyle = col.ink; ctx.lineWidth = Math.max(1, 0.9 * k); ctx.fillStyle = col.paper;
-        for (var sw = -1; sw <= 1; sw += 2) { ctx.beginPath(); ctx.ellipse(-s * 0.15, sw * s * 0.26 * wf, wl * 0.5, s * 0.13, sw * 0.3, 0, TAU); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.ellipse(s * 0.25, sw * s * 0.24 * wf, wl * 0.42, s * 0.11, sw * 0.18, 0, TAU); ctx.fill(); ctx.stroke(); }
-        ctx.lineWidth = Math.max(1.6, 1.7 * k); ctx.beginPath(); ctx.moveTo(s * 0.3, 0); ctx.lineTo(-s * 1.15, 0); ctx.stroke();
-        ctx.lineWidth = Math.max(0.8, 0.8 * k); for (var sg = 1; sg < 5; sg++) { ctx.beginPath(); ctx.moveTo(-s * 0.25 * sg, -s * 0.1); ctx.lineTo(-s * 0.25 * sg, s * 0.1); ctx.stroke(); }
+        ctx.strokeStyle = col.ink; ctx.lineWidth = Math.max(0.9, 0.9 * k); ctx.fillStyle = col.paper;
+        for (var sw = -1; sw <= 1; sw += 2) { ctx.beginPath(); ctx.ellipse(-s * 0.15, sw * s * 0.26 * wf, wl * 0.5, s * 0.14, sw * 0.3, 0, TAU); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.ellipse(s * 0.25, sw * s * 0.24 * wf, wl * 0.42, s * 0.12, sw * 0.18, 0, TAU); ctx.fill(); ctx.stroke(); }
+        brush(s * 0.3, 0, -s * 1.15, 0, Math.max(1.8, 2 * k), 0.6, col.ink); dotsAlong([[-s * 0.1, 0], [-s * 1.0, 0]], 4, s * 0.045, col.paper);
         ctx.fillStyle = col.ink; ctx.beginPath(); ctx.arc(s * 0.38, 0, s * 0.17, 0, TAU); ctx.fill();
         ctx.fillStyle = col.paper; ctx.beginPath(); ctx.arc(s * 0.44, -s * 0.07, s * 0.06, 0, TAU); ctx.fill();
-      } else {                                                     /* the alder leaf beetle, Jamini: flat blue-black */
-        var bs = s * 0.7;
-        ctx.fillStyle = col.beetle; ctx.beginPath(); ctx.ellipse(0, 0, bs * 0.55, bs * 0.38, 0, 0, TAU); ctx.fill(); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(-bs * 0.15, -bs * 0.36); ctx.lineTo(-bs * 0.15, bs * 0.36); ctx.stroke();
-        ctx.beginPath(); ctx.arc(bs * 0.6, 0, bs * 0.17, 0, TAU); ctx.fill(); ctx.stroke();
+      } else {                                                     /* the alder leaf beetle: a round blue-black with a dotted seam */
+        var bs = s * 0.72;
+        ctx.fillStyle = col.beetle; ctx.beginPath(); ctx.ellipse(0, 0, bs * 0.52, bs * 0.4, 0, 0, TAU); ctx.fill(); ctx.stroke();
+        dotsAlong([[-bs * 0.18, -bs * 0.3], [-bs * 0.18, bs * 0.3]], 3, bs * 0.06, col.paper);
+        ctx.beginPath(); ctx.arc(bs * 0.58, 0, bs * 0.18, 0, TAU); ctx.fill(); ctx.stroke();
         if (n.state === 'fly') { ctx.fillStyle = col.wing; ctx.beginPath(); ctx.ellipse(-bs * 0.1, -bs * 0.45, bs * 0.45, bs * 0.18, -0.4, 0, TAU); ctx.fill(); ctx.beginPath(); ctx.ellipse(-bs * 0.1, bs * 0.45, bs * 0.45, bs * 0.18, 0.4, 0, TAU); ctx.fill(); }
       }
       ctx.restore();
     }
 
-    /* ================================================================ the four-legged figures (100-unit boxes, feet on y = 100) */
-    function legs(pivots, len, wTop, wBot, ph, gait, fill, line, far) {   /* four legs; the far pair first, a touch lighter */
+    /* ================================================================ the four-legged figures (100-unit boxes, feet on y = 100): rounded, with dotted bands, curled tails, petal ears */
+    function legs(pivots, len, wTop, wBot, ph, gait, fill, line, far) {
       for (var i = 0; i < 4; i++) {
         var isFar = i === 0 || i === 2; if ((far && !isFar) || (!far && isFar)) continue;
         var sw = Math.sin(ph + (i % 2 ? Math.PI : 0) + (i > 1 ? Math.PI : 0)) * gait;
         limb(pivots[i][0], pivots[i][1], len - Math.max(0, sw) * len * 0.12, wTop, wBot, sw, fill, line);
       }
     }
-    /* -- deer, Jamini Roy: roe (ochre) and red stag (rust, antlers) */
+    function petalEar(x, y, ang, len, w, fill, line) { ctx.save(); ctx.translate(x, y); ctx.rotate(ang); ctx.beginPath(); ctx.moveTo(0, 0); ctx.bezierCurveTo(-w, -len * 0.45, -w * 0.5, -len, 0, -len); ctx.bezierCurveTo(w * 0.5, -len, w, -len * 0.45, 0, 0); ctx.closePath(); ctx.fillStyle = fill; ctx.fill(); if (line) { ctx.strokeStyle = line; ctx.stroke(); } ctx.restore(); }
+    function kalka(x, y, s, rot, fill, line) {                 /* the paisley: a teardrop with a curl */
+      ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.beginPath(); ctx.moveTo(0, -s); ctx.bezierCurveTo(s * 0.9, -s * 0.6, s * 0.9, s * 0.5, 0, s); ctx.bezierCurveTo(-s * 0.9, s * 0.5, -s * 0.9, -s * 0.6, 0, -s); ctx.closePath(); ctx.fillStyle = fill; ctx.fill(); ctx.strokeStyle = line; ctx.stroke();
+      curl(0, -s, s * 0.5, -Math.PI / 2, 0.8, 1, ctx.lineWidth, line); ctx.restore();
+    }
+    /* -- deer, Jamini Roy: roe (ochre) and red stag (rust, antlers with budded tips) */
     function drawDeer(x, dir, kind, neck, gait, ph, hs) {
-      var red = kind === 'red', fill = red ? col.red : col.deer, line = col.line, bob = Math.sin(ph) * gait * 6;
+      var red = kind === 'red', fill = red ? col.red : col.deer, line = col.line, pale = mix(col.paper, rgbhex(fill), 0.55), bob = Math.sin(ph) * gait * 6;
       figure(x, dir, base * (red ? 2.8 : 2.1) * (hs || 1), function () {
         ctx.strokeStyle = line;
-        var piv = [[18, 62 + bob], [26, 62 + bob], [50, 62 + bob], [57, 62 + bob]];
-        legs(piv, 38, 7, 3.5, ph, gait, mix(rgbhex(fill), col.paper, 0.85), line, true);
+        var piv = [[18, 60 + bob], [27, 60 + bob], [49, 60 + bob], [57, 60 + bob]];
+        legs(piv, 40, 8, 4.5, ph, gait, mix(rgbhex(fill), col.paper, 0.85), line, true);
         ctx.translate(0, bob);
-        blob([[34, 44], [50, 43], [60, 47], [64, 55], [60, 64], [48, 68], [30, 68], [18, 65], [12, 57], [15, 48], [24, 44]], fill, line);
-        ctx.fillStyle = mix(col.paper, fill, 0.5); ctx.beginPath(); ctx.ellipse(16, 56, 4, 6.5, 0, 0, TAU); ctx.fill();            /* pale rump */
-        ctx.fillStyle = mix(col.paper, fill, 0.6); for (var j = 0; j < 4; j++) { ctx.beginPath(); ctx.arc(28 + j * 9, 55 + (j % 2) * 4, 1.6, 0, TAU); ctx.fill(); }   /* Jamini dots */
-        blob([[14, 50], [9, 46], [6, 51], [11, 54]], fill, line);                                                                /* tail */
-        var a = neck, nx = 52 + 32 * Math.cos(a), ny = 48 - 32 * Math.sin(a), px = Math.sin(a), py = Math.cos(a);
-        ctx.beginPath(); ctx.moveTo(46 - 7 * px, 46 - 7 * py); ctx.lineTo(nx - 4 * px, ny - 4 * py); ctx.lineTo(nx + 4 * px, ny + 4 * py); ctx.lineTo(58 + 7 * px, 52 + 7 * py); ctx.closePath(); ctx.fillStyle = fill; ctx.fill(); ctx.stroke();   /* neck */
+        blob([[34, 42], [50, 40], [62, 45], [67, 55], [62, 66], [48, 70], [30, 70], [17, 66], [11, 56], [15, 46], [24, 42]], fill, line);
+        ctx.fillStyle = pale; ctx.beginPath(); ctx.ellipse(16, 56, 4.5, 7, 0, 0, TAU); ctx.fill();                                     /* pale rump */
+        dotsAlong([[22, 46], [40, 43], [58, 47]], 7, 1.3, pale);                                                                       /* a dotted band along the back */
+        kalka(42, 57, 4.5, 0.4, pale, line);                                                                                            /* a paisley on the flank */
+        curl(12, 50, 5, Math.PI * 0.9, 1.0, 1, ctx.lineWidth * 1.4, line);                                                            /* the little tail curls */
+        var a = neck, nx = 52 + 32 * Math.cos(a), ny = 46 - 32 * Math.sin(a), px = Math.sin(a), py = Math.cos(a);
+        ctx.beginPath(); ctx.moveTo(46 - 7.5 * px, 44 - 7.5 * py); ctx.quadraticCurveTo(nx - 8 * px + 4 * py, ny - 8 * py - 4 * px, nx - 4.2 * px, ny - 4.2 * py); ctx.lineTo(nx + 4.2 * px, ny + 4.2 * py); ctx.quadraticCurveTo(nx + 6 * px + 6 * py, ny + 6 * py - 6 * px, 58 + 7.5 * px, 51 + 7.5 * py); ctx.closePath(); ctx.fillStyle = fill; ctx.fill(); ctx.stroke();
         ctx.translate(0, -bob);
-        legs(piv, 38, 7, 3.5, ph, gait, fill, line, false);
-        ctx.translate(nx, ny + bob); ctx.rotate(-a);                                                                              /* head */
-        blob([[-7, -5], [3, -8], [13, -6], [19, -2], [17, 3], [8, 6], [-4, 5]], fill, line);
-        blob([[-3, -6, 1], [-11, -22, 1], [2, -8, 1]], fill, line); blob([[3, -7, 1], [1, -24, 1], [9, -7, 1]], fill, line);       /* ears */
-        if (red) { ctx.lineWidth *= 1.4; ctx.strokeStyle = line;
-          for (var s2 = -1; s2 <= 1; s2 += 2) { var ax = s2 < 0 ? -2 : 4; ctx.beginPath(); ctx.moveTo(ax, -8); ctx.quadraticCurveTo(ax + s2 * 6, -22, ax + s2 * 2, -34); ctx.moveTo(ax + s2 * 3, -16); ctx.lineTo(ax + s2 * 11, -22); ctx.moveTo(ax + s2 * 4, -26); ctx.lineTo(ax + s2 * 10, -32); ctx.stroke(); }
-          ctx.lineWidth /= 1.4; }
-        almond(7, -1.5, 3, 1.8, 0, col.paper, col.eye);
-        ctx.fillStyle = col.eye; ctx.beginPath(); ctx.arc(18, -0.5, 1.3, 0, TAU); ctx.fill();
+        legs(piv, 40, 8, 4.5, ph, gait, fill, line, false);
+        ctx.translate(nx, ny + bob); ctx.rotate(-a);
+        blob([[-8, -5], [3, -8], [13, -6], [19, -2], [17, 3], [8, 7], [-4, 6]], fill, line);
+        petalEar(-2, -6, -0.55, 18, 4.5, fill, line); petalEar(5, -7, 0.1, 18, 4.5, fill, line);
+        if (red) { ctx.lineWidth *= 1.5; ctx.strokeStyle = line;
+          for (var s2 = -1; s2 <= 1; s2 += 2) { var ax = s2 < 0 ? -2 : 4;
+            ctx.beginPath(); ctx.moveTo(ax, -8); ctx.quadraticCurveTo(ax + s2 * 8, -20, ax + s2 * 3, -34); ctx.stroke(); ctx.fillStyle = col.terra; ctx.beginPath(); ctx.arc(ax + s2 * 3, -35, 1.6, 0, TAU); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(ax + s2 * 4, -17); ctx.quadraticCurveTo(ax + s2 * 10, -20, ax + s2 * 12, -25); ctx.stroke(); ctx.beginPath(); ctx.arc(ax + s2 * 12, -26, 1.4, 0, TAU); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(ax + s2 * 5.5, -26); ctx.quadraticCurveTo(ax + s2 * 10, -29, ax + s2 * 11, -33); ctx.stroke(); ctx.beginPath(); ctx.arc(ax + s2 * 11, -34, 1.4, 0, TAU); ctx.fill(); }
+          ctx.lineWidth /= 1.5; }
+        almond(7, -1.5, 3.2, 1.9, 0, col.paper, col.eye);
+        ctx.fillStyle = col.eye; ctx.beginPath(); ctx.arc(18.5, -0.5, 1.4, 0, TAU); ctx.fill();
       });
     }
-    /* -- the wolf, Sahaj Path: a black brush silhouette, white eye */
+    /* -- the wolf, Sahaj Path: a rounded black brush silhouette, white dots along the back, a curl at the shoulder, the tail ending in a tendril */
     function drawWolf(x, dir, s0, ph, moving) {
       var gait = moving ? 0.28 : 0, bob = Math.sin(ph * 2) * (moving ? 2 : 0);
-      figure(x, dir, base * 1.9 * s0, function () {
-        var piv = [[14, 60 + bob], [22, 60 + bob], [52, 60 + bob], [60, 60 + bob]];
-        legs(piv, 40, 9, 5, ph, gait, col.ink2, null, true);
+      figure(x, dir, base * 1.9 * s0, function (s) {
+        var piv = [[14, 60 + bob], [23, 60 + bob], [52, 60 + bob], [61, 60 + bob]];
+        legs(piv, 40, 9, 5.5, ph, gait, col.ink2, null, true);
         ctx.translate(0, bob);
-        blob([[8, 48], [2, 52], [-6, 60], [-12, 74], [-9, 85], [-3, 83], [1, 72], [7, 60], [13, 52]], col.ink, null);                        /* tail */
-        blob([[26, 40], [44, 36], [58, 38], [68, 46], [70, 56], [64, 64], [48, 68], [28, 68], [14, 66], [6, 58], [8, 48], [16, 42]], col.ink, null);   /* body */
-        blob([[62, 40], [70, 32], [80, 32], [92, 40], [102, 48], [104, 52, 1], [96, 55], [82, 56], [70, 56], [64, 50]], col.ink, null);        /* head */
-        blob([[70, 33, 1], [72, 15, 1], [81, 32, 1]], col.ink, null); blob([[80, 32, 1], [88, 17, 1], [93, 36, 1]], col.ink, null);      /* ears */
+        ctx.strokeStyle = col.ink; ctx.lineWidth = 7; ctx.beginPath(); ctx.moveTo(8, 50); ctx.bezierCurveTo(-4, 54, -8, 66, -4, 78); ctx.stroke(); curl(-4, 78, 7, Math.PI * 1.1, 1.0, -1, 5, col.ink);   /* the tail */
+        blob([[26, 40], [44, 35], [58, 37], [68, 45], [71, 56], [65, 65], [48, 69], [28, 69], [13, 66], [5, 57], [8, 47], [16, 41]], col.ink, null);
+        blob([[62, 40], [70, 32], [80, 31], [91, 37], [101, 45], [104, 51], [98, 56], [84, 57], [70, 56], [64, 50]], col.ink, null);
+        petalEar(74, 33, -0.25, 17, 5, col.ink, null); petalEar(85, 34, 0.2, 16, 5, col.ink, null);
         ctx.translate(0, -bob);
-        legs(piv, 40, 9, 5, ph, gait, col.ink, null, false);
+        legs(piv, 40, 9, 5.5, ph, gait, col.ink, null, false);
         ctx.translate(0, bob);
-        ctx.strokeStyle = col.paper; ctx.lineWidth = cw() * 0.8 / (base * 1.9 * s0 / 100);
-        almond(84, 42, 3.4, 1.9, 0.1, col.paper, col.ink);                                                                                /* the eye */
-        ctx.beginPath(); ctx.moveTo(40, 46); ctx.lineTo(46, 50); ctx.moveTo(46, 44); ctx.lineTo(52, 48); ctx.stroke();                       /* fur marks */
+        ctx.strokeStyle = col.paper; ctx.lineWidth = cw() * 0.8 / s;
+        almond(85, 42, 3.4, 1.9, 0.1, col.paper, col.ink);
+        dotsAlong([[20, 44], [44, 39], [64, 44]], 8, 1.2, col.paper);
+        curl(46, 50, 5, Math.PI * 0.5, 1.0, 1, 1.4, col.paper);
+        dotsAlong([[18, 62], [34, 64]], 4, 1.1, col.paper);
       });
     }
-    /* -- the moose, Sahaj Path: tall silhouette with palmate antlers and the bell */
+    /* -- the moose, Sahaj Path: a tall rounded silhouette, antlers like two lotus leaves, the bell, white dots */
     function drawMoose(x, dir, ph, moving, browse) {
       var gait = moving ? 0.22 : 0, bob = Math.sin(ph * 2) * (moving ? 1.5 : 0), nod = browse ? 0.1 + Math.sin(T * 1.5) * 0.04 : 0;
-      figure(x, dir, base * 3.1, function () {
-        var piv = [[20, 60 + bob], [28, 60 + bob], [58, 60 + bob], [66, 60 + bob]];
-        legs(piv, 40, 10, 6, ph, gait, col.ink2, null, true);
+      figure(x, dir, base * 3.1, function (s) {
+        var piv = [[20, 60 + bob], [29, 60 + bob], [58, 60 + bob], [67, 60 + bob]];
+        legs(piv, 40, 10, 6.5, ph, gait, col.ink2, null, true);
         ctx.translate(0, bob);
-        blob([[40, 34], [56, 28], [70, 32], [78, 40], [78, 54], [70, 62], [52, 66], [30, 66], [16, 62], [10, 52], [14, 42], [26, 36]], col.ink, null);   /* hump and body */
-        blob([[12, 44], [6, 48], [8, 54], [14, 52]], col.ink, null);                                                                        /* stub tail */
+        blob([[40, 34], [56, 28], [70, 32], [78, 40], [78, 54], [70, 62], [52, 66], [30, 66], [16, 62], [10, 52], [14, 42], [26, 36]], col.ink, null);
+        curl(12, 46, 5, Math.PI * 0.8, 1.0, -1, 4, col.ink);
         ctx.save(); ctx.translate(76, 40); ctx.rotate(nod);
-        blob([[-2, -4], [8, -10], [18, -6], [28, 4], [34, 14], [32, 22, 1], [24, 24], [14, 20], [6, 14], [0, 6]], col.ink, null);             /* the long head, roman nose */
-        blob([[12, 22, 1], [16, 34, 1], [20, 22, 1]], col.ink, null);                                                                       /* the bell */
-        blob([[6, -9, 1], [4, -22, 1], [14, -10, 1]], col.ink, null);                                                                       /* ear */
-        blob([[8, -12], [2, -24], [-4, -32], [-2, -38, 1], [4, -34], [8, -40, 1], [12, -32], [18, -36, 1], [18, -26], [14, -14]], col.ink, null);   /* antlers */
-        blob([[14, -12], [20, -24], [26, -32], [32, -36, 1], [34, -28], [40, -30, 1], [36, -22], [40, -16, 1], [32, -12], [22, -10]], col.ink, null);
-        ctx.strokeStyle = col.paper; ctx.lineWidth = cw() * 0.8 / (base * 3.1 / 100);
-        almond(10, 2, 3, 1.8, 0.2, col.paper, col.ink);
+        blob([[-2, -4], [8, -10], [18, -6], [28, 4], [34, 14], [32, 22], [24, 25], [14, 21], [6, 14], [0, 6]], col.ink, null);
+        blob([[12, 22], [14, 30], [17, 35], [20, 30], [20, 22]], col.ink, null);                                                         /* the bell */
+        petalEar(8, -9, -0.5, 14, 4.5, col.ink, null);
+        blob([[8, -12], [2, -22], [-4, -30], [-2, -38], [4, -40], [10, -36], [14, -40], [18, -34], [18, -26], [14, -14]], col.ink, null);   /* antlers: two soft palmate leaves */
+        blob([[14, -12], [20, -24], [26, -32], [32, -38], [38, -36], [40, -28], [36, -22], [40, -16], [32, -12], [22, -10]], col.ink, null);
+        ctx.strokeStyle = col.paper; ctx.lineWidth = cw() * 0.8 / s;
+        almond(11, 2, 3, 1.8, 0.2, col.paper, col.ink);
+        dotsAlong([[0, -34], [6, -28], [12, -22]], 4, 1.1, col.paper); dotsAlong([[20, -30], [26, -24], [30, -18]], 4, 1.1, col.paper);
         ctx.restore();
+        ctx.strokeStyle = col.paper; ctx.lineWidth = cw() * 0.8 / s;
+        dotsAlong([[22, 38], [46, 31], [68, 36]], 9, 1.2, col.paper); curl(44, 46, 6, Math.PI * 0.5, 1.0, 1, 1.4, col.paper);
         ctx.translate(0, -bob);
-        legs(piv, 40, 10, 6, ph, gait, col.ink, null, false);
+        legs(piv, 40, 10, 6.5, ph, gait, col.ink, null, false);
       });
     }
-    /* -- the painted dog, Jamini Roy: blotched coat, round ears, white tail tip */
+    /* -- the painted dog, Jamini Roy: petal-shaped patches with contour, round ears, white tail tip */
     function drawWildDog(x, dir, s0, ph, moving) {
       var gait = moving ? 0.3 : 0, bob = Math.sin(ph * 2) * (moving ? 2 : 0);
       figure(x, dir, base * 1.7 * s0, function () {
-        var piv = [[16, 60 + bob], [24, 60 + bob], [52, 60 + bob], [60, 60 + bob]];
-        legs(piv, 40, 7, 4, ph, gait, mix(rgbhex(col.dog), col.paper, 0.85), col.line, true);
+        var piv = [[16, 60 + bob], [25, 60 + bob], [52, 60 + bob], [61, 60 + bob]];
+        legs(piv, 40, 7.5, 4.5, ph, gait, mix(rgbhex(col.dog), col.paper, 0.85), col.line, true);
         ctx.translate(0, bob);
-        blob([[10, 48], [4, 54], [-4, 64], [-10, 76], [-6, 82], [0, 78], [4, 66], [10, 56], [14, 52]], col.dog, col.line);                       /* tail */
-        ctx.fillStyle = col.paper; ctx.beginPath(); ctx.ellipse(-7, 78, 4, 3, 0.9, 0, TAU); ctx.fill();                                       /* white tip */
+        ctx.strokeStyle = col.line; ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(10, 50); ctx.bezierCurveTo(0, 54, -6, 66, -4, 78); ctx.stroke(); ctx.lineWidth = 4; ctx.strokeStyle = col.dog; ctx.beginPath(); ctx.moveTo(10, 50); ctx.bezierCurveTo(0, 54, -6, 66, -4, 78); ctx.stroke();
+        ctx.fillStyle = col.paper; ctx.beginPath(); ctx.arc(-4, 79, 3.2, 0, TAU); ctx.fill(); ctx.lineWidth = cw() / (base * 1.7 * s0 / 100); ctx.strokeStyle = col.line; ctx.stroke();   /* the white tip */
         var bodyPts = [[26, 42], [44, 38], [58, 40], [68, 48], [68, 58], [60, 66], [44, 69], [26, 69], [14, 66], [8, 58], [10, 48], [16, 44]];
         blob(bodyPts, col.dog, col.line);
-        ctx.save(); spline(bodyPts, true); ctx.clip();                                                                                     /* the painted patches */
-        ctx.fillStyle = col.dogDark; ctx.beginPath(); ctx.ellipse(24, 52, 10, 7, 0.3, 0, TAU); ctx.fill(); ctx.beginPath(); ctx.ellipse(56, 62, 9, 5, -0.4, 0, TAU); ctx.fill();
-        ctx.fillStyle = col.dogPale; ctx.beginPath(); ctx.ellipse(44, 46, 9, 5, 0, 0, TAU); ctx.fill(); ctx.beginPath(); ctx.ellipse(16, 64, 7, 5, 0, 0, TAU); ctx.fill();
+        ctx.save(); spline(bodyPts, true); ctx.clip();
+        kalka(24, 54, 7, 0.5, col.dogDark, col.line); kalka(55, 60, 6, -0.6, col.dogDark, col.line); kalka(42, 47, 5.5, 0.1, col.dogPale, col.line); kalka(16, 64, 4.5, 0.3, col.dogPale, col.line);
         ctx.restore();
-        blob([[62, 42], [70, 36], [80, 36], [92, 44], [98, 50, 1], [92, 54], [80, 56], [70, 56], [64, 52]], col.dog, col.line);              /* head */
-        ctx.fillStyle = col.dog; ctx.beginPath(); ctx.ellipse(72, 28, 7, 8, -0.2, 0, TAU); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.ellipse(82, 28, 6.5, 7.5, 0.2, 0, TAU); ctx.fill(); ctx.stroke();   /* round ears */
+        blob([[62, 42], [70, 36], [80, 36], [92, 43], [98, 49], [93, 54], [80, 56], [70, 56], [64, 52]], col.dog, col.line);
+        ctx.fillStyle = col.dog; ctx.beginPath(); ctx.ellipse(72, 28, 7, 8, -0.2, 0, TAU); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.ellipse(82, 28, 6.5, 7.5, 0.2, 0, TAU); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = col.dogPale; ctx.beginPath(); ctx.ellipse(72, 29, 3.5, 4, -0.2, 0, TAU); ctx.fill(); ctx.beginPath(); ctx.ellipse(82, 29, 3.2, 3.8, 0.2, 0, TAU); ctx.fill();
         almond(84, 44, 3.4, 1.9, 0.1, col.haldiSoft, col.eye);
         ctx.fillStyle = col.eye; ctx.beginPath(); ctx.arc(97, 49, 1.6, 0, TAU); ctx.fill();
         ctx.translate(0, -bob);
-        legs(piv, 40, 7, 4, ph, gait, col.dog, col.line, false);
+        legs(piv, 40, 7.5, 4.5, ph, gait, col.dog, col.line, false);
       });
     }
-    /* -- the white rat, Sahaj Path: a brush-line drawing */
+    /* -- the white rat, Sahaj Path line: a round body, a round ear, a tail that ends in a tendril */
     function drawRat(x, dir, ph, moving, sniff) {
       var gait = moving ? 0.5 : 0, nod = sniff ? Math.sin(T * 8) * 0.08 : 0;
       figure(x, dir, base * 1.0, function (s) {
         ctx.strokeStyle = col.ink; ctx.lineWidth = Math.max(1.3, 1.4 * k) / s; ctx.fillStyle = col.paper;
-        ctx.beginPath(); ctx.moveTo(14, 82); ctx.bezierCurveTo(-10, 78, -36, 60, -58, 84); ctx.stroke();                                 /* tail */
+        ctx.beginPath(); ctx.moveTo(14, 82); ctx.bezierCurveTo(-8, 76, -30, 62, -44, 80); ctx.stroke(); curl(-44, 80, 9, Math.PI * 0.35, 1.0, 1, ctx.lineWidth, col.ink);
         var piv = [[26, 86], [34, 86], [66, 86], [74, 86]];
-        for (var i = 0; i < 4; i++) { var sw = Math.sin(ph + (i % 2 ? Math.PI : 0) + (i > 1 ? Math.PI : 0)) * gait; ctx.beginPath(); ctx.moveTo(piv[i][0], piv[i][1]); ctx.lineTo(piv[i][0] + sw * 10, 100); ctx.stroke(); }
-        blob([[20, 70], [44, 60], [66, 60], [82, 64], [98, 76], [106, 84, 1], [98, 90], [80, 92], [60, 96], [36, 96], [18, 92], [10, 84], [12, 76]], col.paper, col.ink);
-        ctx.beginPath(); ctx.arc(84, 62, 6, 0, TAU); ctx.fill(); ctx.stroke();                                                                 /* ear */
-        ctx.fillStyle = col.ink; ctx.beginPath(); ctx.arc(94, 75, 1.8, 0, TAU); ctx.fill();                                                   /* eye */
-        ctx.beginPath(); ctx.moveTo(103, 82); ctx.lineTo(114, 78 + nod * 20); ctx.moveTo(103, 84); ctx.lineTo(115, 86 + nod * 20); ctx.stroke();   /* whiskers */
+        for (var i = 0; i < 4; i++) { var sw = Math.sin(ph + (i % 2 ? Math.PI : 0) + (i > 1 ? Math.PI : 0)) * gait; ctx.beginPath(); ctx.moveTo(piv[i][0], piv[i][1]); ctx.quadraticCurveTo(piv[i][0] + sw * 5, 94, piv[i][0] + sw * 10, 100); ctx.stroke(); }
+        blob([[20, 70], [44, 60], [66, 60], [82, 64], [98, 76], [106, 84], [98, 90], [80, 92], [60, 96], [36, 96], [18, 92], [10, 84], [12, 76]], col.paper, col.ink);
+        dotsAlong([[26, 74], [50, 66], [74, 68]], 5, 1.4, col.ink);
+        ctx.fillStyle = col.paper; ctx.beginPath(); ctx.arc(84, 62, 6.5, 0, TAU); ctx.fill(); ctx.stroke(); ctx.fillStyle = col.ink; ctx.beginPath(); ctx.arc(84, 62, 2.2, 0, TAU); ctx.fill();
+        ctx.beginPath(); ctx.arc(94, 75, 1.9, 0, TAU); ctx.fill();
+        ctx.beginPath(); ctx.moveTo(103, 82); ctx.quadraticCurveTo(110, 78, 116, 76 + nod * 20); ctx.moveTo(103, 84); ctx.quadraticCurveTo(110, 86, 116, 88 + nod * 20); ctx.stroke();
       });
     }
 
@@ -655,24 +738,30 @@
       collectBlocks(); maskDirty = true;
     }
     function populate() {
-      var N = calm ? Math.max(6, Math.min(14, Math.round((W * H) / 110000))) : Math.max(9, Math.min(30, Math.round((W * H) / 55000)));
+      var N = calm ? Math.max(5, Math.min(10, Math.round((W * H) / 180000))) : Math.max(7, Math.min(18, Math.round((W * H) / 90000)));
       while (birds.length < N) birds.push(makeBird());
       if (birds.length > N) birds.length = N;
-      var side = R() < 0.5 ? -1 : 1, rx = Math.max(70, Math.min(190, W * 0.11));
-      if (!pond) pond = makePond(margin >= rx * 2 + 30 * k ? (side < 0 ? margin / 2 : W - margin / 2) : (side < 0 ? Math.max(W * 0.5, W - rx - 24 * k) : Math.min(W * 0.5, rx + 24 * k)));
+      var rx = Math.max(60, Math.min(150, W * 0.09)), A = R() < 0.5 ? -1 : 1;
+      function at(side, f) { return side < 0 ? f * colL : colR + f * (W - colR); }     /* a fraction of the left or right margin */
       if (!plants.length) {
-        var kinds = [2, 0, 1], spots = [];
-        if (margin >= 110) {                                       /* in the margins of the page */
-          var per = Math.max(1, Math.min(4, Math.round(margin / 120)));
-          for (var a = 0; a < per; a++) { spots.push((0.15 + 0.7 * (a + 0.5) / per) * colL); spots.push(colR + (0.15 + 0.7 * (a + 0.5) / per) * (W - colR)); }
-        } else { var np = Math.max(3, Math.min(6, Math.round(W / 300))); for (var i = 0; i < np; i++) spots.push((i + 0.5 + rnd(-0.25, 0.25)) / np * W); }
-        for (var s = 0; s < spots.length; s++) { var x = spots[s]; if (Math.abs(x - pond.x) < pond.rx + 14 * k) x = pond.x + (x < pond.x ? -1 : 1) * (pond.rx + 18 * k); if (x < 10 * k || x > W - 10 * k) continue; plants.push(makePlant(x / W, kinds[s % 3])); }
-        tufts = []; for (var tI = 0; tI < Math.round(W / 140); tI++) tufts.push({ fx: R(), x: 0, h: rnd(7, 13) * k, lean: rnd(-0.2, 0.2) });
+        var items = [];
+        if (margin >= 110) {                                       /* one margin: the alder (and paddy); the other: the pond (and a spruce), or a shrub */
+          items.push(['alder', at(A, 0.36)]);
+          if (margin >= 230) items.push([1, at(A, 0.8)]);
+          if (margin >= 2 * rx + 24 * k) { items.push(['pond', at(-A, 0.5)]); if (margin >= 330) items.push(['spruce', at(-A, 0.12)]); }
+          else { items.push([0, at(-A, 0.5)]); items.push(['pond', W / 2]); }
+        } else {
+          items.push(['alder', A < 0 ? W * 0.15 : W * 0.85]); items.push([0, W * 0.5]); items.push(['pond', A < 0 ? W * 0.8 : W * 0.2]);
+        }
+        for (var s = 0; s < items.length; s++) { var it = items[s], x = Math.max(12 * k, Math.min(W - 12 * k, it[1]));
+          if (it[0] === 'pond') pond = makePond(x); else if (typeof it[0] === 'string') plants.push(makeTree(x / W, it[0])); else plants.push(makePlant(x / W, it[0])); }
+        vines = []; for (var vI = 0; vI < Math.max(1, Math.round(W / 480)); vI++) vines.push({ fx: R() * 0.9 + 0.05, x: 0, len: rnd(70, 130) * k, dir: R() < 0.5 ? -1 : 1 });
       }
+      if (!pond) pond = makePond(W / 2);
       for (var j = 0; j < plants.length; j++) plants[j].x = plants[j].fx * W;
-      for (var tj = 0; tj < tufts.length; tj++) tufts[tj].x = tufts[tj].fx * W;
+      for (var vj = 0; vj < vines.length; vj++) vines[vj].x = vines[vj].fx * W;
       if (!fishes.length) for (var f = 0; f < 3; f++) fishes.push(makeFish(pond));
-      if (!plankton.length) for (var z = 0; z < 9; z++) plankton.push(makePlankter(pond));
+      if (!plankton.length) for (var z = 0; z < 7; z++) plankton.push(makePlankter(pond));
       if (!deer) deer = makeDeer();
       if (!rat) rat = makeRat();
       if (!cross) cross = makeCross();
@@ -687,20 +776,22 @@
       canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       tune(); layout();
-      if (old && Math.abs(W - old) > 40) { pond = null; fishes = []; plankton = []; plants = []; insects = []; }   /* a new window, a new margin */
+      if (old && Math.abs(W - old) > 40) { pond = null; fishes = []; plankton = []; plants = []; insects = []; vines = []; }   /* a new window, a new margin */
       populate(); measure();
     }
     function draw() {
       ctx.clearRect(0, 0, W, H);
       var i;
-      for (i = 0; i < tufts.length; i++) drawTuft(tufts[i]);
+      for (i = 0; i < plants.length; i++) if (plants[i].tree) drawPlant(plants[i]);     /* trees stand at the back */
+      for (i = 0; i < vines.length; i++) drawVine(vines[i]);
       drawCross(cross);
       if (deer.state !== 'gone') drawDeer(deer.x, deer.dir, 'roe', deer.neck, deer.state === 'walk' ? 0.25 : deer.state === 'flee' ? 0.5 : 0, T * (deer.state === 'flee' ? 14 : 6) * P.pace + deer.ph, 1);
       if (rat.on) drawRat(rat.x, rat.dir, T * 16 * P.pace + rat.ph, rat.state === 'run', rat.state === 'pause');
-      drawPond(pond);                                          /* the water lies in front: the animals pass behind it */
+      drawPond(pond, 0);                                       /* the water lies in front: the animals pass behind it */
       for (i = 0; i < plankton.length; i++) drawPlankter(plankton[i]);
       for (i = 0; i < fishes.length; i++) drawFish(fishes[i]);
-      for (i = 0; i < plants.length; i++) drawPlant(plants[i]);
+      drawPond(pond, 1);
+      for (i = 0; i < plants.length; i++) if (!plants[i].tree) drawPlant(plants[i]);
       for (i = 0; i < insects.length; i++) drawInsect(insects[i]);
       for (i = 0; i < birds.length; i++) drawBird(birds[i]);
       if (!nomask) { ctx.globalCompositeOperation = 'destination-in'; ctx.drawImage(mask, 0, 0, W, H); ctx.globalCompositeOperation = 'source-over'; }   /* nothing over the text */
@@ -708,11 +799,12 @@
     function simulate(dt) {
       T += dt / 60;
       if (maskDirty || T - maskAt > 1.5) measure();
-      var lamp = hasMouse && html.classList.contains('lantern-on'), i, cap = Math.min(14, 4 + plants.length * 2), dragonflies = 0;
+      var lamp = hasMouse && html.classList.contains('lantern-on'), i, cap = Math.min(9, 3 + plants.length * 2), dragonflies = 0;
       for (i = 0; i < plants.length; i++) {
         var p = plants[i];
         if (p.g < 1) p.g = Math.min(1, p.g + p.rate * dt / 60);
-        if (p.g > 0.5 && T > p.spawnAt) { p.spawnAt = T + rnd(9, 20); if (insects.length < cap) { var l = freeLeaf(p); if (l) insects.push(makeInsect(p.kind === 2 && R() < 0.6 ? 'beetle' : (R() < 0.3 ? 'butterfly' : 'bee'), p, l)); } }
+        if (p.kind === 'spruce') continue;
+        if (p.g > 0.5 && T > p.spawnAt) { p.spawnAt = T + rnd(12, 24); if (insects.length < cap) { var l = freeLeaf(p); if (l) insects.push(makeInsect(p.kind === 'alder' ? (R() < 0.65 ? 'beetle' : 'butterfly') : (R() < 0.3 ? 'butterfly' : 'bee'), p, l)); } }
       }
       for (i = insects.length - 1; i >= 0; i--) { if (insects[i].dead) insects.splice(i, 1); else { stepInsect(insects[i], dt); if (insects[i].kind === 'dragonfly') dragonflies++; } }
       if (T > 8 && dragonflies < 2 && R() < 0.004 * dt) insects.push(makeInsect('dragonfly', null, null));
@@ -724,7 +816,7 @@
     }
 
     resize();
-    if (/ecodebug/.test(location.search)) window.__eco = function () { return { T: T, cross: cross, deer: deer, rat: rat, pond: pond, plants: plants, insects: insects, birds: birds, fishes: fishes, rects: rects, margin: margin, start: startCross, draw: { wolf: drawWolf, dog: drawWildDog, deer: drawDeer, moose: drawMoose, rat: drawRat, fish: drawFish, insect: drawInsect, plant: drawPlant, pond: drawPond, tuft: drawTuft, clear: function () { ctx.clearRect(0, 0, W, H); } } }; };
+    if (/ecodebug/.test(location.search)) window.__eco = function () { return { T: T, cross: cross, deer: deer, rat: rat, pond: pond, plants: plants, insects: insects, birds: birds, fishes: fishes, rects: rects, margin: margin, start: startCross, draw: { wolf: drawWolf, dog: drawWildDog, deer: drawDeer, moose: drawMoose, rat: drawRat, fish: drawFish, insect: drawInsect, plant: drawPlant, tree: drawTree, pond: drawPond, vine: drawVine, clear: function () { ctx.clearRect(0, 0, W, H); } } }; };
     window.addEventListener('resize', resize);
     if (window.visualViewport) window.visualViewport.addEventListener('resize', function () { if (!seeded) resize(); });
 
