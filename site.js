@@ -118,53 +118,92 @@
     window.addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; hasMouse = true; }, { passive: true });
   }
 
-  /* ------------------------------------------------------------ bee-eater flock (Boids; Reynolds 1987) */
-  (function flock() {
+  /* ------------------------------------------------------------ bee-eater flock (Boids; Reynolds 1987)
+     The flock is sized to the window — a bird is ~24 px on a phone and ~40 px on a large desktop screen —
+     and its speeds and sight radii scale with it, so the motion reads the same at any size.
+     With the lantern lit the flock is drawn towards the light (moths to a diya) and circles it at a
+     distance; the cursor itself is a predator they veer away from. Lantern off: they just scatter. */
+  try { (function flock() {
     var canvas = document.getElementById('flock');
     if (!canvas || reduced || !canvas.getContext) return;
     var ctx = canvas.getContext('2d');
-    var W, H, dpr;
+    if (!ctx || typeof Path2D === 'undefined') return;
+    var W = 0, H = 0, dpr = 1, base = 24, P = {}, boids = [], seeded = false;
+
+    function tune() {
+      base = Math.max(24, Math.min(44, 14 + Math.min(W, H) / 40));
+      var k = base / 24;
+      P = { k: k, maxV: 1.2 * k, minV: 0.45 * k, see: 84 * k, sep: 38 * k, wSep: 0.55 * k, wAli: 0.05, wCoh: 0.003,
+            cursorR: 150 * k, wCur: 0.42 * k, lampR: Math.max(420, Math.min(W, H) * 0.62), wLamp: 0.012 * k,
+            edge: 90 * k, wEdge: 0.06 * k, wander: 0.04 * k, line: 1.2 + 0.3 * k };
+    }
+    function spawn() {
+      return { x: Math.random() * W, y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 1.4 * P.k, vy: (Math.random() - 0.5) * 1.4 * P.k,
+        ph: Math.random() * Math.PI * 2, s: 0.8 + Math.random() * 0.45 };
+    }
+    function populate() {
+      var N = Math.max(9, Math.min(30, Math.round((W * H) / 55000)));
+      while (boids.length < N) boids.push(spawn());
+      if (boids.length > N) boids.length = N;
+      seeded = true;
+    }
     function resize() {
+      var w = window.innerWidth, h = window.innerHeight;
+      if (!w || !h) return;                        /* hidden or prerendered: wait for a real viewport */
       dpr = Math.min(window.devicePixelRatio || 1, 2);
-      W = window.innerWidth; H = window.innerHeight;
+      W = w; H = h;
       canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
       canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      tune(); populate();
     }
     resize();
     window.addEventListener('resize', resize);
-
-    var N = Math.max(9, Math.min(28, Math.round((W * H) / 60000)));
-    var boids = [];
-    for (var i = 0; i < N; i++) {
-      boids.push({ x: Math.random() * W, y: Math.random() * H,
-        vx: (Math.random() - 0.5) * 1.4, vy: (Math.random() - 0.5) * 1.4,
-        ph: Math.random() * Math.PI * 2, s: 0.8 + Math.random() * 0.45 });
-    }
-    var P = { maxV: 1.2, minV: 0.45, see: 84, sep: 30, wSep: 0.5, wAli: 0.05, wCoh: 0.0035, cursorR: 170, wCur: 0.42, edge: 90 };
+    if (window.visualViewport) window.visualViewport.addEventListener('resize', function () { if (!seeded) resize(); });
 
     /* bird glyph: local coords, heading +x, wingspan ≈ 1 */
     var body = new Path2D('M-.42 0C-.3 -.07 .15 -.08 .34 -.02L.53 -.03L.34 .03C.15 .08 -.3 .07 -.42 0Z');
     var wing = new Path2D('M.05 -.02C.02 -.27 -.14 -.45 -.41 -.53C-.31 -.3 -.21 -.12 -.08 0Z');
     var tail = new Path2D('M-.4 0L-.68 -.035M-.4 0L-.63 .04');
+    var compose = !!(window.DOMMatrix && body.addPath);
+    function drawBird(flap) {
+      /* Jamini Roy idiom: flat fill with a dark contour. One combined path per bird keeps the overlapping
+         wing/body fills at a single, even alpha; older engines fall back to drawing the parts. */
+      if (compose) {
+        var glyph = new Path2D(body);
+        glyph.addPath(wing, new DOMMatrix([1, 0, 0, flap, 0, 0]));
+        glyph.addPath(wing, new DOMMatrix([1, 0, 0, -flap, 0, 0]));
+        ctx.fill(glyph); ctx.stroke(glyph);
+      } else {
+        ctx.fill(body);
+        ctx.save(); ctx.scale(1, flap); ctx.fill(wing); ctx.stroke(wing); ctx.scale(1, -1); ctx.fill(wing); ctx.stroke(wing); ctx.restore();
+        ctx.stroke(body);
+      }
+    }
 
-    function getColor() { var cs = getComputedStyle(html); return [cs.getPropertyValue('--bird').trim() || 'rgba(46,107,73,.5)', cs.getPropertyValue('--bird-line').trim() || 'rgba(30,36,48,.55)']; }
+    function getColor() { var cs = getComputedStyle(html); return [cs.getPropertyValue('--bird').trim() || 'rgba(46,107,73,.6)', cs.getPropertyValue('--bird-line').trim() || 'rgba(30,36,48,.62)']; }
     var color = getColor();
     if (window.MutationObserver) new MutationObserver(function () { color = getColor(); }).observe(html, { attributes: true, attributeFilter: ['data-theme'] });
     if (window.matchMedia) mq('(prefers-color-scheme: dark)').addEventListener && mq('(prefers-color-scheme: dark)').addEventListener('change', function () { color = getColor(); });
 
-    var last = performance.now(), running = !document.hidden, frame = 0;
-    document.addEventListener('visibilitychange', function () {
-      var was = running; running = !document.hidden;
-      if (running && !was) { last = performance.now(); requestAnimationFrame(step); }
-    });
+    var last = performance.now(), running = !document.hidden, frame = 0, queued = false;
+    function schedule() { if (!queued) { queued = true; requestAnimationFrame(step); } }
+    function wake() { running = !document.hidden; last = performance.now(); if (running) schedule(); }
+    document.addEventListener('visibilitychange', wake);
+    window.addEventListener('pageshow', wake);
+    window.addEventListener('focus', wake);
 
     function step(now) {
+      queued = false;
       if (!running) return;
+      if (!seeded) { resize(); if (!seeded) { schedule(); return; } }
       frame++;
-      if (!finePointer && (frame % 2)) { requestAnimationFrame(step); return; } /* 30 fps on touch devices */
+      if (!finePointer && (frame % 2)) { schedule(); return; }           /* 30 fps on touch devices */
       var dt = Math.min(2.5, (now - last) / 16.67); last = now;
+      var lamp = hasMouse && html.classList.contains('lantern-on');
       ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = color[0]; ctx.strokeStyle = color[1]; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
       for (var i = 0; i < boids.length; i++) {
         var b = boids[i];
         var sx = 0, sy = 0, ax = 0, ay = 0, cx = 0, cy = 0, n = 0;
@@ -182,48 +221,44 @@
           b.vy += (ay - b.vy) * P.wAli * dt + (cy - b.y) * P.wCoh * dt;
         }
         b.vx += sx * P.wSep * dt; b.vy += sy * P.wSep * dt;
-        /* the cursor is a predator: veer away */
         if (hasMouse) {
           var ddx = b.x - mx, ddy = b.y - my, dd2 = ddx * ddx + ddy * ddy;
           if (dd2 < P.cursorR * P.cursorR) {
+            /* the cursor is a predator: veer away */
             var dd = Math.sqrt(dd2) || 1, f = 1 - dd / P.cursorR;
             b.vx += ddx / dd * f * P.wCur * dt; b.vy += ddy / dd * f * P.wCur * dt;
+          } else if (lamp && dd2 < P.lampR * P.lampR) {
+            /* the lantern draws them in — strongest half-way out, nothing at the rim — so they circle the light */
+            var dl = Math.sqrt(dd2), u = (dl - P.cursorR) / (P.lampR - P.cursorR), a = Math.sin(u * Math.PI) * P.wLamp;
+            b.vx -= ddx / dl * a * dt; b.vy -= ddy / dl * a * dt;
           }
         }
         /* soft edges, light wander */
-        if (b.x < P.edge) b.vx += (P.edge - b.x) / P.edge * 0.06 * dt;
-        if (b.x > W - P.edge) b.vx -= (b.x - (W - P.edge)) / P.edge * 0.06 * dt;
-        if (b.y < P.edge) b.vy += (P.edge - b.y) / P.edge * 0.06 * dt;
-        if (b.y > H - P.edge) b.vy -= (b.y - (H - P.edge)) / P.edge * 0.06 * dt;
-        b.vx += (Math.random() - 0.5) * 0.04 * dt; b.vy += (Math.random() - 0.5) * 0.04 * dt;
+        if (b.x < P.edge) b.vx += (P.edge - b.x) / P.edge * P.wEdge * dt;
+        if (b.x > W - P.edge) b.vx -= (b.x - (W - P.edge)) / P.edge * P.wEdge * dt;
+        if (b.y < P.edge) b.vy += (P.edge - b.y) / P.edge * P.wEdge * dt;
+        if (b.y > H - P.edge) b.vy -= (b.y - (H - P.edge)) / P.edge * P.wEdge * dt;
+        b.vx += (Math.random() - 0.5) * P.wander * dt; b.vy += (Math.random() - 0.5) * P.wander * dt;
         var v = Math.sqrt(b.vx * b.vx + b.vy * b.vy) || 1e-6;
         var tv = Math.max(P.minV, Math.min(P.maxV, v));
         b.vx = b.vx / v * tv; b.vy = b.vy / v * tv;
         b.x += b.vx * dt; b.y += b.vy * dt;
         b.ph += (0.16 + 0.1 * tv / P.maxV) * dt;
-        if (b.x < -50) b.x = W + 50; else if (b.x > W + 50) b.x = -50;
-        if (b.y < -50) b.y = H + 50; else if (b.y > H + 50) b.y = -50;
+        var m = base * 2;
+        if (b.x < -m) b.x = W + m; else if (b.x > W + m) b.x = -m;
+        if (b.y < -m) b.y = H + m; else if (b.y > H + m) b.y = -m;
 
-        var size = 24 * b.s, flap = 0.25 + 0.62 * Math.abs(Math.sin(b.ph));
-        /* one combined path per bird so overlapping wing/body fills keep a single, even alpha */
-        var glyph = new Path2D(body);
-        if (window.DOMMatrix) {
-          glyph.addPath(wing, new DOMMatrix([1, 0, 0, flap, 0, 0]));
-          glyph.addPath(wing, new DOMMatrix([1, 0, 0, -flap, 0, 0]));
-        }
+        var size = base * b.s, flap = 0.25 + 0.62 * Math.abs(Math.sin(b.ph));
         ctx.save();
         ctx.translate(b.x, b.y); ctx.rotate(Math.atan2(b.vy, b.vx)); ctx.scale(size, size);
-        /* Jamini Roy idiom: flat fill with a dark contour */
-        ctx.fillStyle = color[0]; ctx.strokeStyle = color[1]; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-        ctx.fill(glyph);
-        ctx.lineWidth = 1.3 / size; ctx.stroke(glyph);
-        ctx.lineWidth = 1.1 / size; ctx.stroke(tail);
+        ctx.lineWidth = P.line / size; drawBird(flap);
+        ctx.lineWidth = (P.line - 0.2) / size; ctx.stroke(tail);
         ctx.restore();
       }
-      requestAnimationFrame(step);
+      schedule();
     }
-    if (running) requestAnimationFrame(step);
-  })();
+    if (running) schedule();
+  })(); } catch (e) { /* no flock is better than a halted script */ }
 
   /* ------------------------------------------------------------ chapters (home): reveal + rail */
   var chapters = Array.prototype.slice.call(document.querySelectorAll('.chapter'));
