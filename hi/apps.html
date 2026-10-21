@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="hi" class="no-js" data-page="apps" data-lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>शोध उपकरण — डॉ. सिंचन घोष</title>
+<meta name="description" content="डॉ. सिंचन घोष के इंटरैक्टिव शोध उपकरण — स्कैंडिनेवियाई प्रजाति वितरण मॉडल, फ़ोरेज एनर्जी मेटा-डेटाबेस और AlderIPM-Sim पारिस्थितिक-महामारी निर्णय-सहायक।">
+<link rel="canonical" href="https://gsinchanpostdoc.github.io/Profile/hi/apps.html">
+<link rel="alternate" hreflang="en" href="https://gsinchanpostdoc.github.io/Profile/apps.html">
+<link rel="alternate" hreflang="bn" href="https://gsinchanpostdoc.github.io/Profile/bn/apps.html">
+<link rel="alternate" hreflang="de" href="https://gsinchanpostdoc.github.io/Profile/de/apps.html">
+<link rel="alternate" hreflang="hi" href="https://gsinchanpostdoc.github.io/Profile/hi/apps.html">
+<link rel="alternate" hreflang="x-default" href="https://gsinchanpostdoc.github.io/Profile/apps.html">
+<meta property="og:title" content="शोध उपकरण — डॉ. सिंचन घोष">
+<meta property="og:description" content="डॉ. सिंचन घोष के इंटरैक्टिव शोध उपकरण — स्कैंडिनेवियाई प्रजाति वितरण मॉडल, फ़ोरेज एनर्जी मेटा-डेटाबेस और AlderIPM-Sim पारिस्थितिक-महामारी निर्णय-सहायक।">
+<meta property="og:type" content="profile">
+<meta property="og:locale" content="hi_IN">
+<meta name="theme-color" content="#F4ECDB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1B16" media="(prefers-color-scheme: dark)">
+<script>(function(){try{var t=localStorage.getItem('sg-theme');if(t)document.documentElement.setAttribute('data-theme',t);var c='hi',l=localStorage.getItem('sg-lang');if(l&&l!==c&&/^(en|bn|de|hi)$/.test(l)){var p=location.pathname,f=p.split('/').pop()||'index.html';if(!/\.html$/.test(f))f='index.html';var base=p.replace(/(?:(?:bn|de|hi)\/)?[^\/]*$/,'');location.replace(base+(l==='en'?'':l+'/')+f+location.search+location.hash);}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..600,0..100,0..1;1,9..144,300..600,0..100,0..1&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Tiro+Bangla:ital@0;1&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="" defer></script>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="m-rosette" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="50" cy="50" r="46" stroke-dasharray="2.6 4.4"/>
+    <g id="m-rp8"><path d="M50 50C41.5 37.5 41 21 50 10.5C59 21 58.5 37.5 50 50Z"/></g><use href="#m-rp8" transform="rotate(45 50 50)"/><use href="#m-rp8" transform="rotate(90 50 50)"/><use href="#m-rp8" transform="rotate(135 50 50)"/><use href="#m-rp8" transform="rotate(180 50 50)"/><use href="#m-rp8" transform="rotate(225 50 50)"/><use href="#m-rp8" transform="rotate(270 50 50)"/><use href="#m-rp8" transform="rotate(315 50 50)"/>
+    <circle cx="65.3" cy="13.0" r="1.6" fill="currentColor" stroke="none"/><circle cx="87.0" cy="34.7" r="1.6" fill="currentColor" stroke="none"/><circle cx="87.0" cy="65.3" r="1.6" fill="currentColor" stroke="none"/><circle cx="65.3" cy="87.0" r="1.6" fill="currentColor" stroke="none"/><circle cx="34.7" cy="87.0" r="1.6" fill="currentColor" stroke="none"/><circle cx="13.0" cy="65.3" r="1.6" fill="currentColor" stroke="none"/><circle cx="13.0" cy="34.7" r="1.6" fill="currentColor" stroke="none"/><circle cx="34.7" cy="13.0" r="1.6" fill="currentColor" stroke="none"/>
+    <circle cx="50" cy="50" r="3.2" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="m-ring" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="100" cy="100" r="97" stroke-dasharray="2.4 5"/>
+    <g id="m-rp16"><path d="M100 100C93.5 80 93 52 100 26C107 52 106.5 80 100 100Z"/></g><use href="#m-rp16" transform="rotate(22.5 100 100)"/><use href="#m-rp16" transform="rotate(45 100 100)"/><use href="#m-rp16" transform="rotate(67.5 100 100)"/><use href="#m-rp16" transform="rotate(90 100 100)"/><use href="#m-rp16" transform="rotate(112.5 100 100)"/><use href="#m-rp16" transform="rotate(135 100 100)"/><use href="#m-rp16" transform="rotate(157.5 100 100)"/><use href="#m-rp16" transform="rotate(180 100 100)"/><use href="#m-rp16" transform="rotate(202.5 100 100)"/><use href="#m-rp16" transform="rotate(225 100 100)"/><use href="#m-rp16" transform="rotate(247.5 100 100)"/><use href="#m-rp16" transform="rotate(270 100 100)"/><use href="#m-rp16" transform="rotate(292.5 100 100)"/><use href="#m-rp16" transform="rotate(315 100 100)"/><use href="#m-rp16" transform="rotate(337.5 100 100)"/>
+    <circle cx="116.8" cy="15.7" r="1.5" fill="currentColor" stroke="none"/><circle cx="147.8" cy="28.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="171.5" cy="52.2" r="1.5" fill="currentColor" stroke="none"/><circle cx="184.3" cy="83.2" r="1.5" fill="currentColor" stroke="none"/><circle cx="184.3" cy="116.8" r="1.5" fill="currentColor" stroke="none"/><circle cx="171.5" cy="147.8" r="1.5" fill="currentColor" stroke="none"/><circle cx="147.8" cy="171.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="116.8" cy="184.3" r="1.5" fill="currentColor" stroke="none"/><circle cx="83.2" cy="184.3" r="1.5" fill="currentColor" stroke="none"/><circle cx="52.2" cy="171.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="28.5" cy="147.8" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.7" cy="116.8" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.7" cy="83.2" r="1.5" fill="currentColor" stroke="none"/><circle cx="28.5" cy="52.2" r="1.5" fill="currentColor" stroke="none"/><circle cx="52.2" cy="28.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="83.2" cy="15.7" r="1.5" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="m-ring2" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+    <circle cx="100" cy="100" r="90" stroke-dasharray="1 7"/>
+    <circle cx="100.0" cy="10.0" r="1.1" fill="currentColor" stroke="none"/><circle cx="123.3" cy="13.1" r="1.1" fill="currentColor" stroke="none"/><circle cx="145.0" cy="22.1" r="1.1" fill="currentColor" stroke="none"/><circle cx="163.6" cy="36.4" r="1.1" fill="currentColor" stroke="none"/><circle cx="177.9" cy="55.0" r="1.1" fill="currentColor" stroke="none"/><circle cx="186.9" cy="76.7" r="1.1" fill="currentColor" stroke="none"/><circle cx="190.0" cy="100.0" r="1.1" fill="currentColor" stroke="none"/><circle cx="186.9" cy="123.3" r="1.1" fill="currentColor" stroke="none"/><circle cx="177.9" cy="145.0" r="1.1" fill="currentColor" stroke="none"/><circle cx="163.6" cy="163.6" r="1.1" fill="currentColor" stroke="none"/><circle cx="145.0" cy="177.9" r="1.1" fill="currentColor" stroke="none"/><circle cx="123.3" cy="186.9" r="1.1" fill="currentColor" stroke="none"/><circle cx="100.0" cy="190.0" r="1.1" fill="currentColor" stroke="none"/><circle cx="76.7" cy="186.9" r="1.1" fill="currentColor" stroke="none"/><circle cx="55.0" cy="177.9" r="1.1" fill="currentColor" stroke="none"/><circle cx="36.4" cy="163.6" r="1.1" fill="currentColor" stroke="none"/><circle cx="22.1" cy="145.0" r="1.1" fill="currentColor" stroke="none"/><circle cx="13.1" cy="123.3" r="1.1" fill="currentColor" stroke="none"/><circle cx="10.0" cy="100.0" r="1.1" fill="currentColor" stroke="none"/><circle cx="13.1" cy="76.7" r="1.1" fill="currentColor" stroke="none"/><circle cx="22.1" cy="55.0" r="1.1" fill="currentColor" stroke="none"/><circle cx="36.4" cy="36.4" r="1.1" fill="currentColor" stroke="none"/><circle cx="55.0" cy="22.1" r="1.1" fill="currentColor" stroke="none"/><circle cx="76.7" cy="13.1" r="1.1" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="m-alder" viewBox="0 0 80 100" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M40 96C14 80 4 46 22 20C30 9 50 9 58 20C76 46 66 80 40 96Z"/>
+    <path d="M40 94V16"/>
+    <path d="M40 34C30 36 24 42 20 50M40 34C50 36 56 42 60 50M40 52C32 54 27 60 24 66M40 52C48 54 53 60 56 66M40 70C34 72 31 76 30 80M40 70C46 72 49 76 50 80"/>
+  </symbol>
+  <symbol id="i-diya" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 14c2 2.5 5 3.6 9 3.6s7-1.1 9-3.6l-1.6 4.4C17.6 20.2 15 21 12 21s-5.6-.8-7.4-2.6Z"/>
+    <path d="M12 3.5C9.7 6.3 9.3 8.7 10.3 10.5c.5.9 1.1 1.5 1.7 2.1.6-.6 1.2-1.2 1.7-2.1 1-1.8.6-4.2-1.7-7Z"/>
+  </symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/>
+  </symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15.5 3.5a8 8 0 1 0 5 14 7 7 0 0 1-5-14Z"/>
+  </symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <path d="M4 7h16M4 12h16M4 17h16"/>
+  </symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 12h15M13 6l6 6-6 6"/>
+  </symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+  </symbol>
+  <!-- Jamini Roy idiom: flat fills (.jg green .jr red .jo ochre .jw paper) with lamp-black contour (.jl) -->
+  <symbol id="j-bird" viewBox="0 0 160 120">
+    <path class="jr jl" d="M36 66L6 52L16 68L4 84L36 78Z"/>
+    <path class="jg jl" d="M34 72C34 44 60 30 90 32C118 34 130 52 124 76C118 98 88 106 60 98C44 94 34 84 34 72Z"/>
+    <path class="jo jl" d="M54 64C62 46 92 44 108 58C96 62 74 68 60 84Z"/>
+    <path class="jn jl jl--thin" d="M66 62L90 56M64 70L92 64M68 78L94 72"/>
+    <circle class="jg jl" cx="116" cy="44" r="18"/>
+    <path class="jr jl" d="M132 40L158 38L132 50Z"/>
+    <ellipse class="jw jl jl--thin" cx="118" cy="42" rx="7" ry="5"/>
+    <circle class="jk" cx="120" cy="42" r="2.8"/>
+    <circle class="jr" cx="110" cy="27" r="3"/>
+    <path class="jn jl" d="M74 102L70 118M92 102L94 118"/>
+    <circle class="jw" cx="58" cy="90" r="2.4"/><circle class="jw" cx="70" cy="95" r="2.4"/><circle class="jw" cx="84" cy="97" r="2.4"/>
+  </symbol>
+  <symbol id="j-paddy" viewBox="0 0 60 100">
+    <path class="jn jl" d="M30 98C30 76 28 56 32 36"/>
+    <path class="jn jl" d="M32 36C36 22 44 12 55 8"/>
+    <path class="jn jl" d="M32 36C27 28 25 20 27 10"/>
+    <ellipse class="jo jl jl--thin" cx="35" cy="29" rx="4.2" ry="2.6" transform="rotate(-55 35 29)"/>
+    <ellipse class="jo jl jl--thin" cx="38.5" cy="22" rx="4.2" ry="2.6" transform="rotate(-50 38.5 22)"/>
+    <ellipse class="jo jl jl--thin" cx="43" cy="15.5" rx="4.2" ry="2.6" transform="rotate(-40 43 15.5)"/>
+    <ellipse class="jo jl jl--thin" cx="48.5" cy="10.5" rx="4.2" ry="2.6" transform="rotate(-25 48.5 10.5)"/>
+    <ellipse class="jo jl jl--thin" cx="29.5" cy="30" rx="4.2" ry="2.6" transform="rotate(70 29.5 30)"/>
+    <ellipse class="jo jl jl--thin" cx="27.5" cy="23" rx="4.2" ry="2.6" transform="rotate(80 27.5 23)"/>
+    <ellipse class="jo jl jl--thin" cx="26.5" cy="16" rx="4.2" ry="2.6" transform="rotate(85 26.5 16)"/>
+  </symbol>
+  <symbol id="j-fish" viewBox="0 0 120 60">
+    <path class="jr jl" d="M84 30L108 16L104 30L108 44Z"/>
+    <path class="jo jl" d="M8 30C28 10 60 10 84 30C60 50 28 50 8 30Z"/>
+    <path class="jg jl" d="M40 14C50 6 62 6 70 12L58 18Z"/>
+    <path class="jn jl jl--thin" d="M34 18C40 26 40 34 34 42M44 22c4 3 4 9 0 12M52 18c5 4 5 12 0 16M60 18c5 4 5 12 0 16M68 22c4 3 4 9 0 12"/>
+    <circle class="jw jl jl--thin" cx="24" cy="27" r="5"/><circle class="jk" cx="25" cy="27" r="2"/>
+  </symbol>
+</svg>
+<div class="grain" aria-hidden="true"></div>
+<canvas id="flock" aria-hidden="true"></canvas>
+<div id="lantern" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"><div class="cursor__ring"></div><div class="cursor__dot"></div></div>
+<a class="skip" href="#main">मुख्य सामग्री पर जाएँ</a>
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="डॉ. सिंचन घोष">
+    <svg class="brand__mark" aria-hidden="true"><use href="#m-rosette"/></svg>
+    <span><span class="brand__name">डॉ. सिंचन घोष</span><span class="brand__bn">Dr. Sinchan Ghosh · IIASA</span></span>
+  </a>
+  <nav class="topnav" aria-label="पृष्ठ"><a href="index.html">होम</a><a href="academic.html">शैक्षणिक यात्रा</a><a href="publications.html">प्रकाशन</a><a href="apps.html" aria-current="page">शोध उपकरण</a><a href="outreach.html">आउटरीच</a></nav>
+  <div class="actions">
+    <nav class="langs" aria-label="भाषा"><a href="../apps.html" lang="en" hreflang="en" data-lang="en" aria-label="English" title="English">EN</a><a href="../bn/apps.html" lang="bn" hreflang="bn" data-lang="bn" aria-label="বাংলা" title="বাংলা">বাং</a><a href="../de/apps.html" lang="de" hreflang="de" data-lang="de" aria-label="Deutsch" title="Deutsch">DE</a><a href="../hi/apps.html" lang="hi" hreflang="hi" data-lang="hi" aria-label="हिन्दी" title="हिन्दी" aria-current="true">हिं</a></nav>
+    <button class="iconbtn iconbtn--lantern" type="button" data-lantern-toggle aria-pressed="true" aria-label="लालटेन फ़ोकस" title="लालटेन: कर्सर से दूर के हिस्से को मद्धम करता है"><svg aria-hidden="true"><use href="#i-diya"/></svg></button>
+    <button class="iconbtn" type="button" data-theme-toggle aria-pressed="false" aria-label="रात्रि मोड" title="दिन / रात"><svg class="off" aria-hidden="true"><use href="#i-moon"/></svg><svg class="on" aria-hidden="true"><use href="#i-sun"/></svg></button>
+    <button class="iconbtn iconbtn--menu" type="button" data-menu aria-expanded="false" aria-controls="drawer" aria-label="मेन्यू"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+<nav class="drawer" id="drawer" aria-label="मेन्यू">
+  <a href="index.html"><span class="bn" lang="hi">०</span>होम</a><a href="academic.html"><span class="bn" lang="hi">१</span>शैक्षणिक यात्रा</a><a href="publications.html"><span class="bn" lang="hi">२</span>प्रकाशन</a><a href="apps.html" aria-current="page"><span class="bn" lang="hi">३</span>शोध उपकरण</a><a href="outreach.html"><span class="bn" lang="hi">४</span>आउटरीच</a>
+  <nav class="drawer__langs" aria-label="भाषा"><a href="../apps.html" lang="en" hreflang="en" data-lang="en" aria-label="English" title="English">EN</a><a href="../bn/apps.html" lang="bn" hreflang="bn" data-lang="bn" aria-label="বাংলা" title="বাংলা">বাং</a><a href="../de/apps.html" lang="de" hreflang="de" data-lang="de" aria-label="Deutsch" title="Deutsch">DE</a><a href="../hi/apps.html" lang="hi" hreflang="hi" data-lang="hi" aria-label="हिन्दी" title="हिन्दी" aria-current="true">हिं</a></nav>
+  <div class="drawer__foot">
+    <a href="mailto:gsinchanpostdoc@gmail.com">gsinchanpostdoc@gmail.com</a>
+    <a href="https://orcid.org/0000-0001-6407-383X" target="_blank" rel="noopener">ORCID</a>
+    <a href="https://scholar.google.com/citations?user=5dhoW-cAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>
+    <a href="https://github.com/gsinchanpostdoc" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</nav>
+<main id="main">
+<div class="margin-rule" aria-hidden="true"></div>
+
+<header class="sheet-head">
+  <div class="wrap ledger">
+    <div aria-hidden="true"></div>
+    <div>
+      <p class="eyebrow">हितधारक उपकरण</p>
+      <h1 class="title">शोध <em>अनुप्रयोग</em></h1>
+      <p class="lead">शोध को संरक्षण प्रबंधकों, वन्यजीव पारिस्थितिकीविदों और शिकार-योजनाकारों के लिए इंटरैक्टिव प्लेटफ़ॉर्म में बदलने वाले निर्णय-सहायक उपकरण — हर एक आपके ब्राउज़र में चलता है।</p>
+      <ul class="inline" style="margin-top:1.4rem"><li><a class="u u--quiet" href="#wildlife">प्रजाति वितरण मॉडल</a></li><li><a class="u u--quiet" href="#forage">फ़ोरेज एनर्जी डेटाबेस</a></li><li><a class="u u--quiet" href="#alderipm">AlderIPM-Sim</a></li></ul>
+    </div>
+  </div>
+</header>
+
+<section class="sheet" id="wildlife">
+  <div class="wrap ledger">
+    <div class="num" aria-hidden="true" lang="hi">१</div>
+    <div>
+      <hr class="stitch">
+      <div class="split tool__intro">
+        <div>
+          <p class="tool__kicker">IIASA पोस्टडॉक्टरल शोध</p>
+          <h2 class="sheet__title">स्कैंडिनेवियाई प्रजाति वितरण मॉडल</h2>
+          <p class="first" style="margin-top:.8rem">पाँच IPCC साझा सामाजिक-आर्थिक मार्गों के तहत 374 स्कैंडिनेवियाई ग्रिड सेलों में मूस (<em>Alces alces</em>), रो हिरण (<em>Capreolus capreolus</em>) और भूरे भेड़िये (<em>Canis lupus</em>) के ग्रिड-स्तरीय घनत्व और पर्यावास प्रक्षेपण — वनकर्मियों, शिकारियों और वन्यजीव प्रबंधकों के लिए।</p>
+          <p class="small">यह उपकरण जलवायु, वनस्पति और भूमि-आवरण पूर्वानुमानकों को एकीकृत करने वाले पदानुक्रमित और स्टैक्ड प्रजाति वितरण मॉडलों को ODE-आधारित भेड़िया–खुरदार पोषण-स्तरीय अंतःक्रिया परतों से जोड़ता है (Guisan &amp; Thuiller, 2005; Chapron et al., 2016)। मानचित्र स्लाइडर प्रक्षेपणों को 2025–2060 तक सीमित रखता है, जबकि प्रत्येक ग्रिड की समय-श्रेणी 1999–2060 का पूरा रिकॉर्ड रखती है, ताकि हितधारक आधार-रेखा की परिवर्तनशीलता के संदर्भ में प्रक्षेपण पढ़ सकें। अनुप्रयोग stlite के माध्यम से पूरी तरह ब्राउज़र में चलता है; किसी इंस्टॉल की आवश्यकता नहीं।</p>
+          <div class="tool__cta"><a class="go magnet" href="https://gsinchanpostdoc.github.io/Wolf-model/tools/scandinavian-sdm/" target="_blank" rel="noopener">अनुप्रयोग खोलें <svg aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="u u--quiet" href="https://github.com/gsinchanpostdoc/Wolf-model" target="_blank" rel="noopener">GitHub पर सोर्स</a></div>
+        </div>
+        <div><div class="glass pane"><dl class="spec"><div><dt>प्रजातियाँ</dt><dd>मूस · रो हिरण · भेड़िया</dd></div><div><dt>परिदृश्य</dt><dd>SSP1-1.9 · 1-2.6 · 2-4.5 · 3-7.0 · 5-8.5</dd></div><div><dt>मानचित्र अवधि</dt><dd>2025–2060</dd></div><div><dt>समय-श्रेणी</dt><dd>1999–2060</dd></div><div><dt>विस्तार</dt><dd>374 ग्रिड सेल</dd></div><div><dt>दृष्टिकोण</dt><dd>पदानुक्रमित ML SDM + ODE</dd></div><div><dt>रनटाइम</dt><dd>ब्राउज़र में (stlite / Pyodide)</dd></div><div><dt>उपयोगकर्ता</dt><dd>वनकर्मी · शिकारी · प्रबंधक</dd></div><div><dt>रिपॉज़िटरी</dt><dd><a href="https://github.com/gsinchanpostdoc/Wolf-model" target="_blank" rel="noopener">Wolf-model</a></dd></div></dl></div><div style="margin-top:1.4rem"><div data-tabs><div class="tabs" role="tablist"><button class="tab" type="button" role="tab" aria-selected="true" aria-controls="t1-p0" id="t1-t0">अध्ययन क्षेत्र</button><button class="tab" type="button" role="tab" aria-selected="false" aria-controls="t1-p1" id="t1-t1">प्रजातियाँ</button></div><div class="panel is-active" id="t1-p0" role="tabpanel" aria-labelledby="t1-t0"><div class="map" id="map-t1" data-bounds="55,4,71,32" data-label="स्कैंडिनेविया" role="img" aria-label="मानचित्र: स्कैंडिनेविया"></div></div><div class="panel" id="t1-p1" role="tabpanel" aria-labelledby="t1-t1"><div class="species">
+  <figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Moose_superior.jpg/300px-Moose_superior.jpg" alt="Alces alces" loading="lazy"><figcaption><span class="sp">Alces alces</span>सार्वजनिक डोमेन</figcaption></figure>
+  <figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Capreolus_capreolus_Wien_Zentralfriedhof_20221021_06.jpg/300px-Capreolus_capreolus_Wien_Zentralfriedhof_20221021_06.jpg" alt="Capreolus capreolus" loading="lazy"><figcaption><span class="sp">Capreolus capreolus</span>CC BY-SA</figcaption></figure>
+  <figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Scandinavian_grey_wolf_Canis_lupus.jpg/300px-Scandinavian_grey_wolf_Canis_lupus.jpg" alt="Canis lupus" loading="lazy"><figcaption><span class="sp">Canis lupus</span>CC BY-SA</figcaption></figure>
+  
+</div></div></div></div></div>
+      </div>
+      <div class="embed glass">
+        <div class="embed__head"><div><div class="embed__title">स्कैंडिनेवियाई प्रजाति वितरण मॉडल — v2.0</div><div class="embed__sub">मूस · रो हिरण · भूरा भेड़िया · पाँच IPCC SSP · मानचित्र 2025–2060 · समय-श्रेणी 1999–2060</div></div><span class="embed__live">लाइव · ब्राउज़र में</span></div>
+        <div class="embed__frame"><iframe src="https://gsinchanpostdoc.github.io/Wolf-model/tools/scandinavian-sdm/" title="स्कैंडिनेवियाई प्रजाति वितरण मॉडल — डॉ. सिंचन घोष का इंटरैक्टिव अनुप्रयोग" loading="lazy" allow="clipboard-write"></iframe></div>
+        <div class="embed__foot"><svg aria-hidden="true"><use href="#i-ext"/></svg><a href="https://gsinchanpostdoc.github.io/Wolf-model/tools/scandinavian-sdm/" target="_blank" rel="noopener">सर्वोत्तम अनुभव के लिए पूर्ण स्क्रीन में खोलें — पहली बार लोड होने में 20–40 सेकंड लगते हैं</a></div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<section class="sheet" id="forage">
+  <div class="wrap ledger">
+    <div class="num" aria-hidden="true" lang="hi">२</div>
+    <div>
+      <hr class="stitch">
+      <div class="split tool__intro">
+        <div>
+          <p class="tool__kicker">IIASA पोस्टडॉक्टरल शोध</p>
+          <h2 class="sheet__title">फ़ोरेज एनर्जी मेटा-डेटाबेस</h2>
+          <p class="first" style="margin-top:.8rem">बोरियल खुरदार जीवों के लिए पौधों की चयापचयी ऊर्जा, पाच्यता और जैकब्स के D चारण-वरीयता सूचकांकों का एक संकलित, इंटरैक्टिव मेटा-डेटाबेस — मात्रात्मक पर्यावास प्रबंधन और जनसंख्या ऊर्जा-बजट के प्राचलीकरण के लिए।</p>
+          <p class="small">अनुप्रयोग मेंके ऊर्जा गुणांकों को जैकब्स के D वरीयता सूचकांकों के साथ मिलाकर प्रत्येक पादप प्रजाति के लिए वरीयता-भारित चयापचयी ऊर्जा (<em>e<sub>p</sub></em>) की गणना करता है। रिकॉर्ड देखने और छाँटने के लिए <strong>Database</strong> टैब, ऊर्जा-बजट की गणना के लिए <strong>Calculator</strong>, और नया डेटा जमा करने के लिए <strong>Contribute</strong> टैब का उपयोग करें।</p>
+          <div class="tool__cta"><a class="go magnet" href="https://gsinchanpostdoc.github.io/Forage-energy-content-meta-database/" target="_blank" rel="noopener">डेटाबेस खोलें <svg aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="u u--quiet" href="https://github.com/gsinchanpostdoc/Forage-energy-content-meta-database" target="_blank" rel="noopener">GitHub पर सोर्स</a></div>
+        </div>
+        <div><div class="glass pane"><dl class="spec"><div><dt>रिकॉर्ड</dt><dd>72 पादप–प्रजाति–ऋतु प्रविष्टियाँ</dd></div><div><dt>प्रजातियाँ</dt><dd>मूस · रो हिरण · लाल हिरण</dd></div><div><dt>ऋतुएँ</dt><dd>वसंत · ग्रीष्म · शरद · शीत</dd></div><div><dt>चर</dt><dd>ME · जैकब्स D · e<sub>p</sub> · विश्वास स्तर</dd></div><div><dt>टैब</dt><dd>Database · Calculator · Contribute · About</dd></div><div><dt>उपयोग</dt><dd>वन्यजीव प्रबंधन · जनसंख्या मॉडलिंग</dd></div><div><dt>रिपॉज़िटरी</dt><dd><a href="https://github.com/gsinchanpostdoc/Forage-energy-content-meta-database" target="_blank" rel="noopener">Forage-energy-content-meta-database</a></dd></div></dl></div><div style="margin-top:1.4rem"><div data-tabs><div class="tabs" role="tablist"><button class="tab" type="button" role="tab" aria-selected="true" aria-controls="t2-p0" id="t2-t0">अध्ययन क्षेत्र</button><button class="tab" type="button" role="tab" aria-selected="false" aria-controls="t2-p1" id="t2-t1">प्रजातियाँ</button></div><div class="panel is-active" id="t2-p0" role="tabpanel" aria-labelledby="t2-t0"><div class="map" id="map-t2" data-bounds="55,4,71,32" data-label="बोरियल स्कैंडिनेविया" role="img" aria-label="मानचित्र: बोरियल स्कैंडिनेविया"></div></div><div class="panel" id="t2-p1" role="tabpanel" aria-labelledby="t2-t1"><div class="species">
+  <figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Moose_superior.jpg/300px-Moose_superior.jpg" alt="Alces alces" loading="lazy"><figcaption><span class="sp">Alces alces</span>सार्वजनिक डोमेन</figcaption></figure>
+  <figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Capreolus_capreolus_Wien_Zentralfriedhof_20221021_06.jpg/300px-Capreolus_capreolus_Wien_Zentralfriedhof_20221021_06.jpg" alt="Capreolus capreolus" loading="lazy"><figcaption><span class="sp">Capreolus capreolus</span>CC BY-SA</figcaption></figure>
+  
+  <figure><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Cervus_elaphus_Luc_Viatour_6.jpg/300px-Cervus_elaphus_Luc_Viatour_6.jpg" alt="Cervus elaphus" loading="lazy"><figcaption><span class="sp">Cervus elaphus</span>CC BY-SA 3.0</figcaption></figure>
+</div></div></div></div></div>
+      </div>
+      <div class="embed glass">
+        <div class="embed__head"><div><div class="embed__title">फ़ोरेज एनर्जी डेटाबेस</div><div class="embed__sub">पशु चारे की चयापचयी ऊर्जा और वरीयता सूचकांक · 72 रिकॉर्ड · 3 प्रजातियाँ</div></div><span class="embed__live">लाइव · ब्राउज़र में</span></div>
+        <div class="embed__frame"><iframe src="https://gsinchanpostdoc.github.io/Forage-energy-content-meta-database/" title="फ़ोरेज एनर्जी मेटा-डेटाबेस — डॉ. सिंचन घोष का इंटरैक्टिव अनुप्रयोग" loading="lazy" allow="clipboard-write"></iframe></div>
+        <div class="embed__foot"><svg aria-hidden="true"><use href="#i-ext"/></svg><a href="https://gsinchanpostdoc.github.io/Forage-energy-content-meta-database/" target="_blank" rel="noopener">सर्वोत्तम अनुभव के लिए पूर्ण स्क्रीन में खोलें</a></div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<section class="sheet" id="alderipm">
+  <div class="wrap ledger">
+    <div class="num" aria-hidden="true" lang="hi">३</div>
+    <div>
+      <hr class="stitch">
+      <div class="split tool__intro">
+        <div>
+          <p class="tool__kicker">Frontiers in Applied Mathematics &amp; Statistics (2026)</p>
+          <h2 class="sheet__title">AlderIPM-Sim — <em>Alnus</em> पारिस्थितिक-महामारी IPM सिम्युलेटर</h2>
+          <p class="first" style="margin-top:.8rem">यूरोपीय ब्लैक एल्डर (<em>Alnus glutinosa</em>) वनों में एल्डर पत्ती-भृंग (<em>Agelastica alni</em>) के प्रकोप के प्रबंधन के लिए ब्राउज़र-आधारित निर्णय-सहायक उपकरण। यह मौसम-भीतर (within-season) चार-अवस्था ODE तंत्र को एक वार्षिक असतत प्रतिचित्रण से जोड़ता है, <em>Meigenia mutabilis</em> द्वारा परजीव्याभ जैव-नियंत्रण और बहुभक्षी (generalist) पैसेरिन पक्षियों द्वारा परभक्षण जोड़ता है, और प्रबंधकों को रेजीम-शिफ़्ट का पूर्वानुमान, पूर्व-चेतावनी संकेतों की पहचान, क्षेत्र-डेटा की फ़िटिंग और एकीकृत कीट-प्रबंधन रणनीतियों की तुलना करने देता है।</p>
+          <p class="small">मौसम के भीतर का मॉड्यूल लगभग 50-दिवसीय लार्वा-संवेदनशीलता अवधि में चौथे क्रम की रुंगे–कुट्टा विधि से चार-अवस्था ODE (संवेदनशील लार्वा S, परजीवी-ग्रस्त लार्वा I, वयस्क परजीव्याभ F, संचयी पत्ती-हानि (विपत्रण) D) का समाकलन करता है; हॉलिंग टाइप II फलनात्मक प्रतिक्रिया परजीविता को नियंत्रित करती है। फिर एक वार्षिक असतत प्रतिचित्रण वर्ष-दर-वर्ष भृंग प्रजनन (बेवर्टन–होल्ट), परजीव्याभ की शीतकालीन उत्तरजीविता और वितान प्रतिपुष्टि (<em>K</em> = <em>K</em><sub>0</sub>·exp(−φ<em>D</em>)) को संभालता है। सहयोगी Python (<code class="mono">pip install "git+...#subdirectory=alder-ipm-sim-py"</code>) और R (<code class="mono">remotes::install_github</code>) पैकेज एक ही मॉडल, प्राचल-नाम और आउटपुट साझा करते हैं, इसलिए ब्राउज़र का कोई भी सत्र कोड में हूबहू पुनरुत्पादित होता है।</p>
+          <div class="tool__cta"><a class="go magnet" href="https://gsinchanpostdoc.github.io/AlderIPM-Sim/" target="_blank" rel="noopener">सिम्युलेटर खोलें <svg aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="u u--quiet" href="https://github.com/gsinchanpostdoc/AlderIPM-Sim" target="_blank" rel="noopener">सोर्स कोड और पैकेज</a></div>
+        </div>
+        <div><div class="glass pane"><dl class="spec"><div><dt>तंत्र</dt><dd><em>A. glutinosa</em> · <em>A. alni</em> · <em>M. mutabilis</em> · पैसेरिन</dd></div><div><dt>मॉडल</dt><dd>मौसम-भीतर ODE + वार्षिक बेवर्टन–होल्ट प्रतिचित्रण</dd></div><div><dt>अवस्थाएँ</dt><dd>S · I · F · D (RK4, ~50-दिवसीय अवधि)</dd></div><div><dt>सुविधाएँ</dt><dd>सिम्युलेशन · साम्यावस्था · द्विभाजन · फ़िटिंग · पूर्व-चेतावनी · नियंत्रण</dd></div><div><dt>विश्लेषण</dt><dd>LHS-PRCC · बेसिन स्थिरता · प्रतिरोध और प्रत्यास्थता</dd></div><div><dt>पूर्व-चेतावनी</dt><dd>प्रसरण · स्वसहसंबंध · वर्णक्रमीय अरुणन (spectral reddening) · केंडल τ</dd></div><div><dt>रनटाइम</dt><dd>ब्राउज़र में (Plotly.js + Leaflet)</dd></div><div><dt>पैकेज</dt><dd>Python 3 + R, एक ही मॉडल और आउटपुट</dd></div><div><dt>रिपॉज़िटरी</dt><dd><a href="https://github.com/gsinchanpostdoc/AlderIPM-Sim" target="_blank" rel="noopener">AlderIPM-Sim</a></dd></div></dl></div><div style="margin-top:1.4rem"><div data-tabs><div class="tabs" role="tablist"><button class="tab" type="button" role="tab" aria-selected="true" aria-controls="t3-p0" id="t3-t0">अध्ययन क्षेत्र</button><button class="tab" type="button" role="tab" aria-selected="false" aria-controls="t3-p1" id="t3-t1">प्रजातियाँ</button></div><div class="panel is-active" id="t3-p0" role="tabpanel" aria-labelledby="t3-t0"><div class="map" id="map-t3" data-bounds="35,-10,65,30" data-label="यूरोप में Alnus glutinosa का विस्तार" role="img" aria-label="मानचित्र: यूरोप में Alnus glutinosa का विस्तार"></div></div><div class="panel" id="t3-p1" role="tabpanel" aria-labelledby="t3-t1"><div class="species">
+  <figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Alnus_glutinosa_002.jpg?width=300" alt="Alnus glutinosa" loading="lazy"><figcaption><span class="sp">Alnus glutinosa</span>Nikanos, CC BY-SA 2.5</figcaption></figure>
+  <figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Agelastica_alni_(aka).jpg?width=300" alt="Agelastica alni" loading="lazy"><figcaption><span class="sp">Agelastica alni</span>André Karwath, CC BY-SA 2.5</figcaption></figure>
+  <figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Focus_stacking_Tachinid_fly.jpg?width=300" alt="Tachinidae" loading="lazy"><figcaption><span class="sp">Meigenia mutabilis</span> (Tachinidae) — M. M. Karim, CC BY-SA 3.0</figcaption></figure>
+</div></div></div></div></div>
+      </div>
+      <div class="embed glass">
+        <div class="embed__head"><div><div class="embed__title">AlderIPM-Sim — Alnus पारिस्थितिक-महामारी IPM सिम्युलेटर</div><div class="embed__sub">मौसम-भीतर ODE + वार्षिक प्रतिचित्रण · रेजीम-शिफ़्ट पूर्व-चेतावनी · IPM नियंत्रण तुलना · Python और R पैकेज</div></div><span class="embed__live">लाइव · ब्राउज़र में</span></div>
+        <div class="embed__frame" style="height:860px"><iframe src="https://gsinchanpostdoc.github.io/AlderIPM-Sim/" title="AlderIPM-Sim — डॉ. सिंचन घोष का इंटरैक्टिव निर्णय-सहायक अनुप्रयोग" loading="lazy" referrerpolicy="no-referrer" allow="clipboard-read; clipboard-write"></iframe></div>
+        <div class="embed__foot"><svg aria-hidden="true"><use href="#i-ext"/></svg><a href="https://gsinchanpostdoc.github.io/AlderIPM-Sim/" target="_blank" rel="noopener">सर्वोत्तम अनुभव के लिए पूर्ण स्क्रीन में खोलें</a></div>
+      </div>
+      <p class="small muted" style="margin-top:1.4rem"><strong>उद्धरण:</strong> Ghosh, S., &amp; Singh, S. (2026). Adaptive stability of the Black alder ecoepidemic system: integrated intervention alone prevents regime shift under phenological variability. <em>Frontiers in Applied Mathematics and Statistics</em>, <em>12</em>, 1831903. <a href="https://doi.org/10.3389/fams.2026.1831903" target="_blank" rel="noopener" style="color:var(--leaf)">https://doi.org/10.3389/fams.2026.1831903</a></p>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="colophon" id="colophon">
+  <div class="wrap">
+    <hr class="pat">
+    <div class="colophon__grid">
+      <div>
+        <div class="colophon__name">डॉ. सिंचन घोष</div>
+        <div class="colophon__bn">Dr. Sinchan Ghosh</div>
+        <div class="colophon__role">पारिस्थितिक मॉडलर · मात्रात्मक पारिस्थितिकीविद्<br>IIASA, लाक्सेनबुर्ग, ऑस्ट्रिया</div>
+        <ul style="margin-top:.9rem">
+          <li><a href="mailto:gsinchanpostdoc@gmail.com">gsinchanpostdoc@gmail.com</a></li>
+          <li><a href="https://orcid.org/0000-0001-6407-383X" target="_blank" rel="noopener">ORCID 0000-0001-6407-383X</a></li>
+          <li><a href="https://iiasa.ac.at/" target="_blank" rel="noopener">iiasa.ac.at</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>पृष्ठ</h4>
+        <ul>
+          <li><a href="index.html">होम</a></li>
+          <li><a href="academic.html">शैक्षणिक यात्रा</a></li>
+          <li><a href="publications.html">प्रकाशन</a></li>
+          <li><a href="apps.html">शोध उपकरण</a></li>
+          <li><a href="outreach.html">आउटरीच और सेवा</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>प्रोफ़ाइल और उपकरण</h4>
+        <ul>
+          <li><a href="https://scholar.google.com/citations?user=5dhoW-cAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></li>
+          <li><a href="https://www.researchgate.net/profile/Sinchan-Ghosh" target="_blank" rel="noopener">ResearchGate</a></li>
+          <li><a href="https://www.linkedin.com/in/sinchan-ghosh-b652941b7" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/gsinchanpostdoc" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://roedeerdist.webtechsystems.de/" target="_blank" rel="noopener">प्रजाति वितरण ऐप</a></li>
+          <li><a href="https://gsinchanpostdoc.github.io/Forage-energy-content-meta-database/" target="_blank" rel="noopener">फ़ोरेज एनर्जी डेटाबेस</a></li>
+          <li><a href="https://gsinchanpostdoc.github.io/AlderIPM-Sim/" target="_blank" rel="noopener">AlderIPM-Sim</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>कोलोफ़ोन</h4>
+        <p class="colophon__note"><em>Fraunces</em>, <em>Newsreader</em> और <em>Tiro Bangla</em> में सेट। आकृतियाँ शांतिनिकेतन की अल्पना और कांथा परंपराओं — जहाँ इस काम का बड़ा हिस्सा शुरू हुआ — तथा जामिनी रॉय के सपाट रंगों और मोटी रेखाओं का अनुसरण करती हैं। ऊपर उड़ते पक्षी एक बॉइड्स झुंड हैं (Reynolds, 1987): एक एजेंट-आधारित मॉडल, जैसे यहाँ के कई काम। जैसे पतरिंगे बाज़ से बचते हैं, वैसे ही ये आपके कर्सर से बचते हैं।</p>
+      </div>
+    </div>
+    <div class="colophon__bottom">
+      <span>© 2026 डॉ. सिंचन घोष</span>
+      <span>Reynolds, C. W. (1987). Flocks, herds and schools: A distributed behavioral model. <em>ACM SIGGRAPH Computer Graphics, 21</em>(4), 25–34. <a href="https://doi.org/10.1145/37402.37406" target="_blank" rel="noopener">https://doi.org/10.1145/37402.37406</a></span>
+    </div>
+  </div>
+</footer>
+<script src="../site.js" defer></script>
+<script>
+(function () {
+  function init() {
+    if (!window.L) return;
+    document.querySelectorAll('.map[data-bounds]').forEach(function (el) {
+      if (el._leaflet_id) return;
+      var b = el.getAttribute('data-bounds').split(',').map(Number);
+      var map = L.map(el, { scrollWheelZoom: false, attributionControl: false, zoomControl: false }).fitBounds([[b[0], b[1]], [b[2], b[3]]]);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' }).addTo(map);
+      el._sgmap = map;
+    });
+  }
+  window.addEventListener('sg:tab', function (e) {
+    var el = e.detail && e.detail.querySelector && e.detail.querySelector('.map');
+    if (el && el._sgmap) setTimeout(function () { el._sgmap.invalidateSize(); }, 50);
+  });
+  if (document.readyState === 'complete') init(); else window.addEventListener('load', init);
+})();
+</script>
+</body>
+</html>

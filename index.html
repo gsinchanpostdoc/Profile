@@ -1,383 +1,319 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js" data-page="home" data-lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dr. Sinchan Ghosh — Ecological Modeller / Quantitative Ecologist</title>
-  <meta name="description" content="Quantitative Ecologist and Post-doctoral Researcher at IIASA specializing in ecological modelling, machine learning SDMs, ODE systems, and conservation decision-support tools.">
-  <meta property="og:title" content="Dr. Sinchan Ghosh — Quantitative Ecologist">
-  <meta property="og:description" content="Ecological modeller at IIASA. Expert in ODEs, machine-learning SDMs, and interactive decision-support tools for conservation management.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Sinchan Ghosh — Ecological Modeller · Quantitative Ecologist</title>
+<meta name="description" content="Quantitative ecologist and post-doctoral researcher at IIASA: ecological modelling, machine-learning species distribution models, ODE systems, and interactive decision-support tools for conservation management.">
+<link rel="canonical" href="https://gsinchanpostdoc.github.io/Profile/index.html">
+<link rel="alternate" hreflang="en" href="https://gsinchanpostdoc.github.io/Profile/index.html">
+<link rel="alternate" hreflang="bn" href="https://gsinchanpostdoc.github.io/Profile/bn/index.html">
+<link rel="alternate" hreflang="de" href="https://gsinchanpostdoc.github.io/Profile/de/index.html">
+<link rel="alternate" hreflang="hi" href="https://gsinchanpostdoc.github.io/Profile/hi/index.html">
+<link rel="alternate" hreflang="x-default" href="https://gsinchanpostdoc.github.io/Profile/index.html">
+<meta property="og:title" content="Dr. Sinchan Ghosh — Ecological Modeller · Quantitative Ecologist">
+<meta property="og:description" content="Quantitative ecologist and post-doctoral researcher at IIASA: ecological modelling, machine-learning species distribution models, ODE systems, and interactive decision-support tools for conservation management.">
+<meta property="og:type" content="profile">
+<meta property="og:locale" content="en_GB">
+<meta name="theme-color" content="#F4ECDB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1B16" media="(prefers-color-scheme: dark)">
+<script>(function(){try{var t=localStorage.getItem('sg-theme');if(t)document.documentElement.setAttribute('data-theme',t);var c='en',l=localStorage.getItem('sg-lang');if(l&&l!==c&&/^(en|bn|de|hi)$/.test(l)){var p=location.pathname,f=p.split('/').pop()||'index.html';if(!/\.html$/.test(f))f='index.html';var base=p.replace(/(?:(?:bn|de|hi)\/)?[^\/]*$/,'');location.replace(base+(l==='en'?'':l+'/')+f+location.search+location.hash);}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..600,0..100,0..1;1,9..144,300..600,0..100,0..1&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<!-- NAV -->
-<nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
-  <div class="nav__inner">
-    <a href="index.html" class="nav__brand">
-      <svg class="nav__logo" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-        <circle cx="18" cy="18" r="17" stroke="var(--color-primary)" stroke-width="1.5" opacity="0.35"/>
-        <path d="M9 27 Q13 18 18 16 Q23 14 27 9" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" fill="none"/>
-        <circle cx="13" cy="22" r="2.5" fill="var(--color-primary)" opacity="0.8"/>
-        <circle cx="20" cy="15" r="2" fill="var(--color-accent)" opacity="0.8"/>
-        <circle cx="26" cy="10" r="1.5" fill="var(--color-gold)" opacity="0.8"/>
-      </svg>
-      <div>
-        <div class="nav__name">Dr. Sinchan Ghosh</div>
-        <div class="nav__title">Ecological Modeller · IIASA</div>
-      </div>
-    </a>
-    <nav class="nav__links" aria-label="Site pages">
-      <a href="index.html" class="nav__link nav__link--active">Home</a>
-      <a href="academic.html" class="nav__link">Academic Journey</a>
-      <a href="publications.html" class="nav__link">Publications</a>
-      <a href="apps.html" class="nav__link">Research Tools</a>
-      <a href="outreach.html" class="nav__link">Outreach</a>
-    </nav>
-    <div class="nav__actions">
-      <button class="nav__toggle nav__hamburger" data-hamburger aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-      <button class="nav__toggle" data-theme-toggle aria-label="Switch theme"></button>
-    </div>
-  </div>
-</nav>
-<div class="mobile-menu" id="mobile-menu" role="menu">
-  <a href="index.html" class="active">Home</a>
-  <a href="academic.html">Academic Journey</a>
-  <a href="publications.html">Publications</a>
-  <a href="apps.html">Research Tools</a>
-  <a href="outreach.html">Outreach & Service</a>
-</div>
-
-<!-- HERO -->
-<header class="hero">
-  <div class="container">
-    <div class="hero__grid">
-      <div>
-        <div class="hero__kicker">
-          <span class="badge badge--primary">Guest Researcher · IIASA · Jan 2026–present</span>
-        </div>
-        <h1 class="hero__name">Dr. Sinchan Ghosh</h1>
-        <p class="hero__role">Ecological Modeller / Quantitative Ecologist</p>
-        <p class="hero__bio">
-          Post-doctoral Researcher at the International Institute for Applied Systems Analysis (IIASA),
-          specialising in the translation of complex biological dynamics into actionable conservation
-          and management strategies. Expert in Ordinary Differential Equations, Machine Learning,
-          and Probability Theory to forecast ecosystem responses, model wildlife epidemiology,
-          and guide evidence-based policy.
-        </p>
-        <div class="hero__actions">
-          <a href="publications.html" class="btn btn--primary">
-            View Publications
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="apps.html" class="btn btn--outline">Research Tools</a>
-        </div>
-        <div class="hero__links">
-          <a href="https://orcid.org/0000-0001-6407-383X" class="hero__link-btn" target="_blank" rel="noopener">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm-1.25 17.5H8.5V9.5h2.25v8zm-1.125-9.11a1.308 1.308 0 110-2.616 1.308 1.308 0 010 2.616zM17.5 17.5h-2.25v-4.13c0-.986-.017-2.253-1.372-2.253-1.375 0-1.585 1.073-1.585 2.18V17.5h-2.25V9.5h2.16v1.097h.03c.3-.57 1.035-1.17 2.13-1.17 2.28 0 2.7 1.5 2.7 3.45V17.5z"/></svg>
-            ORCID
-          </a>
-          <a href="https://scholar.google.com/citations?user=5dhoW-cAAAAJ&hl=en" class="hero__link-btn" target="_blank" rel="noopener">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 110-14 7 7 0 010 14zm0-24L0 9.5l4.838 3.94A8 8 0 0112 11a8 8 0 017.162 2.44L24 9.5 12 0z"/></svg>
-            Google Scholar
-          </a>
-          <a href="https://www.linkedin.com/in/sinchan-ghosh-b652941b7" class="hero__link-btn" target="_blank" rel="noopener">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            LinkedIn
-          </a>
-          <a href="https://github.com/gsinchanpostdoc" class="hero__link-btn" target="_blank" rel="noopener">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-            GitHub
-          </a>
-          <a href="mailto:gsinchanpostdoc@gmail.com" class="hero__link-btn">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            Contact
-          </a>
-        </div>
-      </div>
-      <div>
-        <div class="hero__photo-wrap">
-          <img src="picture.jpg" alt="Dr. Sinchan Ghosh" width="240" height="240">
-        </div>
-      </div>
-    </div>
+<svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="m-rosette" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="50" cy="50" r="46" stroke-dasharray="2.6 4.4"/>
+    <g id="m-rp8"><path d="M50 50C41.5 37.5 41 21 50 10.5C59 21 58.5 37.5 50 50Z"/></g><use href="#m-rp8" transform="rotate(45 50 50)"/><use href="#m-rp8" transform="rotate(90 50 50)"/><use href="#m-rp8" transform="rotate(135 50 50)"/><use href="#m-rp8" transform="rotate(180 50 50)"/><use href="#m-rp8" transform="rotate(225 50 50)"/><use href="#m-rp8" transform="rotate(270 50 50)"/><use href="#m-rp8" transform="rotate(315 50 50)"/>
+    <circle cx="65.3" cy="13.0" r="1.6" fill="currentColor" stroke="none"/><circle cx="87.0" cy="34.7" r="1.6" fill="currentColor" stroke="none"/><circle cx="87.0" cy="65.3" r="1.6" fill="currentColor" stroke="none"/><circle cx="65.3" cy="87.0" r="1.6" fill="currentColor" stroke="none"/><circle cx="34.7" cy="87.0" r="1.6" fill="currentColor" stroke="none"/><circle cx="13.0" cy="65.3" r="1.6" fill="currentColor" stroke="none"/><circle cx="13.0" cy="34.7" r="1.6" fill="currentColor" stroke="none"/><circle cx="34.7" cy="13.0" r="1.6" fill="currentColor" stroke="none"/>
+    <circle cx="50" cy="50" r="3.2" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="m-ring" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="100" cy="100" r="97" stroke-dasharray="2.4 5"/>
+    <g id="m-rp16"><path d="M100 100C93.5 80 93 52 100 26C107 52 106.5 80 100 100Z"/></g><use href="#m-rp16" transform="rotate(22.5 100 100)"/><use href="#m-rp16" transform="rotate(45 100 100)"/><use href="#m-rp16" transform="rotate(67.5 100 100)"/><use href="#m-rp16" transform="rotate(90 100 100)"/><use href="#m-rp16" transform="rotate(112.5 100 100)"/><use href="#m-rp16" transform="rotate(135 100 100)"/><use href="#m-rp16" transform="rotate(157.5 100 100)"/><use href="#m-rp16" transform="rotate(180 100 100)"/><use href="#m-rp16" transform="rotate(202.5 100 100)"/><use href="#m-rp16" transform="rotate(225 100 100)"/><use href="#m-rp16" transform="rotate(247.5 100 100)"/><use href="#m-rp16" transform="rotate(270 100 100)"/><use href="#m-rp16" transform="rotate(292.5 100 100)"/><use href="#m-rp16" transform="rotate(315 100 100)"/><use href="#m-rp16" transform="rotate(337.5 100 100)"/>
+    <circle cx="116.8" cy="15.7" r="1.5" fill="currentColor" stroke="none"/><circle cx="147.8" cy="28.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="171.5" cy="52.2" r="1.5" fill="currentColor" stroke="none"/><circle cx="184.3" cy="83.2" r="1.5" fill="currentColor" stroke="none"/><circle cx="184.3" cy="116.8" r="1.5" fill="currentColor" stroke="none"/><circle cx="171.5" cy="147.8" r="1.5" fill="currentColor" stroke="none"/><circle cx="147.8" cy="171.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="116.8" cy="184.3" r="1.5" fill="currentColor" stroke="none"/><circle cx="83.2" cy="184.3" r="1.5" fill="currentColor" stroke="none"/><circle cx="52.2" cy="171.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="28.5" cy="147.8" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.7" cy="116.8" r="1.5" fill="currentColor" stroke="none"/><circle cx="15.7" cy="83.2" r="1.5" fill="currentColor" stroke="none"/><circle cx="28.5" cy="52.2" r="1.5" fill="currentColor" stroke="none"/><circle cx="52.2" cy="28.5" r="1.5" fill="currentColor" stroke="none"/><circle cx="83.2" cy="15.7" r="1.5" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="m-ring2" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+    <circle cx="100" cy="100" r="90" stroke-dasharray="1 7"/>
+    <circle cx="100.0" cy="10.0" r="1.1" fill="currentColor" stroke="none"/><circle cx="123.3" cy="13.1" r="1.1" fill="currentColor" stroke="none"/><circle cx="145.0" cy="22.1" r="1.1" fill="currentColor" stroke="none"/><circle cx="163.6" cy="36.4" r="1.1" fill="currentColor" stroke="none"/><circle cx="177.9" cy="55.0" r="1.1" fill="currentColor" stroke="none"/><circle cx="186.9" cy="76.7" r="1.1" fill="currentColor" stroke="none"/><circle cx="190.0" cy="100.0" r="1.1" fill="currentColor" stroke="none"/><circle cx="186.9" cy="123.3" r="1.1" fill="currentColor" stroke="none"/><circle cx="177.9" cy="145.0" r="1.1" fill="currentColor" stroke="none"/><circle cx="163.6" cy="163.6" r="1.1" fill="currentColor" stroke="none"/><circle cx="145.0" cy="177.9" r="1.1" fill="currentColor" stroke="none"/><circle cx="123.3" cy="186.9" r="1.1" fill="currentColor" stroke="none"/><circle cx="100.0" cy="190.0" r="1.1" fill="currentColor" stroke="none"/><circle cx="76.7" cy="186.9" r="1.1" fill="currentColor" stroke="none"/><circle cx="55.0" cy="177.9" r="1.1" fill="currentColor" stroke="none"/><circle cx="36.4" cy="163.6" r="1.1" fill="currentColor" stroke="none"/><circle cx="22.1" cy="145.0" r="1.1" fill="currentColor" stroke="none"/><circle cx="13.1" cy="123.3" r="1.1" fill="currentColor" stroke="none"/><circle cx="10.0" cy="100.0" r="1.1" fill="currentColor" stroke="none"/><circle cx="13.1" cy="76.7" r="1.1" fill="currentColor" stroke="none"/><circle cx="22.1" cy="55.0" r="1.1" fill="currentColor" stroke="none"/><circle cx="36.4" cy="36.4" r="1.1" fill="currentColor" stroke="none"/><circle cx="55.0" cy="22.1" r="1.1" fill="currentColor" stroke="none"/><circle cx="76.7" cy="13.1" r="1.1" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="m-alder" viewBox="0 0 80 100" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M40 96C14 80 4 46 22 20C30 9 50 9 58 20C76 46 66 80 40 96Z"/>
+    <path d="M40 94V16"/>
+    <path d="M40 34C30 36 24 42 20 50M40 34C50 36 56 42 60 50M40 52C32 54 27 60 24 66M40 52C48 54 53 60 56 66M40 70C34 72 31 76 30 80M40 70C46 72 49 76 50 80"/>
+  </symbol>
+  <symbol id="i-diya" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 14c2 2.5 5 3.6 9 3.6s7-1.1 9-3.6l-1.6 4.4C17.6 20.2 15 21 12 21s-5.6-.8-7.4-2.6Z"/>
+    <path d="M12 3.5C9.7 6.3 9.3 8.7 10.3 10.5c.5.9 1.1 1.5 1.7 2.1.6-.6 1.2-1.2 1.7-2.1 1-1.8.6-4.2-1.7-7Z"/>
+  </symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/>
+  </symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15.5 3.5a8 8 0 1 0 5 14 7 7 0 0 1-5-14Z"/>
+  </symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <path d="M4 7h16M4 12h16M4 17h16"/>
+  </symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 12h15M13 6l6 6-6 6"/>
+  </symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+  </symbol>
+  <!-- Jamini Roy idiom: flat fills (.jg green .jr red .jo ochre .jw paper) with lamp-black contour (.jl) -->
+  <symbol id="j-bird" viewBox="0 0 160 120">
+    <path class="jr jl" d="M36 66L6 52L16 68L4 84L36 78Z"/>
+    <path class="jg jl" d="M34 72C34 44 60 30 90 32C118 34 130 52 124 76C118 98 88 106 60 98C44 94 34 84 34 72Z"/>
+    <path class="jo jl" d="M54 64C62 46 92 44 108 58C96 62 74 68 60 84Z"/>
+    <path class="jn jl jl--thin" d="M66 62L90 56M64 70L92 64M68 78L94 72"/>
+    <circle class="jg jl" cx="116" cy="44" r="18"/>
+    <path class="jr jl" d="M132 40L158 38L132 50Z"/>
+    <ellipse class="jw jl jl--thin" cx="118" cy="42" rx="7" ry="5"/>
+    <circle class="jk" cx="120" cy="42" r="2.8"/>
+    <circle class="jr" cx="110" cy="27" r="3"/>
+    <path class="jn jl" d="M74 102L70 118M92 102L94 118"/>
+    <circle class="jw" cx="58" cy="90" r="2.4"/><circle class="jw" cx="70" cy="95" r="2.4"/><circle class="jw" cx="84" cy="97" r="2.4"/>
+  </symbol>
+  <symbol id="j-paddy" viewBox="0 0 60 100">
+    <path class="jn jl" d="M30 98C30 76 28 56 32 36"/>
+    <path class="jn jl" d="M32 36C36 22 44 12 55 8"/>
+    <path class="jn jl" d="M32 36C27 28 25 20 27 10"/>
+    <ellipse class="jo jl jl--thin" cx="35" cy="29" rx="4.2" ry="2.6" transform="rotate(-55 35 29)"/>
+    <ellipse class="jo jl jl--thin" cx="38.5" cy="22" rx="4.2" ry="2.6" transform="rotate(-50 38.5 22)"/>
+    <ellipse class="jo jl jl--thin" cx="43" cy="15.5" rx="4.2" ry="2.6" transform="rotate(-40 43 15.5)"/>
+    <ellipse class="jo jl jl--thin" cx="48.5" cy="10.5" rx="4.2" ry="2.6" transform="rotate(-25 48.5 10.5)"/>
+    <ellipse class="jo jl jl--thin" cx="29.5" cy="30" rx="4.2" ry="2.6" transform="rotate(70 29.5 30)"/>
+    <ellipse class="jo jl jl--thin" cx="27.5" cy="23" rx="4.2" ry="2.6" transform="rotate(80 27.5 23)"/>
+    <ellipse class="jo jl jl--thin" cx="26.5" cy="16" rx="4.2" ry="2.6" transform="rotate(85 26.5 16)"/>
+  </symbol>
+  <symbol id="j-fish" viewBox="0 0 120 60">
+    <path class="jr jl" d="M84 30L108 16L104 30L108 44Z"/>
+    <path class="jo jl" d="M8 30C28 10 60 10 84 30C60 50 28 50 8 30Z"/>
+    <path class="jg jl" d="M40 14C50 6 62 6 70 12L58 18Z"/>
+    <path class="jn jl jl--thin" d="M34 18C40 26 40 34 34 42M44 22c4 3 4 9 0 12M52 18c5 4 5 12 0 16M60 18c5 4 5 12 0 16M68 22c4 3 4 9 0 12"/>
+    <circle class="jw jl jl--thin" cx="24" cy="27" r="5"/><circle class="jk" cx="25" cy="27" r="2"/>
+  </symbol>
+</svg>
+<div class="grain" aria-hidden="true"></div>
+<canvas id="flock" aria-hidden="true"></canvas>
+<div id="lantern" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"><div class="cursor__ring"></div><div class="cursor__dot"></div></div>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="Dr. Sinchan Ghosh">
+    <svg class="brand__mark" aria-hidden="true"><use href="#m-rosette"/></svg>
+    <span><span class="brand__name">Dr. Sinchan Ghosh</span><span class="brand__bn">সিঞ্চন ঘোষ · IIASA</span></span>
+  </a>
+  <nav class="topnav" aria-label="Pages"><a href="index.html" aria-current="page">Home</a><a href="academic.html">Academic Journey</a><a href="publications.html">Publications</a><a href="apps.html">Research Tools</a><a href="outreach.html">Outreach</a></nav>
+  <div class="actions">
+    <nav class="langs" aria-label="Language"><a href="index.html" lang="en" hreflang="en" data-lang="en" aria-label="English" title="English" aria-current="true">EN</a><a href="bn/index.html" lang="bn" hreflang="bn" data-lang="bn" aria-label="বাংলা" title="বাংলা">বাং</a><a href="de/index.html" lang="de" hreflang="de" data-lang="de" aria-label="Deutsch" title="Deutsch">DE</a><a href="hi/index.html" lang="hi" hreflang="hi" data-lang="hi" aria-label="हिन्दी" title="हिन्दी">हिं</a></nav>
+    <button class="iconbtn iconbtn--lantern" type="button" data-lantern-toggle aria-pressed="true" aria-label="Lantern focus" title="Lantern: dims the page away from your cursor"><svg aria-hidden="true"><use href="#i-diya"/></svg></button>
+    <button class="iconbtn" type="button" data-theme-toggle aria-pressed="false" aria-label="Night mode" title="Day / night"><svg class="off" aria-hidden="true"><use href="#i-moon"/></svg><svg class="on" aria-hidden="true"><use href="#i-sun"/></svg></button>
+    <button class="iconbtn iconbtn--menu" type="button" data-menu aria-expanded="false" aria-controls="drawer" aria-label="Menu"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
   </div>
 </header>
+<nav class="drawer" id="drawer" aria-label="Menu">
+  <a href="index.html" aria-current="page"><span class="bn" lang="bn">০</span>Home</a><a href="academic.html"><span class="bn" lang="bn">১</span>Academic Journey</a><a href="publications.html"><span class="bn" lang="bn">২</span>Publications</a><a href="apps.html"><span class="bn" lang="bn">৩</span>Research Tools</a><a href="outreach.html"><span class="bn" lang="bn">৪</span>Outreach</a>
+  <nav class="drawer__langs" aria-label="Language"><a href="index.html" lang="en" hreflang="en" data-lang="en" aria-label="English" title="English" aria-current="true">EN</a><a href="bn/index.html" lang="bn" hreflang="bn" data-lang="bn" aria-label="বাংলা" title="বাংলা">বাং</a><a href="de/index.html" lang="de" hreflang="de" data-lang="de" aria-label="Deutsch" title="Deutsch">DE</a><a href="hi/index.html" lang="hi" hreflang="hi" data-lang="hi" aria-label="हिन्दी" title="हिन्दी">हिं</a></nav>
+  <div class="drawer__foot">
+    <a href="mailto:gsinchanpostdoc@gmail.com">gsinchanpostdoc@gmail.com</a>
+    <a href="https://orcid.org/0000-0001-6407-383X" target="_blank" rel="noopener">ORCID</a>
+    <a href="https://scholar.google.com/citations?user=5dhoW-cAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>
+    <a href="https://github.com/gsinchanpostdoc" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</nav>
+<main id="main">
+<div class="margin-rule" aria-hidden="true"></div>
 
-<!-- CURRENT POSITION -->
-<section class="section" style="padding-top: clamp(2rem,4vw,3.5rem); padding-bottom: clamp(2rem,4vw,3.5rem);">
-  <div class="container">
-    <div class="stat-strip">
-      <div class="stat-item">
-        <div class="stat-value">12</div>
-        <div class="stat-label">Peer-reviewed publications</div>
+<nav class="rail" aria-label="Pages"><a href="#welcome" lang="bn">০<span lang="en">Welcome</span></a><a href="#figures" lang="bn">১<span lang="en">Figures</span></a><a href="#practice" lang="bn">২<span lang="en">Practice</span></a><a href="#tools" lang="bn">৩<span lang="en">Tools</span></a><a href="#where" lang="bn">৪<span lang="en">Affiliation</span></a><a href="#colophon" lang="bn">৫<span lang="en">Colophon</span></a></nav>
+
+<section class="chapter hero" id="welcome">
+  <div class="wrap ledger">
+    <div class="num" aria-hidden="true" lang="bn">০</div>
+    <div class="reveal">
+      <p class="hero__kicker"><b>Guest Researcher</b> · IIASA · Jan 2026 – present</p>
+      <h1 class="hero__name"><span class="hon">Dr.</span>Sinchan Ghosh</h1>
+      <p class="hero__bn">সিঞ্চন ঘোষ</p>
+      <p class="hero__role">Ecological modeller · quantitative ecologist</p>
+      <p class="hero__bio">Post-doctoral researcher at the International Institute for Applied Systems Analysis (IIASA), translating complex biological dynamics into actionable conservation and management strategies. I work with ordinary differential equations, machine learning and probability theory to forecast ecosystem responses, model wildlife epidemiology, and guide evidence-based policy.</p>
+      <div class="hero__cta">
+        <a class="go magnet" href="publications.html">View publications <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="u u--quiet magnet" href="apps.html">Research tools</a>
       </div>
-      <div class="stat-item">
-        <div class="stat-value">6</div>
-        <div class="stat-label">Ecological systems modelled</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">3</div>
-        <div class="stat-label">Interactive stakeholder tools</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">IIASA</div>
-        <div class="stat-label">Current institution · Laxenburg, Austria</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">2022</div>
-        <div class="stat-label">PhD, Visva-Bharati University</div>
+      <ul class="hero__links">
+        <li><a href="https://orcid.org/0000-0001-6407-383X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm-1.25 17.5H8.5V9.5h2.25v8zm-1.125-9.11a1.308 1.308 0 110-2.616 1.308 1.308 0 010 2.616zM17.5 17.5h-2.25v-4.13c0-.986-.017-2.253-1.372-2.253-1.375 0-1.585 1.073-1.585 2.18V17.5h-2.25V9.5h2.16v1.097h.03c.3-.57 1.035-1.17 2.13-1.17 2.28 0 2.7 1.5 2.7 3.45V17.5z"/></svg>ORCID</a></li>
+        <li><a href="https://scholar.google.com/citations?user=5dhoW-cAAAAJ&amp;hl=en" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 24a7 7 0 110-14 7 7 0 010 14zm0-24L0 9.5l4.838 3.94A8 8 0 0112 11a8 8 0 017.162 2.44L24 9.5 12 0z"/></svg>Google Scholar</a></li>
+        <li><a href="https://www.linkedin.com/in/sinchan-ghosh-b652941b7" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a></li>
+        <li><a href="https://github.com/gsinchanpostdoc" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>GitHub</a></li>
+        <li><a href="mailto:gsinchanpostdoc@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Contact</a></li>
+      </ul>
+    </div>
+    <div class="portrait" data-depth="0.12">
+      <svg class="portrait__ring" aria-hidden="true"><use href="#m-ring"/></svg>
+      <svg class="portrait__ring portrait__ring--2" aria-hidden="true"><use href="#m-ring2"/></svg>
+      <div class="portrait__img"><img src="picture.jpg" alt="Dr. Sinchan Ghosh" width="400" height="400"></div>
+      <div class="portrait__bird" data-depth="0.5"><svg aria-hidden="true"><use href="#j-bird"/></svg></div>
+      <div class="portrait__paddy" data-depth="0.35"><svg aria-hidden="true"><use href="#j-paddy"/></svg></div>
+    </div>
+  </div>
+  <div class="scrollcue" aria-hidden="true"><span>Scroll</span><i></i></div>
+</section>
+
+<section class="chapter" id="figures">
+  <div class="wrap ledger">
+    <div class="num" aria-hidden="true" lang="bn">১</div>
+    <div>
+      <header class="chapter__head reveal">
+        <p class="eyebrow">At a glance</p>
+        <h2 class="title">The work, <em>in figures</em></h2>
+      </header>
+      <div class="figures reveal">
+        <div class="figure glass"><div class="figure__n"><svg viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" d="M14 31C10 14 38 5 60 7C86 10 96 28 89 43C80 58 32 61 15 47C7 40 9 30 19 22"/></svg><span data-count="12">12</span></div><p class="figure__l">peer-reviewed publications, <a href="publications.html">listed by project</a></p></div>
+        <div class="figure glass"><div class="figure__n"><svg viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" d="M14 31C10 14 38 5 60 7C86 10 96 28 89 43C80 58 32 61 15 47C7 40 9 30 19 22"/></svg><span data-count="6">6</span></div><p class="figure__l">ecological systems modelled, from the Gangetic delta to the Scandinavian taiga</p></div>
+        <div class="figure glass"><div class="figure__n"><svg viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" d="M14 31C10 14 38 5 60 7C86 10 96 28 89 43C80 58 32 61 15 47C7 40 9 30 19 22"/></svg><span data-count="3">3</span></div><p class="figure__l">interactive stakeholder tools that <a href="apps.html">run in the browser</a></p></div>
+        <div class="figure glass"><div class="figure__n"><svg viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" d="M14 31C10 14 38 5 60 7C86 10 96 28 89 43C80 58 32 61 15 47C7 40 9 30 19 22"/></svg>IIASA</div><p class="figure__l">current institution — Laxenburg, Austria</p></div>
+        <div class="figure glass"><div class="figure__n"><svg viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" d="M14 31C10 14 38 5 60 7C86 10 96 28 89 43C80 58 32 61 15 47C7 40 9 30 19 22"/></svg>2022</div><p class="figure__l">PhD in Zoology, Visva-Bharati University, Santiniketan</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CORE COMPETENCIES -->
-<section class="section section--alt">
-  <div class="container">
-    <div class="eyebrow">Core Competencies</div>
-    <h2 class="section-title mb-2">Technical expertise &amp; analytical domains</h2>
-    <p class="section-lead mb-8">ATS-aligned skill profile spanning computational modelling, ecological domains, and applied decision-support deployment.</p>
-    <div class="comp-grid">
-      <div class="comp-card">
-        <div class="comp-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-        <div class="comp-title">Computational Modelling</div>
-        <div class="comp-items">
-          <div class="comp-item">Ordinary Differential Equations (ODE)</div>
-          <div class="comp-item">Machine Learning (hierarchical SDMs)</div>
-          <div class="comp-item">Probability Theory &amp; Bayesian methods</div>
-          <div class="comp-item">Process-Based Modelling</div>
-          <div class="comp-item">Integrated Population Modelling</div>
-          <div class="comp-item">Capture–Recapture Analyses</div>
-        </div>
-      </div>
-      <div class="comp-card">
-        <div class="comp-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 000 20A14.5 14.5 0 0012 2z"/><path d="M2 12h20"/></svg>
-        </div>
-        <div class="comp-title">Ecological Domains</div>
-        <div class="comp-items">
-          <div class="comp-item">Agro-Ecology</div>
-          <div class="comp-item">Wildlife Population Dynamics</div>
-          <div class="comp-item">Eco-epidemiology</div>
-          <div class="comp-item">Conservation Policy &amp; Management</div>
-          <div class="comp-item">Predator–prey &amp; food-web dynamics</div>
-          <div class="comp-item">Boreal &amp; farmland habitat systems</div>
-        </div>
-      </div>
-      <div class="comp-card">
-        <div class="comp-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-        </div>
-        <div class="comp-title">Analytical Methodologies</div>
-        <div class="comp-items">
-          <div class="comp-item">Habitat Suitability &amp; Corridor Modelling</div>
-          <div class="comp-item">Species Distribution Models (MaxEnt, GBM)</div>
-          <div class="comp-item">Reproductive Success Forecasting</div>
-          <div class="comp-item">Regime &amp; Stability Analyses</div>
-          <div class="comp-item">Spatiotemporal Analyses (QGIS/ArcGIS)</div>
-          <div class="comp-item">Growth Metric &amp; Bias Correction</div>
-        </div>
-      </div>
-      <div class="comp-card">
-        <div class="comp-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        </div>
-        <div class="comp-title">Technical Deployment</div>
-        <div class="comp-items">
-          <div class="comp-item">Python · R · MATLAB · Stella</div>
-          <div class="comp-item">Interactive Web Dashboards (JavaScript)</div>
-          <div class="comp-item">QGIS · ArcGIS · Geospatial analysis</div>
-          <div class="comp-item">CMIP6 · ERA5 · GBIF · TRY databases</div>
-          <div class="comp-item">Conda-managed reproducible environments</div>
-          <div class="comp-item">LaTeX · Scientific communication</div>
-        </div>
+<section class="chapter" id="practice">
+  <div class="wrap ledger">
+    <div class="num" aria-hidden="true" lang="bn">২</div>
+    <div>
+      <header class="chapter__head reveal">
+        <p class="eyebrow">Core competencies</p>
+        <h2 class="title">What I <em>do</em></h2>
+        <p class="lead">Four strands of practice that recur in every project: computational, ecological, analytical, and applied.</p>
+      </header>
+      <div class="craft reveal">
+        <div class="glass pane"><h3><span class="bn" lang="bn">ক</span>Computational modelling</h3><ul class="lotus"><li>Ordinary differential equations (ODE)</li><li>Machine learning (hierarchical SDMs)</li><li>Probability theory &amp; Bayesian methods</li><li>Process-based modelling</li><li>Integrated population modelling</li><li>Capture–recapture analyses</li></ul></div>
+        <div class="glass pane"><h3><span class="bn" lang="bn">খ</span>Ecological domains</h3><ul class="lotus"><li>Agro-ecology</li><li>Wildlife population dynamics</li><li>Eco-epidemiology</li><li>Conservation policy &amp; management</li><li>Predator–prey &amp; food-web dynamics</li><li>Boreal &amp; farmland habitat systems</li></ul></div>
+        <div class="glass pane"><h3><span class="bn" lang="bn">গ</span>Analytical methodologies</h3><ul class="lotus"><li>Habitat suitability &amp; corridor modelling</li><li>Species distribution models (MaxEnt, GBM)</li><li>Reproductive success forecasting</li><li>Regime &amp; stability analyses</li><li>Spatiotemporal analyses (QGIS / ArcGIS)</li><li>Growth metrics &amp; bias correction</li></ul></div>
+        <div class="glass pane"><h3><span class="bn" lang="bn">ঘ</span>Technical deployment</h3><ul class="lotus"><li>Python · R · MATLAB · Stella</li><li>Interactive web dashboards (JavaScript)</li><li>QGIS · ArcGIS · geospatial analysis</li><li>CMIP6 · ERA5 · GBIF · TRY databases</li><li>Conda-managed reproducible environments</li><li>LaTeX · scientific communication</li></ul></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- RESEARCH & STAKEHOLDER TOOLS -->
-<section class="section">
-  <div class="container">
-    <div class="eyebrow">Research &amp; Stakeholder Tools</div>
-    <h2 class="section-title mb-6">Interactive applications</h2>
-    <div class="app-grid">
-      <a href="https://roedeerdist.webtechsystems.de/" class="app-card" target="_blank" rel="noopener">
-        <div class="app-card__visual" style="background: linear-gradient(135deg, #0d1a10, #1a2e1c);">
-          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" style="opacity:0.6;">
-            <circle cx="40" cy="40" r="38" stroke="#5aaf7a" stroke-width="1.5"/>
-            <circle cx="28" cy="32" r="5" fill="#a0b4c8" opacity="0.9"/>
-            <circle cx="50" cy="25" r="4" fill="#c9a84c" opacity="0.9"/>
-            <circle cx="42" cy="48" r="6" fill="#5aaf7a" opacity="0.9"/>
-            <circle cx="22" cy="52" r="3" fill="#a0b4c8" opacity="0.7"/>
-            <circle cx="60" cy="40" r="3.5" fill="#c9a84c" opacity="0.7"/>
-          </svg>
-        </div>
-        <div class="app-card__body">
-          <div class="tags mb-2">
-            <span class="tag">ML SDMs</span><span class="tag">ODE systems</span><span class="tag">CMIP6</span><span class="tag">Scandinavia</span>
-          </div>
-          <div class="app-card__name">Scandinavian Species Distribution Models</div>
-          <p class="app-card__desc">Habitat density heatmaps for moose, roe deer, and grey wolf under SSP climate scenarios (2025-2100). Built with machine-learning SDMs and predator-prey ODE systems.</p>
-        </div>
-        <div class="app-card__footer">
-          <span class="app-card__cta">Open Application <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        </div>
+<section class="chapter" id="tools">
+  <div class="wrap ledger">
+    <div class="num" aria-hidden="true" lang="bn">৩</div>
+    <div>
+      <header class="chapter__head reveal">
+        <p class="eyebrow">Research &amp; stakeholder tools</p>
+        <h2 class="title">Models you can <em>open</em></h2>
+        <p class="lead">Decision-support applications built from the research — for foresters, wildlife managers, and game planners.</p>
+      </header>
+      <div class="plates reveal">
+        <a class="plate glass" href="apps.html#wildlife">
+        <div class="plate__fig"><svg viewBox="0 0 100 100" aria-hidden="true"><path pathLength="100" class="jr jl jl--thin" d="M50 6L56 20L44 20Z" transform="rotate(0 50 50)"/><path pathLength="100" class="jr jl jl--thin" d="M50 6L56 20L44 20Z" transform="rotate(30 50 50)"/><path pathLength="100" class="jr jl jl--thin" d="M50 6L56 20L44 20Z" transform="rotate(60 50 50)"/><path pathLength="100" class="jr jl jl--thin" d="M50 6L56 20L44 20Z" transform="rotate(90 50 50)"/><path pathLength="100" class="jr jl jl--thin" d="M50 6L56 20L44 20Z" transform="rotate(120 50 50)"/><path pathLength="100" class="jr jl jl--thin" d="M50 6L56 20L44 20Z" transform="rotate(150 50 50)"/><path pathLength="100" class="jr jl jl--thin" d="M50 6L56 20L44 20Z" transform="rotate(180 50 50)"/><path pathLength="100" class="jr jl jl--thin" d="M50 6L56 20L44 20Z" transform="rotate(210 50 50)"/><path pathLength="100" class="jr jl jl--thin" d="M50 6L56 20L44 20Z" transform="rotate(240 50 50)"/><path pathLength="100" class="jr jl jl--thin" d="M50 6L56 20L44 20Z" transform="rotate(270 50 50)"/><path pathLength="100" class="jr jl jl--thin" d="M50 6L56 20L44 20Z" transform="rotate(300 50 50)"/><path pathLength="100" class="jr jl jl--thin" d="M50 6L56 20L44 20Z" transform="rotate(330 50 50)"/><circle pathLength="100" class="jo jl" cx="50" cy="50" r="24"/><circle pathLength="100" class="jn jl jl--thin nd" cx="50" cy="50" r="16"/><path pathLength="100" class="jn jl jgl" d="M10 92C22 84 36 84 46 90C56 96 70 96 90 88"/></svg></div>
+        <div><span class="plate__no">১</span></div>
+        <div><div class="plate__name">Scandinavian Species Distribution Models</div><p class="plate__desc" style="margin-top:.5rem">Habitat density for moose, roe deer and grey wolf across 374 grid cells under five IPCC pathways, 2025–2060 — machine-learning SDMs coupled to predator–prey ODEs.</p></div>
+        <div><div class="plate__tags">ML SDMs · ODE · CMIP6 · Scandinavia</div><span class="go" style="margin-top:.6rem">Open the model <svg aria-hidden="true"><use href="#i-arrow"/></svg></span></div>
       </a>
-      <a href="apps.html#forage" class="app-card">
-        <div class="app-card__visual" style="background: linear-gradient(135deg, #0f100c, #1b1e14);">
-          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" style="opacity:0.6;">
-            <rect x="15" y="25" width="50" height="35" rx="4" stroke="#a8c45a" stroke-width="1.5"/>
-            <line x1="15" y1="35" x2="65" y2="35" stroke="#a8c45a" stroke-width="1"/>
-            <rect x="22" y="40" width="20" height="4" rx="2" fill="#a8c45a" opacity="0.8"/>
-            <rect x="22" y="48" width="30" height="4" rx="2" fill="#a8c45a" opacity="0.5"/>
-            <rect x="22" y="56" width="14" height="4" rx="2" fill="#a8c45a" opacity="0.35"/>
-          </svg>
-        </div>
-        <div class="app-card__body">
-          <div class="tags mb-2">
-            <span class="tag">Bioenergetics</span><span class="tag">React</span><span class="tag">Meta-analysis</span><span class="tag">Open data</span>
-          </div>
-          <div class="app-card__name">Forage Energy Meta-Database</div>
-          <p class="app-card__desc">Metabolizable energy and Jacobs' D preference index for boreal ungulates. Built with React, Menke energy coefficients, and community contribution support.</p>
-        </div>
-        <div class="app-card__footer">
-          <span class="app-card__cta">Explore Database <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        </div>
+        <a class="plate glass" href="apps.html#forage">
+        <div class="plate__fig"><svg viewBox="0 0 60 100" aria-hidden="true"><path pathLength="100" class="jn jl" d="M30 98C30 76 28 56 32 36"/><path pathLength="100" class="jn jl" d="M32 36C36 22 44 12 55 8"/><path pathLength="100" class="jn jl" d="M32 36C27 28 25 20 27 10"/><ellipse pathLength="100" class="jo jl jl--thin" cx="35" cy="29" rx="4.2" ry="2.6" transform="rotate(-55 35 29)"/><ellipse pathLength="100" class="jo jl jl--thin" cx="38.5" cy="22" rx="4.2" ry="2.6" transform="rotate(-50 38.5 22)"/><ellipse pathLength="100" class="jo jl jl--thin" cx="43" cy="15.5" rx="4.2" ry="2.6" transform="rotate(-40 43 15.5)"/><ellipse pathLength="100" class="jo jl jl--thin" cx="48.5" cy="10.5" rx="4.2" ry="2.6" transform="rotate(-25 48.5 10.5)"/><ellipse pathLength="100" class="jo jl jl--thin" cx="29.5" cy="30" rx="4.2" ry="2.6" transform="rotate(70 29.5 30)"/><ellipse pathLength="100" class="jo jl jl--thin" cx="27.5" cy="23" rx="4.2" ry="2.6" transform="rotate(80 27.5 23)"/><ellipse pathLength="100" class="jo jl jl--thin" cx="26.5" cy="16" rx="4.2" ry="2.6" transform="rotate(85 26.5 16)"/></svg></div>
+        <div><span class="plate__no">২</span></div>
+        <div><div class="plate__name">Forage Energy Meta-Database</div><p class="plate__desc" style="margin-top:.5rem">Metabolizable energy and Jacobs' D preference indices for boreal ungulates — 72 records, Menke coefficients, open to community contribution.</p></div>
+        <div><div class="plate__tags">Bioenergetics · meta-analysis · open data</div><span class="go" style="margin-top:.6rem">Explore the database <svg aria-hidden="true"><use href="#i-arrow"/></svg></span></div>
       </a>
-      <a href="https://gsinchanpostdoc.github.io/AlderIPM-Sim/" class="app-card" target="_blank" rel="noopener">
-        <div class="app-card__visual" style="background: linear-gradient(135deg, #0d1510, #1c2a1e);">
-          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" style="opacity:0.6;">
-            <path d="M40 66 V30" stroke="#5aaf7a" stroke-width="2" stroke-linecap="round"/>
-            <path d="M40 46 Q28 40 24 26" stroke="#5aaf7a" stroke-width="2" stroke-linecap="round"/>
-            <path d="M40 38 Q52 32 56 20" stroke="#5aaf7a" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="24" cy="26" r="4" fill="#c9a84c" opacity="0.9"/>
-            <circle cx="56" cy="20" r="4" fill="#a0b4c8" opacity="0.9"/>
-            <circle cx="40" cy="30" r="3" fill="#5aaf7a" opacity="0.9"/>
-          </svg>
-        </div>
-        <div class="app-card__body">
-          <div class="tags mb-2">
-            <span class="tag">Eco-epidemic ODE</span><span class="tag">Optimal control</span><span class="tag">Regime shift</span><span class="tag">IPM</span>
-          </div>
-          <div class="app-card__name">AlderIPM-Sim — Alnus Ecoepidemic IPM Simulator</div>
-          <p class="app-card__desc">Decision-support simulator for alder leaf beetle outbreaks in black alder forests: hybrid within-season ODE and annual map with parasitoid biocontrol, regime-shift early warnings, and integrated pest-management comparison. Companion Python and R packages.</p>
-        </div>
-        <div class="app-card__footer">
-          <span class="app-card__cta">Open Simulator <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-        </div>
+        <a class="plate glass" href="apps.html#alderipm">
+        <div class="plate__fig"><svg viewBox="0 0 80 100" aria-hidden="true"><path pathLength="100" class="jg jl" d="M40 96C14 80 4 46 22 20C30 9 50 9 58 20C76 46 66 80 40 96Z"/><path pathLength="100" class="jn jl jl--thin" d="M40 94V16"/><path pathLength="100" class="jn jl jl--thin" d="M40 34C30 36 24 42 20 50M40 34C50 36 56 42 60 50M40 52C32 54 27 60 24 66M40 52C48 54 53 60 56 66M40 70C34 72 31 76 30 80M40 70C46 72 49 76 50 80"/><ellipse pathLength="100" class="jr jl jl--thin" cx="58" cy="30" rx="4" ry="5.2"/><circle class="jk" cx="58" cy="26.5" r="1.6"/><circle class="jw" cx="30" cy="40" r="1.6"/><circle class="jw" cx="27" cy="60" r="1.6"/><circle class="jw" cx="33" cy="78" r="1.6"/><circle class="jw" cx="50" cy="42" r="1.6"/><circle class="jw" cx="53" cy="62" r="1.6"/><circle class="jw" cx="47" cy="80" r="1.6"/></svg></div>
+        <div><span class="plate__no">৩</span></div>
+        <div><div class="plate__name">AlderIPM-Sim</div><p class="plate__desc" style="margin-top:.5rem">A simulator of the black alder eco-epidemic system: within-season ODE and annual map, parasitoid biocontrol, regime-shift early warnings, and integrated pest-management comparison.</p></div>
+        <div><div class="plate__tags">Eco-epidemic ODE · optimal control · IPM</div><span class="go" style="margin-top:.6rem">Run the simulator <svg aria-hidden="true"><use href="#i-arrow"/></svg></span></div>
       </a>
-    </div>
-    <div style="margin-top: var(--space-6);"><a href="apps.html" class="btn btn--outline">All Research Tools <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
-  </div>
-</section>
-
-<!-- CURRENT POSITION / AFFILIATION -->
-<section class="section">
-  <div class="container">
-    <div class="two-col">
-      <div>
-        <div class="eyebrow">Current Position</div>
-        <h2 class="section-title mb-6">Institutional affiliation</h2>
-        <div class="card mb-4" style="border-left: 3px solid var(--color-primary);">
-          <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: 0.4rem;">Jan 2026 – present</div>
-          <div style="font-weight: 700; font-size: var(--text-base); margin-bottom: 0.2rem;">Guest Researcher</div>
-          <div style="font-size: var(--text-sm); color: var(--color-text-muted);">International Institute for Applied Systems Analysis (IIASA)</div>
-          <div style="font-size: var(--text-xs); color: var(--color-text-faint); margin-top: 0.3rem;">Biodiversity and Natural Resources Programme · Laxenburg, Austria</div>
-        </div>
-        <div class="card" style="border-left: 3px solid var(--color-border);">
-          <div style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: 0.4rem;">Aug 2023 – Dec 2025</div>
-          <div style="font-weight: 700; font-size: var(--text-base); margin-bottom: 0.2rem;">Researcher (Post-doctoral)</div>
-          <div style="font-size: var(--text-sm); color: var(--color-text-muted);">IIASA, Agriculture, Forestry and Ecosystems Services Group</div>
-          <div style="font-size: var(--text-xs); color: var(--color-text-faint); margin-top: 0.3rem;">Biodiversity and Natural Resources Programme · Laxenburg, Austria</div>
-        </div>
-      </div>
-      <div>
-        <div class="eyebrow">Expertise Breadth</div>
-        <h2 class="section-title mb-6">Habitat systems</h2>
-        <div class="tags" style="margin-bottom: var(--space-6);">
-          <span class="tag tag--primary">Farmland</span>
-          <span class="tag tag--primary">Riparian</span>
-          <span class="tag tag--primary">Estuarine</span>
-          <span class="tag tag--primary">Grassland</span>
-          <span class="tag tag--primary">Boreal Forest</span>
-        </div>
-        <div class="eyebrow" style="margin-top: var(--space-6);">Public databases</div>
-        <div class="tags" style="margin-top: var(--space-3);">
-          <span class="tag">GBIF</span><span class="tag">eBird</span><span class="tag">iNaturalist</span>
-          <span class="tag">TRY</span><span class="tag">CMIP6</span><span class="tag">CRU</span>
-          <span class="tag">ERA5</span><span class="tag">EUR-11</span><span class="tag">LUCAS</span>
-          <span class="tag">India-WRIS</span><span class="tag">Bhuvan</span><span class="tag">InsectBase</span>
-        </div>
-        <div class="eyebrow" style="margin-top: var(--space-6);">Peer review &amp; service</div>
-        <div style="font-size: var(--text-sm); color: var(--color-text-muted); margin-top: var(--space-3); line-height: 1.7;">
-          Reviewer: <em>Ecological Modelling · Ecological Indicators · Scientific Reports</em><br>
-          Editorial: <em>NDC E-BIOS</em> (2023–present) · <em>Bull. Calcutta Math. Soc.</em> (2022–23)<br>
-          Member: European Geoscience Union · ISBE · Calcutta Mathematical Society
-        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer__grid">
-      <div>
-        <div class="footer__brand-name">Dr. Sinchan Ghosh</div>
-        <div class="footer__brand-role">Ecological Modeller · IIASA</div>
-        <div class="footer__contact">
-          <a href="mailto:gsinchanpostdoc@gmail.com">gsinchanpostdoc@gmail.com</a>
-          <a href="https://iiasa.ac.at/" target="_blank" rel="noopener">IIASA, Laxenburg, Austria</a>
-          <a href="https://orcid.org/0000-0001-6407-383X" target="_blank" rel="noopener">ORCID: 0000-0001-6407-383X</a>
+<section class="chapter" id="where">
+  <div class="wrap ledger">
+    <div class="num" aria-hidden="true" lang="bn">৪</div>
+    <div>
+      <header class="chapter__head reveal">
+        <p class="eyebrow">Current position</p>
+        <h2 class="title">Where the work <em>happens</em></h2>
+      </header>
+      <div class="where reveal">
+        <div>
+          <div class="post post--now glass">
+            <div class="post__when">Jan 2026 –<br>present</div>
+            <div><div class="post__role">Guest Researcher</div><div class="post__org">International Institute for Applied Systems Analysis (IIASA)</div><div class="post__note">Biodiversity and Natural Resources Programme · Laxenburg, Austria</div></div>
+          </div>
+          <div class="post glass">
+            <div class="post__when">Aug 2023 –<br>Dec 2025</div>
+            <div><div class="post__role">Researcher (post-doctoral)</div><div class="post__org">IIASA · Agriculture, Forestry and Ecosystems Services Group</div><div class="post__note">Biodiversity and Natural Resources Programme · Laxenburg, Austria</div></div>
+          </div>
+          <p style="margin-top:1.4rem"><a class="go magnet" href="academic.html">The full academic journey <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
         </div>
-      </div>
-      <div>
-        <div class="footer__col-title">Portfolio</div>
-        <div class="footer__links">
-          <a href="index.html">Home</a>
-          <a href="academic.html">Academic Journey</a>
-          <a href="publications.html">Publications</a>
-          <a href="apps.html">Research Tools</a>
-          <a href="outreach.html">Outreach</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer__col-title">Research Profiles</div>
-        <div class="footer__links">
-          <a href="https://scholar.google.com/citations?user=5dhoW-cAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-          <a href="https://orcid.org/0000-0001-6407-383X" target="_blank" rel="noopener">ORCID</a>
-          <a href="https://www.researchgate.net/profile/Sinchan-Ghosh" target="_blank" rel="noopener">ResearchGate</a>
-          <a href="https://github.com/gsinchanpostdoc" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://www.linkedin.com/in/sinchan-ghosh-b652941b7" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer__col-title">Tools</div>
-        <div class="footer__links">
-          <a href="https://roedeerdist.webtechsystems.de/" target="_blank" rel="noopener">Species Distribution App</a>
-          <a href="apps.html#forage">Forage Energy Database</a>
-          <a href="https://gsinchanpostdoc.github.io/AlderIPM-Sim/" target="_blank" rel="noopener">AlderIPM-Sim</a>
-          <a href="https://github.com/gsinchanpostdoc" target="_blank" rel="noopener">Code Repositories</a>
+        <div class="glass pane">
+          <h3>Habitat systems</h3>
+          <ul class="inline"><li>Farmland</li><li>Riparian</li><li>Estuarine</li><li>Grassland</li><li>Boreal forest</li></ul>
+          <h3>Public databases</h3>
+          <ul class="inline inline--ink"><li>GBIF</li><li>eBird</li><li>iNaturalist</li><li>TRY</li><li>CMIP6</li><li>CRU</li><li>ERA5</li><li>EUR-11</li><li>LUCAS</li><li>India-WRIS</li><li>Bhuvan</li><li>InsectBase</li></ul>
+          <h3>Peer review &amp; service</h3>
+          <p class="small muted">Reviewer for <em>Ecological Modelling</em>, <em>Ecological Indicators</em> and <em>Scientific Reports</em>. Editorial service: <em>NDC E-BIOS</em> (2023–present), <em>Bulletin of the Calcutta Mathematical Society</em> (2022–23). Member of the European Geosciences Union, the International Society for Behavioral Ecology, and the Calcutta Mathematical Society.</p>
         </div>
       </div>
     </div>
-    <div class="footer__bottom">
-      <div class="footer__copy">© 2026 Dr. Sinchan Ghosh · All rights reserved</div>
-      <div class="footer__orcid">ORCID: <a href="https://orcid.org/0000-0001-6407-383X" target="_blank" rel="noopener">0000-0001-6407-383X</a></div>
+  </div>
+</section>
+</main>
+<footer class="colophon chapter chapter--short" id="colophon">
+  <div class="wrap">
+    <hr class="pat">
+    <div class="colophon__grid">
+      <div>
+        <div class="colophon__name">Dr. Sinchan Ghosh</div>
+        <div class="colophon__bn">সিঞ্চন ঘোষ</div>
+        <div class="colophon__role">Ecological modeller · quantitative ecologist<br>IIASA, Laxenburg, Austria</div>
+        <ul style="margin-top:.9rem">
+          <li><a href="mailto:gsinchanpostdoc@gmail.com">gsinchanpostdoc@gmail.com</a></li>
+          <li><a href="https://orcid.org/0000-0001-6407-383X" target="_blank" rel="noopener">ORCID 0000-0001-6407-383X</a></li>
+          <li><a href="https://iiasa.ac.at/" target="_blank" rel="noopener">iiasa.ac.at</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="academic.html">Academic Journey</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="apps.html">Research Tools</a></li>
+          <li><a href="outreach.html">Outreach &amp; Service</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Profiles &amp; tools</h4>
+        <ul>
+          <li><a href="https://scholar.google.com/citations?user=5dhoW-cAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></li>
+          <li><a href="https://www.researchgate.net/profile/Sinchan-Ghosh" target="_blank" rel="noopener">ResearchGate</a></li>
+          <li><a href="https://www.linkedin.com/in/sinchan-ghosh-b652941b7" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/gsinchanpostdoc" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://roedeerdist.webtechsystems.de/" target="_blank" rel="noopener">Species Distribution App</a></li>
+          <li><a href="https://gsinchanpostdoc.github.io/Forage-energy-content-meta-database/" target="_blank" rel="noopener">Forage Energy Database</a></li>
+          <li><a href="https://gsinchanpostdoc.github.io/AlderIPM-Sim/" target="_blank" rel="noopener">AlderIPM-Sim</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Colophon</h4>
+        <p class="colophon__note">Set in <em>Fraunces</em>, <em>Newsreader</em> and <em>Tiro Bangla</em>. The motifs follow the alpona and kantha traditions of Santiniketan — where much of this work began — and the flat colours and bold contours of Jamini Roy. The birds overhead are a Boids flock (Reynolds, 1987): an agent-based model, like much of what you will find here. They avoid your cursor the way bee-eaters avoid a hawk.</p>
+      </div>
+    </div>
+    <div class="colophon__bottom">
+      <span>© 2026 Dr. Sinchan Ghosh</span>
+      <span>Reynolds, C. W. (1987). Flocks, herds and schools: A distributed behavioral model. <em>ACM SIGGRAPH Computer Graphics, 21</em>(4), 25–34. <a href="https://doi.org/10.1145/37402.37406" target="_blank" rel="noopener">https://doi.org/10.1145/37402.37406</a></span>
     </div>
   </div>
 </footer>
-
-<script src="nav.js"></script>
+<script src="site.js" defer></script>
 </body>
 </html>
