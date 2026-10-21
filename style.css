@@ -35,7 +35,6 @@
   --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --font-body:    "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --font-bangla:  "Tiro Bangla", "Noto Serif Bengali", "Bangla MN", "Vrinda", serif;
-  --font-num:     var(--font-display);   /* chapter numerals follow the page language: Fraunces on EN/DE pages, the script face on BN/HI */
   --font-mono:    ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 
   --measure: 64ch;
@@ -170,8 +169,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .pat--rust { background: var(--terra); }
 
 /* Scripts: Bengali and Devanagari pages set their own faces and looser leading */
-html[lang="bn"] { --font-display: "Tiro Bangla", "Noto Serif Bengali", "Bangla MN", "Vrinda", serif; --font-body: "Tiro Bangla", "Noto Serif Bengali", "Bangla MN", "Vrinda", serif; --font-num: var(--font-bangla); }
-html[lang="hi"] { --font-display: "Tiro Devanagari Hindi", "Noto Serif Devanagari", "Kohinoor Devanagari", "Mangal", serif; --font-body: "Tiro Devanagari Hindi", "Noto Serif Devanagari", "Kohinoor Devanagari", "Mangal", serif; --font-bangla: "Tiro Devanagari Hindi", "Noto Serif Devanagari", "Mangal", serif; --font-num: var(--font-bangla); }
+html[lang="bn"] { --font-display: "Tiro Bangla", "Noto Serif Bengali", "Bangla MN", "Vrinda", serif; --font-body: "Tiro Bangla", "Noto Serif Bengali", "Bangla MN", "Vrinda", serif; }
+html[lang="hi"] { --font-display: "Tiro Devanagari Hindi", "Noto Serif Devanagari", "Kohinoor Devanagari", "Mangal", serif; --font-body: "Tiro Devanagari Hindi", "Noto Serif Devanagari", "Kohinoor Devanagari", "Mangal", serif; --font-bangla: "Tiro Devanagari Hindi", "Noto Serif Devanagari", "Mangal", serif; }
 html[lang="bn"] body, html[lang="hi"] body { line-height: 1.75; }
 html[lang="bn"] h1, html[lang="bn"] h2, html[lang="bn"] h3, html[lang="bn"] h4, html[lang="hi"] h1, html[lang="hi"] h2, html[lang="hi"] h3, html[lang="hi"] h4 { line-height: 1.3; letter-spacing: 0; }
 html[lang="bn"] .hero__name, html[lang="hi"] .hero__name { letter-spacing: 0; line-height: 1.15; font-weight: 400; }
@@ -249,16 +248,6 @@ html.has-cursor * { cursor: none !important; }
   .margin-rule { display: none; }
 }
 
-/* Chapter / section numerals, in the page's own script (Western digits on EN/DE, Bengali on BN, Devanagari on HI) */
-.num {
-  font-family: var(--font-num); color: var(--leaf); line-height: 1;
-  font-size: clamp(2.6rem, 6vw, 4.8rem); font-weight: 400;
-  padding-top: .15em; user-select: none;
-}
-html[lang="en"] .num, html[lang="de"] .num { font-weight: 300; letter-spacing: -.03em; font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1; }
-@media (max-width: 900px) {
-  .num { font-size: 1.9rem; margin-bottom: .4rem; }
-}
 .eyebrow {
   font-family: var(--font-display); font-variation-settings: "opsz" 12, "SOFT" 0, "WONK" 0;
   font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--leaf);
@@ -280,7 +269,6 @@ html[lang="en"] .num, html[lang="de"] .num { font-weight: 300; letter-spacing: -
 .muted { color: var(--ink-2); }
 .small { font-size: .92rem; }
 .mono { font-family: var(--font-mono); font-size: .8em; letter-spacing: .01em; }
-.bn { font-family: var(--font-num); }   /* numeral / enumerator marker, in the page's script */
 
 /* kantha stitch dividers */
 .stitch { height: 9px; margin: 0; border: 0; background: var(--terra); opacity: .75; -webkit-mask: var(--stitch) repeat-x left center / 22px 9px; mask: var(--stitch) repeat-x left center / 22px 9px; }
@@ -390,8 +378,7 @@ html[lang="en"] .num, html[lang="de"] .num { font-weight: 300; letter-spacing: -
   transition: opacity .5s var(--ease), transform .5s var(--ease), visibility 0s linear .5s;
 }
 .drawer.is-open { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
-.drawer > a { display: grid; grid-template-columns: 2.6rem 1fr; align-items: baseline; gap: .8rem; padding: .7rem 0; border-bottom: 1px dashed var(--line-2); font-family: var(--font-display); font-size: clamp(1.6rem, 6vw, 2.3rem); font-variation-settings: "opsz" 60, "SOFT" 60, "WONK" 1; color: var(--ink); }
-.drawer > a .bn { color: var(--leaf); font-size: .7em; }
+.drawer > a { display: block; padding: .7rem 0; border-bottom: 1px dashed var(--line-2); font-family: var(--font-display); font-size: clamp(1.6rem, 6vw, 2.3rem); font-variation-settings: "opsz" 60, "SOFT" 60, "WONK" 1; color: var(--ink); }
 .drawer > a[aria-current="page"] { color: var(--leaf); }
 .drawer__foot { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; font-size: .95rem; color: var(--ink-2); }
 .drawer__foot a { color: var(--leaf); font-family: var(--font-body); font-size: 1rem; }
@@ -419,9 +406,12 @@ html.no-js .reveal > *, html.reduced .reveal > * { opacity: 1; translate: 0 0; t
 
 /* chapter rail (right edge) */
 .rail { position: fixed; right: clamp(.5rem, 1.8vw, 1.4rem); top: 50%; transform: translateY(-50%); z-index: 25; display: grid; gap: .25rem; }
-.rail a { position: relative; width: 2.1rem; height: 2.1rem; display: grid; place-items: center; border-radius: 50%; font-family: var(--font-num); font-size: 1rem; color: var(--ink-3); transition: color .3s; font-variation-settings: "opsz" 12, "SOFT" 50, "WONK" 1; }
+.rail a { position: relative; width: 2.1rem; height: 2.1rem; display: grid; place-items: center; border-radius: 50%; color: var(--ink-3); transition: color .3s; }
+.rail a::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: .55; transition: opacity .3s, transform .4s var(--ease); }
+.rail a:hover::after, .rail a.is-current::after { opacity: 1; }
 .rail a::before { content: ""; position: absolute; inset: 4px; border-radius: 50%; border: 1.2px solid var(--leaf); opacity: 0; transform: scale(.6) rotate(45deg); transition: opacity .4s, transform .5s var(--ease); }
 .rail a.is-current { color: var(--leaf); }
+.rail a.is-current::after { transform: scale(1.15); }
 .rail a.is-current::before { opacity: 1; transform: none; }
 .rail a span { position: absolute; right: 2.6rem; top: 50%; transform: translate(6px, -50%); white-space: nowrap; font-family: var(--font-display); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); opacity: 0; transition: opacity .3s, transform .4s var(--ease); pointer-events: none; font-variation-settings: "opsz" 12; }
 .rail a:hover span, .rail a:focus-visible span { opacity: 1; transform: translate(0, -50%); }
@@ -476,22 +466,18 @@ html.no-js .reveal > *, html.reduced .reveal > * { opacity: 1; translate: 0 0; t
 /* 6c. Craft (what I do) */
 .craft { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem clamp(1.2rem, 2.5vw, 2rem); }
 @media (max-width: 720px) { .craft { grid-template-columns: minmax(0, 1fr); } }
-.craft h3 { font-size: 1.35rem; font-style: italic; font-weight: 400; margin-bottom: .7rem; font-variation-settings: "opsz" 40, "SOFT" 70, "WONK" 1; display: flex; align-items: center; gap: .6rem; }
-.craft h3 .bn { color: var(--leaf); font-style: normal; font-size: .85em; }
-html[lang="en"] .craft h3 .bn, html[lang="de"] .craft h3 .bn { font-style: italic; font-size: 1em; }
-html[lang="en"] .craft h3 .bn::after, html[lang="de"] .craft h3 .bn::after { content: "."; }
+.craft h3 { font-size: 1.35rem; font-style: italic; font-weight: 400; margin-bottom: .7rem; font-variation-settings: "opsz" 40, "SOFT" 70, "WONK" 1; }
 .craft .lotus { font-size: 1rem; }
 
 /* 6d. Plates (tools) */
 .plates { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.3rem; }
 @media (max-width: 860px) { .plates { grid-template-columns: minmax(0, 1fr); } }
-.plate { position: relative; display: grid; grid-template-rows: auto auto 1fr auto; gap: .7rem; padding: 1.4rem 1.3rem 1.6rem; color: inherit; }
+.plate { position: relative; display: grid; grid-template-rows: auto 1fr auto; gap: .9rem; padding: 1.4rem 1.3rem 1.6rem; color: inherit; }
 .plate__fig .nd { stroke-dasharray: 5 4.5; stroke-dashoffset: 0; }
 .plate__fig { height: 118px; color: var(--leaf); display: flex; align-items: flex-end; }
 .plate__fig svg { height: 100%; width: auto; max-width: 100%; }
 .plate__fig path, .plate__fig circle, .plate__fig ellipse { stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset 1.8s var(--ease); }
 .is-in .plate__fig path, .is-in .plate__fig circle, .is-in .plate__fig ellipse, html.reduced .plate__fig path, html.reduced .plate__fig circle, html.reduced .plate__fig ellipse { stroke-dashoffset: 0; }
-.plate__no { font-family: var(--font-bangla); color: var(--leaf); font-size: 1.1rem; }
 .plate__name { font-size: 1.45rem; font-weight: 450; line-height: 1.15; font-variation-settings: "opsz" 60, "SOFT" 40, "WONK" 1; }
 .plate__name em { color: var(--leaf); }
 .plate__desc { color: var(--ink-2); font-size: .98rem; line-height: 1.5; }
@@ -702,7 +688,7 @@ html[data-theme="dark"] {
   .reveal > * { opacity: 1 !important; translate: 0 0 !important; }
   .figure__n svg path, .plate__fig path, .plate__fig circle, .plate__fig ellipse { stroke-dashoffset: 0 !important; }
   .scrollcue i { animation: none; transform: none; }
-  #flock, #lantern, .cursor { display: none !important; }
+  #lantern, .cursor { display: none !important; }     /* the living margin stays, as a still scene */
   html.has-cursor * { cursor: auto !important; }
   html.focus-dim .sheet { opacity: 1; filter: none; }
 }
